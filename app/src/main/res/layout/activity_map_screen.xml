@@ -8,11 +8,94 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="411dp"
+        android:layout_height="51dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Map Screen"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="253dp" />
+        android:gravity='center'
+        android:inputType="text"
+        android:text="Choose Where You Want To GO!"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="107dp" />
+
+    <LinearLayout
+        android:layout_width="417dp"
+        android:layout_height="59dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="96dp"></LinearLayout>
+
+    <ImageView
+        android:id="@+id/firstImage"
+        android:layout_width="418dp"
+        android:layout_height="491dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="154dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="422dp"
+        android:layout_height="141dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstImage"
+        tools:layout_editor_absoluteX="-5dp">
+
+        <RelativeLayout
+            android:id="@+id/category"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/PAC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PAC"
+            android:onClick="goToBuildingScreen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/SLC"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/SLC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SLC"
+            android:onClick="goToBuildingScreen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/PAC" />
+
+        <Button
+            android:id="@+id/E5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E5"
+            android:onClick="goToBuildingScreen"
+            app:layout_constraintBottom_toBottomOf="@+id/PAC"
+            app:layout_constraintEnd_toStartOf="@+id/E7"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.337" />
+
+        <Button
+            android:id="@+id/E7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E7"
+            android:onClick="goToBuildingScreen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/E5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.337" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
