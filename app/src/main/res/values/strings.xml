@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">mcandgeese</string>
+    <string name="ATTACK">ATTACK</string>
+    <string name="HEAL">HEAL</string>
+    <string name="RECHARGE">RECHARGE</string>
+    <string name="TextView">TextView</string>
+    <string name="textView">textView</string>
+    <string name="Health">Health</string>
+    <string name="MonsterHealth">Monster Health</string>
+    <string name="Energy">Energy:</string>
+    <string name="HitPoint">HitPoint:</string>
+    <string name="EnergyCost">Energy Cost:</string>
+    <string name="HealPoint">HealPoint:</string>
+    <string name="AddEnergy">Add Energy:</string>
+    <string name="WinNotDone">You\'ve won the fight but the battle isn\'t over!</string>
+    <string name="Return">Return</string>
+    <string name="RemainingMonsters">Remaining Monsters:</string>
+    <string name="Counter">Counter</string>
+    <string name="Congratulations">Congratulations!</string>
+    <string name="Restart">Restart?</string>
+    <string name="Defeat">You have been defeated!</string>
 </resources>
