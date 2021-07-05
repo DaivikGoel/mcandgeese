@@ -2,9 +2,14 @@ package com.example.mcandgeese;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.mcandgeese.gamePanel.HealthBar;
 
 public class BattleScreen extends AppCompatActivity {
 
@@ -18,6 +23,11 @@ public class BattleScreen extends AppCompatActivity {
     int healpoint = 15; // Amount user heals per heal
     int rechargeamount = 10; // Amount user energy increases per recharge
     //need to load in counter that is globally held
+
+    private HealthBar healthBar; // should be in Player class
+    private Canvas canvas;
+    private ImageView imageView;
+    private Bitmap bitMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -53,7 +63,23 @@ public class BattleScreen extends AppCompatActivity {
         TextView textView = findViewById(R.id.textView);
         textView.setText("User Turn!");
 
+        // get the image view reference
+        imageView = (ImageView) findViewById(R.id.healthBar);
 
+        bitMap = Bitmap.createBitmap(
+                700, 250, Bitmap.Config.ARGB_8888);
+
+        // Associate the bitmap to the ImageView.
+        imageView.setImageBitmap(bitMap);
+
+        // Create a Canvas with the bitmap.
+        canvas = new Canvas(bitMap);
+
+        // initialize health bar object
+        healthBar = new HealthBar();
+
+        // draw the healthbar
+        drawBar();
     }
 
 
@@ -98,6 +124,9 @@ public class BattleScreen extends AppCompatActivity {
             TextView EC = findViewById(R.id.EnergyCount);
             EC.setText(String.valueOf(energy));
 
+            // update the health and energy bars
+            drawBar();
+
             MonsterTurn();
         }
         else
@@ -134,19 +163,21 @@ public class BattleScreen extends AppCompatActivity {
 
         userhealth = userhealth - monsterhitpoint ;
 
-            TextView UH = findViewById(R.id.HealthCount);
-            UH.setText(String.valueOf(userhealth));
+        TextView UH = findViewById(R.id.HealthCount);
+        UH.setText(String.valueOf(userhealth));
 
-            TextView MH = findViewById(R.id.MonsterHealthCount);
-            MH.setText(String.valueOf(monsterhealth));
+        TextView MH = findViewById(R.id.MonsterHealthCount);
+        MH.setText(String.valueOf(monsterhealth));
 
-            TextView EC = findViewById(R.id.EnergyCount);
-            EC.setText(String.valueOf(energy));
+        TextView EC = findViewById(R.id.EnergyCount);
+        EC.setText(String.valueOf(energy));
+
+        // update health and energy bars
+        drawBar();
 
         if (userhealth <= 0) { EndGameLoose(); }
 
         textView.setText("User Turn!");
-
     }
 
     public void EndGameWin() // if user wins
@@ -164,6 +195,11 @@ public class BattleScreen extends AppCompatActivity {
         setContentView(R.layout.user_loose);
     }
 
+    public void drawBar() {
+
+        // draw/update health and energy bars
+        this.healthBar.drawBar(userhealth, energy, canvas);
+    }
 
 
 }

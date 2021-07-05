@@ -43,12 +43,22 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/healthBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <TextView
         android:id="@+id/HealthCount"
         android:layout_width="125dp"
         android:layout_height="94dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="204dp"
         android:text="@string/TextView"
         android:textColor="#99FF99"
         android:textSize="60sp"
@@ -59,8 +69,8 @@
         android:id="@+id/MonsterHealthCount"
         android:layout_width="123dp"
         android:layout_height="95dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginTop="204dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/TextView"
         android:textColor="#FF0000"
         android:textSize="60sp"
@@ -71,32 +81,21 @@
         android:id="@+id/EnergyCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="204dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="308dp"
         android:text="@string/TextView"
         android:textColor="#3399FF"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_begin="196dp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="164dp"
         android:text="@string/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -104,7 +103,8 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/Health"
         app:layout_constraintBottom_toTopOf="@+id/HealthCount"
         app:layout_constraintStart_toStartOf="parent" />
@@ -113,7 +113,8 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/MonsterHealth"
         app:layout_constraintBottom_toTopOf="@+id/MonsterHealthCount"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -122,8 +123,8 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="215dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="316dp"
         android:text="@string/Energy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
