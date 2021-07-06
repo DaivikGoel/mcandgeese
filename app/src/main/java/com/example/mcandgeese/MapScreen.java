@@ -18,10 +18,24 @@ public class MapScreen extends AppCompatActivity {
 
         int imageResource = getResources().getIdentifier("@drawable/campusmap", null, this.getPackageName());
         firstImage.setImageResource(imageResource);
-
     }
+
     public void goToBuildingScreen(View view) {
         Intent intent = new Intent(MapScreen.this, BuildingScreen.class);
+        switch (view.getId()) {
+            case (R.id.E5):
+                intent.putExtra("BUILDING_ID", "E5");
+                break;
+            case (R.id.E7):
+                intent.putExtra("BUILDING_ID", "E7");
+                break;
+            case (R.id.PAC):
+                intent.putExtra("BUILDING_ID", "PAC");
+                break;
+            case (R.id.SLC):
+                intent.putExtra("BUILDING_ID", "SLC");
+                break;
+        }
         startActivity(intent);
     }
 

@@ -2,13 +2,46 @@ package com.example.mcandgeese;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 public class BuildingScreen extends AppCompatActivity {
-
+    ImageView buildingImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_building_screen);
+
+        String imageId = getIntent().getStringExtra("BUILDING_ID");
+        buildingImage = (ImageView) findViewById(R.id.secondImage);
+        int imageResource = getResources().getIdentifier("@drawable/campusmap", null, this.getPackageName());
+        switch (imageId) {
+            case ("E5"):
+                imageResource = getResources().getIdentifier("@drawable/e5", null, this.getPackageName());
+                break;
+            case ("E7"):
+                imageResource = getResources().getIdentifier("@drawable/e7", null, this.getPackageName());
+                break;
+            case ("SLC"):
+                imageResource = getResources().getIdentifier("@drawable/slc", null, this.getPackageName());
+                break;
+            case ("PAC"):
+                imageResource = getResources().getIdentifier("@drawable/pac", null, this.getPackageName());
+                break;
+        }
+        buildingImage.setImageResource(imageResource);
+    }
+
+    public void goToBattleScreen(View view) {
+        Intent intent = new Intent(BuildingScreen.this, BattleScreen.class);
+        startActivity(intent);
+    }
+
+    public void goToMapScreen(View view) {
+        Intent intent = new Intent(BuildingScreen.this, MapScreen.class);
+        startActivity(intent);
     }
 }
