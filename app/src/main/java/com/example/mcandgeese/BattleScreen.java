@@ -9,25 +9,33 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mcandgeese.gamePanel.HealthBar;
+import com.example.mcandgeese.gamePanel.MonsterHealthBar;
+import com.example.mcandgeese.gamePanel.UserHealthBar;
 
 public class BattleScreen extends AppCompatActivity {
 
     int userhealth = 100; //Remaining User Health (need to be set from previous state/battle)
     int energy = 100; //Remaining User Energy (need to be set from previous state/battle)
-    int monsterhealth = 50; // Starting Monster Health
+    int monsterhealth = 100; // Starting Monster Health
     int monsterhitpoint = 10; // Amount of Damage to user (per turn)
     int attackenergycost = 25; // Cost of energy per attack to monster
     int healenergycost = 5; //Cost of energy per heal to user
-    int hitpoint = 10; // Amount of damage per attack to monster
+    int hitpoint = 20; // Amount of damage per attack to monster
     int healpoint = 15; // Amount user heals per heal
     int rechargeamount = 10; // Amount user energy increases per recharge
     //need to load in counter that is globally held
 
-    private HealthBar healthBar; // should be in Player class
-    private Canvas canvas;
-    private ImageView imageView;
-    private Bitmap bitMap;
+    // user info
+    private UserHealthBar userHealthBar;
+    private Canvas userCanvas;
+    private ImageView userImageView;
+    private Bitmap userBitMap;
+
+    // monster info
+    private MonsterHealthBar monsterHealthBar;
+    private Canvas monsterCanvas;
+    private ImageView monsterImageView;
+    private Bitmap monsterBitMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,6 +43,7 @@ public class BattleScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle_screen);
 
+        /*
         //set starting stats
         TextView UH = findViewById(R.id.HealthCount);
         UH.setText(String.valueOf(userhealth));
@@ -44,6 +53,7 @@ public class BattleScreen extends AppCompatActivity {
 
         TextView AB = findViewById(R.id.EnergyCount);
         AB.setText(String.valueOf(energy));
+         */
 
         TextView BC = findViewById(R.id.textView12);
         BC.setText(String.valueOf(hitpoint));
@@ -63,23 +73,51 @@ public class BattleScreen extends AppCompatActivity {
         TextView textView = findViewById(R.id.textView);
         textView.setText("User Turn!");
 
-        // get the image view reference
-        imageView = (ImageView) findViewById(R.id.healthBar);
+        // setup the user health and energy bars
+        setUpUserHealthAndEnergyBars();
 
-        bitMap = Bitmap.createBitmap(
-                700, 250, Bitmap.Config.ARGB_8888);
+        // setup the monster health bar
+        setUpMonsterHealthBar();
+    }
+
+    private void setUpUserHealthAndEnergyBars() {
+        // get the image view reference
+        userImageView = (ImageView) findViewById(R.id.userHealthBar);
+
+        userBitMap = Bitmap.createBitmap(
+                700, 150, Bitmap.Config.ARGB_8888);
 
         // Associate the bitmap to the ImageView.
-        imageView.setImageBitmap(bitMap);
+        userImageView.setImageBitmap(userBitMap);
 
         // Create a Canvas with the bitmap.
-        canvas = new Canvas(bitMap);
+        userCanvas = new Canvas(userBitMap);
 
         // initialize health bar object
-        healthBar = new HealthBar();
+        userHealthBar = new UserHealthBar();
 
-        // draw the healthbar
-        drawBar();
+        // draw the health and energy bar
+        drawUserBars();
+    }
+
+    private void setUpMonsterHealthBar() {
+        // get the image view reference
+        monsterImageView = (ImageView) findViewById(R.id.monsterHealthBar);
+
+        monsterBitMap = Bitmap.createBitmap(
+                700, 150, Bitmap.Config.ARGB_8888);
+
+        // Associate the bitmap to the ImageView.
+        monsterImageView.setImageBitmap(monsterBitMap);
+
+        // Create a Canvas with the bitmap.
+        monsterCanvas = new Canvas(monsterBitMap);
+
+        // initialize health bar object
+        monsterHealthBar = new MonsterHealthBar();
+
+        // draw the health and energy bar
+        drawMonsterBar();
     }
 
 
@@ -89,6 +127,7 @@ public class BattleScreen extends AppCompatActivity {
             monsterhealth = monsterhealth - hitpoint;
             energy = energy - attackenergycost;
 
+            /*
             TextView UH = findViewById(R.id.HealthCount);
             UH.setText(String.valueOf(userhealth));
 
@@ -97,6 +136,10 @@ public class BattleScreen extends AppCompatActivity {
 
             TextView GH = findViewById(R.id.EnergyCount);
             GH.setText(String.valueOf(energy));
+             */
+
+            drawUserBars();
+            drawMonsterBar();
 
             if (monsterhealth <= 0) { EndGameWin(); }
             else { MonsterTurn();}
@@ -115,6 +158,7 @@ public class BattleScreen extends AppCompatActivity {
             userhealth = userhealth + healpoint;
             energy = energy - healenergycost;
 
+            /*
             TextView UH = findViewById(R.id.HealthCount);
             UH.setText(String.valueOf(userhealth));
 
@@ -123,9 +167,11 @@ public class BattleScreen extends AppCompatActivity {
 
             TextView EC = findViewById(R.id.EnergyCount);
             EC.setText(String.valueOf(energy));
+             */
 
             // update the health and energy bars
-            drawBar();
+            drawUserBars();
+            drawMonsterBar();
 
             MonsterTurn();
         }
@@ -140,6 +186,7 @@ public class BattleScreen extends AppCompatActivity {
     {
         energy = energy + rechargeamount;
 
+        /*
         TextView UH = findViewById(R.id.HealthCount);
         UH.setText(String.valueOf(userhealth));
 
@@ -148,21 +195,23 @@ public class BattleScreen extends AppCompatActivity {
 
         TextView EC = findViewById(R.id.EnergyCount);
         EC.setText(String.valueOf(energy));
+         */
+
+        drawUserBars();
+        drawMonsterBar();
 
         MonsterTurn();
 
     }
-
 
     public void MonsterTurn() // Runs after any button is pressed, This is the monsters attack
     {
         TextView textView = findViewById(R.id.textView);
         textView.setText("Monster Turn!");
 
-
-
         userhealth = userhealth - monsterhitpoint ;
 
+        /*
         TextView UH = findViewById(R.id.HealthCount);
         UH.setText(String.valueOf(userhealth));
 
@@ -171,9 +220,11 @@ public class BattleScreen extends AppCompatActivity {
 
         TextView EC = findViewById(R.id.EnergyCount);
         EC.setText(String.valueOf(energy));
+        */
 
         // update health and energy bars
-        drawBar();
+        drawUserBars();
+        drawMonsterBar();
 
         if (userhealth <= 0) { EndGameLoose(); }
 
@@ -186,8 +237,6 @@ public class BattleScreen extends AppCompatActivity {
         //setContentView(R.layout.user_win_final
 
         setContentView(R.layout.user_win_return);
-
-
     }
 
     public void EndGameLoose() // if user looses
@@ -195,11 +244,14 @@ public class BattleScreen extends AppCompatActivity {
         setContentView(R.layout.user_loose);
     }
 
-    public void drawBar() {
+    public void drawUserBars() {
 
         // draw/update health and energy bars
-        this.healthBar.drawBar(userhealth, energy, canvas);
+        this.userHealthBar.drawBar(userhealth, energy, userCanvas);
     }
 
-
+    public void drawMonsterBar() {
+        // draw/update health and energy bars
+        this.monsterHealthBar.drawBar(monsterhealth, monsterCanvas);
+    }
 }
