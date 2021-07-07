@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/flying_goose"
     tools:context=".MainActivity">
+
     <TextView
+        android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Home"
@@ -13,38 +16,45 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <RelativeLayout
         android:id="@+id/category"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center_vertical|center_horizontal|center"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/flying_goose"
         android:gravity="center"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/mainScreenTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
-    <Button
-        android:id="@+id/battlescreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="goToBattleScreen"
-        android:text="Battle Screen"
-        />
-
-    <Button
-        android:id="@+id/buildingscreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="goToBuildingScreen"
-        android:layout_toRightOf="@id/battlescreen"
-        android:text="Building Screen"
-         />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/mapscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="487dp"
         android:onClick="goToMapScreen"
-        android:layout_toRightOf="@id/buildingscreen"
-        android:text="Map Screen" />
-    </RelativeLayout>
+        android:text="Start Game"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainScreenTitle" />
+
+    <TextView
+        android:id="@+id/mainScreenTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="117dp"
+        android:text="MC And Geese"
+        app:layout_constraintBottom_toTopOf="@+id/mapscreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category" />
 </androidx.constraintlayout.widget.ConstraintLayout>

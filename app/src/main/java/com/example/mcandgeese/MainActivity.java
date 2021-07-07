@@ -3,6 +3,7 @@ package com.example.mcandgeese;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 
 import android.content.Intent;
@@ -27,4 +28,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, BattleScreen.class);
         startActivity(intent);
     }
+
 }

@@ -2,6 +2,7 @@ package com.example.mcandgeese;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -14,8 +15,8 @@ import com.example.mcandgeese.gamePanel.UserHealthBar;
 
 public class BattleScreen extends AppCompatActivity {
 
-    int userhealth = 100; //Remaining User Health (need to be set from previous state/battle)
-    int energy = 100; //Remaining User Energy (need to be set from previous state/battle)
+    int userhealth; //Remaining User Health (need to be set from previous state/battle)
+    int energy; //Remaining User Energy (need to be set from previous state/battle)
     int monsterhealth = 100; // Starting Monster Health
     int monsterhitpoint = 10; // Amount of Damage to user (per turn)
     int attackenergycost = 25; // Cost of energy per attack to monster
@@ -41,6 +42,8 @@ public class BattleScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        this.userhealth = ((GlobalVariables) this.getApplication()).getCurrentHealth();
+        this.energy = ((GlobalVariables) this.getApplication()).getCurrentEnergy();
         setContentView(R.layout.activity_battle_screen);
 
         /*
@@ -126,6 +129,7 @@ public class BattleScreen extends AppCompatActivity {
         {
             monsterhealth = monsterhealth - hitpoint;
             energy = energy - attackenergycost;
+            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
 
             /*
             TextView UH = findViewById(R.id.HealthCount);
@@ -156,7 +160,9 @@ public class BattleScreen extends AppCompatActivity {
         if (energy >= healenergycost)
         {
             userhealth = userhealth + healpoint;
+            ((GlobalVariables) this.getApplication()).setCurrentEnergy(userhealth);
             energy = energy - healenergycost;
+            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
 
             /*
             TextView UH = findViewById(R.id.HealthCount);
@@ -185,6 +191,7 @@ public class BattleScreen extends AppCompatActivity {
     public void RechargeUser(View view) // Runs when user presses 'RECHARGE'
     {
         energy = energy + rechargeamount;
+        ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
 
         /*
         TextView UH = findViewById(R.id.HealthCount);
@@ -210,7 +217,7 @@ public class BattleScreen extends AppCompatActivity {
         textView.setText("Monster Turn!");
 
         userhealth = userhealth - monsterhitpoint ;
-
+        ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
         /*
         TextView UH = findViewById(R.id.HealthCount);
         UH.setText(String.valueOf(userhealth));
@@ -241,6 +248,8 @@ public class BattleScreen extends AppCompatActivity {
 
     public void EndGameLoose() // if user looses
     {
+        // On loss, reset the user's health and energy
+        resetStats();
         setContentView(R.layout.user_loose);
     }
 
@@ -253,5 +262,25 @@ public class BattleScreen extends AppCompatActivity {
     public void drawMonsterBar() {
         // draw/update health and energy bars
         this.monsterHealthBar.drawBar(monsterhealth, monsterCanvas);
+    }
+
+    public void resetStats() {
+        ((GlobalVariables) this.getApplication()).setCurrentHealth(100);
+        ((GlobalVariables) this.getApplication()).setCurrentEnergy(100);
+    }
+
+    public void goToMapScreen(View view) {
+        Intent intent = new Intent(BattleScreen.this, MapScreen.class);
+        startActivity(intent);
+    }
+
+    public void goToBuildingScreen(View view) {
+        Intent intent = new Intent(BattleScreen.this, BuildingScreen.class);
+        startActivity(intent);
+    }
+
+    public void goToMainScreen(View view) {
+        Intent intent = new Intent(BattleScreen.this, MainActivity.class);
+        startActivity(intent);
     }
 }
