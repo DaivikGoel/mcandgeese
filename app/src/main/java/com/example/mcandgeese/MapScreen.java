@@ -35,6 +35,12 @@ public class MapScreen extends AppCompatActivity {
             case (R.id.SLC):
                 intent.putExtra("BUILDING_ID", "SLC");
                 break;
+            case (R.id.Plaza):
+                intent.putExtra("BUILDING_ID", "SLC");
+                break;
+            case (R.id.RCH):
+                intent.putExtra("BUILDING_ID", "SLC");
+                break;
         }
         startActivity(intent);
     }

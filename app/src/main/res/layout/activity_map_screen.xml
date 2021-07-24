@@ -34,42 +34,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="422dp"
-        android:layout_height="141dp"
+        android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstImage"
         tools:layout_editor_absoluteX="-5dp">
 
-        <RelativeLayout
-            android:id="@+id/category"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center_vertical|center_horizontal|center"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-        </RelativeLayout>
-
-        <Button
-            android:id="@+id/PAC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PAC"
-            android:onClick="goToBuildingScreen"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/SLC"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/SLC"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SLC"
-            android:onClick="goToBuildingScreen"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/PAC" />
 
         <Button
             android:id="@+id/E5"
@@ -82,7 +51,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.337" />
+            app:layout_constraintVertical_bias="0" />
 
         <Button
             android:id="@+id/E7"
@@ -95,7 +64,52 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/E5"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.337" />
+            app:layout_constraintVertical_bias="0" />
+
+        <Button
+            android:id="@+id/PAC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PAC"
+            android:onClick="goToBuildingScreen"
+            app:layout_constraintTop_toBottomOf="@+id/E5"
+            app:layout_constraintEnd_toStartOf="@+id/SLC"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/SLC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SLC"
+            android:onClick="goToBuildingScreen"
+            app:layout_constraintTop_toBottomOf="@+id/E7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/PAC" />
+
+        <Button
+            android:id="@+id/Plaza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plaza"
+            android:onClick="goToBuildingScreen"
+            app:layout_constraintTop_toBottomOf="@+id/PAC"
+            app:layout_constraintEnd_toStartOf="@+id/RCH"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <Button
+            android:id="@+id/RCH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RCH"
+            android:onClick="goToBuildingScreen"
+            app:layout_constraintTop_toBottomOf="@+id/SLC"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Plaza" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
