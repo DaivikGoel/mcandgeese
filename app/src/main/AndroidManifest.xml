@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mcandgeese">
-        <activity android:name=".BattleScreen"></activity>
+        <activity android:name=".transition_screen"></activity>
+        <activity android:name=".BattleScreen" />
         <activity android:name=".BuildingScreen" />
         <activity
             android:name=".MapScreen"

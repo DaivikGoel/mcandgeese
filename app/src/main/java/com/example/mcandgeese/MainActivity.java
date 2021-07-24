@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void goToMapScreen(View view) {
-        Intent intent = new Intent(MainActivity.this, MapScreen.class);
+        Intent intent = new Intent(MainActivity.this, transition_screen.class);
         startActivity(intent);
     }
     public void goToBuildingScreen(View view) {
