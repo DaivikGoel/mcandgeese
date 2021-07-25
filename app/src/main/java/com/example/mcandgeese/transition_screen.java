@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.widget.VideoView;
 import android.content.Intent;
 import android.view.View;
-
+import android.net.Uri;
 public class transition_screen extends AppCompatActivity {
     VideoView transitionVideo;
+    private Uri videPath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,7 +18,8 @@ public class transition_screen extends AppCompatActivity {
         transitionVideo = (VideoView) findViewById(R.id.transitionvideo);
 
 
-        transitionVideo.setVideoPath("@res/video.mp4");
+        Uri videPath= Uri.parse("android.resource://com.example.mcandgeese/raw/video");
+        transitionVideo.setVideoURI(videPath);
 
         transitionVideo.start();
     }
