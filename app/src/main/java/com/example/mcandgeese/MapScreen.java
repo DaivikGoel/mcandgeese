@@ -21,7 +21,7 @@ public class MapScreen extends AppCompatActivity {
     }
 
     public void goToBuildingScreen(View view) {
-        Intent intent = new Intent(MapScreen.this, BuildingScreen.class);
+        Intent intent = new Intent(MapScreen.this, transition_screen.class);
         switch (view.getId()) {
             case (R.id.E5):
                 intent.putExtra("BUILDING_ID", "E5");
@@ -29,17 +29,17 @@ public class MapScreen extends AppCompatActivity {
             case (R.id.E7):
                 intent.putExtra("BUILDING_ID", "E7");
                 break;
-            case (R.id.PAC):
-                intent.putExtra("BUILDING_ID", "PAC");
+            case (R.id.DP):
+                intent.putExtra("BUILDING_ID", "DP");
                 break;
             case (R.id.SLC):
                 intent.putExtra("BUILDING_ID", "SLC");
                 break;
             case (R.id.Plaza):
-                intent.putExtra("BUILDING_ID", "SLC");
+                intent.putExtra("BUILDING_ID", "Plaza");
                 break;
-            case (R.id.RCH):
-                intent.putExtra("BUILDING_ID", "SLC");
+            case (R.id.QNC):
+                intent.putExtra("BUILDING_ID", "QNC");
                 break;
         }
         startActivity(intent);

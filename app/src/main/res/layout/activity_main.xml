@@ -26,7 +26,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/mapscreen"
+        android:id="@+id/begin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="250dp"
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="117dp"
         android:text="MC And Geese"
-        app:layout_constraintBottom_toTopOf="@+id/mapscreen"
+        app:layout_constraintBottom_toTopOf="@+id/begin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/category" />

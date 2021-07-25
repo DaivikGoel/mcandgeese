@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void goToMapScreen(View view) {
         Intent intent = new Intent(MainActivity.this, transition_screen.class);
+        intent.putExtra("BUILDING_ID", "begin");
         startActivity(intent);
     }
     public void goToBuildingScreen(View view) {

@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="E5"
             android:onClick="goToBuildingScreen"
-            app:layout_constraintBottom_toBottomOf="@+id/PAC"
+            app:layout_constraintBottom_toBottomOf="@+id/DP"
             app:layout_constraintEnd_toStartOf="@+id/E7"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,10 +67,10 @@
             app:layout_constraintVertical_bias="0" />
 
         <Button
-            android:id="@+id/PAC"
+            android:id="@+id/DP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PAC"
+            android:text="DP"
             android:onClick="goToBuildingScreen"
             app:layout_constraintTop_toBottomOf="@+id/E5"
             app:layout_constraintEnd_toStartOf="@+id/SLC"
@@ -86,7 +86,7 @@
             app:layout_constraintTop_toBottomOf="@+id/E7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/PAC" />
+            app:layout_constraintStart_toEndOf="@+id/DP" />
 
         <Button
             android:id="@+id/Plaza"
@@ -94,16 +94,16 @@
             android:layout_height="wrap_content"
             android:text="Plaza"
             android:onClick="goToBuildingScreen"
-            app:layout_constraintTop_toBottomOf="@+id/PAC"
-            app:layout_constraintEnd_toStartOf="@+id/RCH"
+            app:layout_constraintTop_toBottomOf="@+id/DP"
+            app:layout_constraintEnd_toStartOf="@+id/QNC"
             app:layout_constraintStart_toStartOf="parent"
             />
 
         <Button
-            android:id="@+id/RCH"
+            android:id="@+id/QNC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RCH"
+            android:text="QNC"
             android:onClick="goToBuildingScreen"
             app:layout_constraintTop_toBottomOf="@+id/SLC"
             app:layout_constraintEnd_toEndOf="parent"

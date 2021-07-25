@@ -28,8 +28,14 @@ public class BuildingScreen extends AppCompatActivity {
             case ("SLC"):
                 imageResource = getResources().getIdentifier("@drawable/slc", null, this.getPackageName());
                 break;
-            case ("PAC"):
+            case ("DP"):
                 imageResource = getResources().getIdentifier("@drawable/pac", null, this.getPackageName());
+                break;
+            case("Plaza"):
+                imageResource = getResources().getIdentifier("@drawable/plaza", null, this.getPackageName());
+                break;
+            case("QNC"):
+                imageResource = getResources().getIdentifier("@drawable/quantum", null, this.getPackageName());
                 break;
         }
         buildingImage.setImageResource(imageResource);
