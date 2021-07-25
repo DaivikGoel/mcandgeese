@@ -26,6 +26,10 @@ public class BattleScreen extends AppCompatActivity {
     int rechargeamount = 10; // Amount user energy increases per recharge
     //need to load in counter that is globally held
 
+
+    int x_cord = 606; //606
+    int y_cord = 65;//65
+
     // user info
     private UserHealthBar userHealthBar;
     private Canvas userCanvas;
@@ -39,6 +43,150 @@ public class BattleScreen extends AppCompatActivity {
     private Bitmap monsterBitMap;
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.userhealth = ((GlobalVariables) this.getApplication()).getCurrentHealth();
+        this.energy = ((GlobalVariables) this.getApplication()).getCurrentEnergy();
+        setContentView(R.layout.battle_setup);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            hideSystemUI();
+        }
+
+        final ImageView imageView = (ImageView)findViewById(R.id.Student);
+        imageView.setX(x_cord);
+        imageView.setY(y_cord);
+        imageView.invalidate();
+    }
+
+    private void hideSystemUI() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+    public void ArrowUp(View view) {
+        y_cord = y_cord -85;
+
+        final ImageView imageView = (ImageView)findViewById(R.id.Student);
+        imageView.setY(y_cord);
+        imageView.invalidate();
+
+    }
+
+    public void ArrowDown(View view) {
+        y_cord = y_cord +85;
+
+        final ImageView imageView = (ImageView)findViewById(R.id.Student);
+        imageView.setY(y_cord);
+        imageView.invalidate();
+    }
+
+    public void ArrowLeft(View view) {
+        x_cord = x_cord -85;
+
+        final ImageView imageView = (ImageView)findViewById(R.id.Student);
+        imageView.setX(x_cord);
+        imageView.invalidate();
+    }
+
+    public void ArrowRight(View view) {
+        x_cord = x_cord +85;
+
+        final ImageView imageView = (ImageView)findViewById(R.id.Student);
+        imageView.setX(x_cord);
+        imageView.invalidate();
+
+    }
+
+
+    public void AttackMonster(View view) { // Runs when user presses 'ATTACK' Button
+        if (energy >= attackenergycost)
+        {
+            monsterhealth = monsterhealth - hitpoint;
+            energy = energy - attackenergycost;
+            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+
+            drawUserBars();
+            drawMonsterBar();
+
+            if (monsterhealth <= 0) { EndGameWin(); }
+            else { MonsterTurn();}
+        }
+        else
+        {
+            TextView textView = findViewById(R.id.textView);
+            textView.setText("Not Enough Energy!");
+        }
+
+    }
+
+    public void HealUser(View view) { // Runs when user presses 'HEAL'
+        if (energy >= healenergycost)
+        {
+            userhealth = userhealth + healpoint;
+            ((GlobalVariables) this.getApplication()).setCurrentEnergy(userhealth);
+            energy = energy - healenergycost;
+            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+
+
+
+            // update the health and energy bars
+            drawUserBars();
+            drawMonsterBar();
+
+            MonsterTurn();
+        }
+        else
+        {
+            TextView textView = findViewById(R.id.textView);
+            textView.setText("Not Enough Energy!");
+        }
+    }
+
+    public void RechargeUser(View view) // Runs when user presses 'RECHARGE'
+    {
+        energy = energy + rechargeamount;
+        ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+
+
+        drawUserBars();
+        drawMonsterBar();
+
+        MonsterTurn();
+
+    }
+
+    public void MonsterTurn() // Runs after any button is pressed, This is the monsters attack
+    {
+        TextView textView = findViewById(R.id.textView);
+        textView.setText("Monster Turn!");
+
+        userhealth = userhealth - monsterhitpoint ;
+        ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+
+        // update health and energy bars
+        drawUserBars();
+        drawMonsterBar();
+
+        if (userhealth <= 0) { EndGameLoose(); }
+
+        textView.setText("User Turn!");
+    }
+
+
+    /*
+
+    @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -46,17 +194,6 @@ public class BattleScreen extends AppCompatActivity {
         this.energy = ((GlobalVariables) this.getApplication()).getCurrentEnergy();
         setContentView(R.layout.activity_battle_screen);
 
-        /*
-        //set starting stats
-        TextView UH = findViewById(R.id.HealthCount);
-        UH.setText(String.valueOf(userhealth));
-
-        TextView MH = findViewById(R.id.MonsterHealthCount);
-        MH.setText(String.valueOf(monsterhealth));
-
-        TextView AB = findViewById(R.id.EnergyCount);
-        AB.setText(String.valueOf(energy));
-         */
 
         TextView BC = findViewById(R.id.textView12);
         BC.setText(String.valueOf(hitpoint));
@@ -124,119 +261,8 @@ public class BattleScreen extends AppCompatActivity {
     }
 
 
-    public void AttackMonster(View view) { // Runs when user presses 'ATTACK' Button
-        if (energy >= attackenergycost)
-        {
-            monsterhealth = monsterhealth - hitpoint;
-            energy = energy - attackenergycost;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
 
-            /*
-            TextView UH = findViewById(R.id.HealthCount);
-            UH.setText(String.valueOf(userhealth));
-
-            TextView MH = findViewById(R.id.MonsterHealthCount);
-            MH.setText(String.valueOf(monsterhealth));
-
-            TextView GH = findViewById(R.id.EnergyCount);
-            GH.setText(String.valueOf(energy));
-             */
-
-            drawUserBars();
-            drawMonsterBar();
-
-            if (monsterhealth <= 0) { EndGameWin(); }
-            else { MonsterTurn();}
-        }
-        else
-        {
-            TextView textView = findViewById(R.id.textView);
-            textView.setText("Not Enough Energy!");
-        }
-
-    }
-
-    public void HealUser(View view) { // Runs when user presses 'HEAL'
-        if (energy >= healenergycost)
-        {
-            userhealth = userhealth + healpoint;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(userhealth);
-            energy = energy - healenergycost;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
-
-            /*
-            TextView UH = findViewById(R.id.HealthCount);
-            UH.setText(String.valueOf(userhealth));
-
-            TextView MH = findViewById(R.id.MonsterHealthCount);
-            MH.setText(String.valueOf(monsterhealth));
-
-            TextView EC = findViewById(R.id.EnergyCount);
-            EC.setText(String.valueOf(energy));
-             */
-
-            // update the health and energy bars
-            drawUserBars();
-            drawMonsterBar();
-
-            MonsterTurn();
-        }
-        else
-        {
-            TextView textView = findViewById(R.id.textView);
-            textView.setText("Not Enough Energy!");
-        }
-    }
-
-    public void RechargeUser(View view) // Runs when user presses 'RECHARGE'
-    {
-        energy = energy + rechargeamount;
-        ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
-
-        /*
-        TextView UH = findViewById(R.id.HealthCount);
-        UH.setText(String.valueOf(userhealth));
-
-        TextView MH = findViewById(R.id.MonsterHealthCount);
-        MH.setText(String.valueOf(monsterhealth));
-
-        TextView EC = findViewById(R.id.EnergyCount);
-        EC.setText(String.valueOf(energy));
-         */
-
-        drawUserBars();
-        drawMonsterBar();
-
-        MonsterTurn();
-
-    }
-
-    public void MonsterTurn() // Runs after any button is pressed, This is the monsters attack
-    {
-        TextView textView = findViewById(R.id.textView);
-        textView.setText("Monster Turn!");
-
-        userhealth = userhealth - monsterhitpoint ;
-        ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
-        /*
-        TextView UH = findViewById(R.id.HealthCount);
-        UH.setText(String.valueOf(userhealth));
-
-        TextView MH = findViewById(R.id.MonsterHealthCount);
-        MH.setText(String.valueOf(monsterhealth));
-
-        TextView EC = findViewById(R.id.EnergyCount);
-        EC.setText(String.valueOf(energy));
-        */
-
-        // update health and energy bars
-        drawUserBars();
-        drawMonsterBar();
-
-        if (userhealth <= 0) { EndGameLoose(); }
-
-        textView.setText("User Turn!");
-    }
+    */
 
     public void EndGameWin() // if user wins
     {

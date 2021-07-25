@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/battle_background">
+
+    <ImageView
+        android:id="@+id/Student"
+        android:layout_width="75px"
+        android:layout_height="75px"
+
+        android:layout_marginStart="620dp"
+        android:layout_marginLeft="@dimen/x_cord"
+        android:layout_marginTop="@dimen/y_cord"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/student_hat" />
+
+    <ImageButton
+        android:id="@+id/attackbutton"
+        android:layout_width="890dp"
+        android:layout_height="619dp"
+        android:layout_marginStart="251dp"
+        android:layout_marginTop="16dp"
+        android:onClick="AttackMonster"
+        android:scaleX=".114"
+        android:scaleY=".114"
+        android:src="@drawable/attack_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/healbutton"
+        android:layout_width="890dp"
+        android:layout_height="619dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="100dp"
+        android:onClick="HealUser"
+        android:scaleX=".113"
+        android:scaleY=".112"
+        android:src="@drawable/heal_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.26" />
+
+    <ImageButton
+        android:id="@+id/rechargebutton"
+        android:layout_width="866dp"
+        android:layout_height="577dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
+        android:onClick="RechargeUser"
+        android:scaleX=".116"
+        android:scaleY=".116"
+        android:src="@drawable/energize_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.22000003" />
+
+    <ImageButton
+        android:id="@+id/AUp"
+        android:layout_width="532dp"
+        android:layout_height="537dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="ArrowUp"
+        android:scaleX=".1"
+        android:scaleY=".1"
+        android:src="@drawable/arrowu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rechargebutton"
+        app:layout_constraintHorizontal_bias="0.325"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.229" />
+
+    <ImageButton
+        android:id="@+id/ALeft"
+        android:layout_width="532dp"
+        android:layout_height="537dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="680dp"
+        android:onClick="ArrowLeft"
+        android:rotation="-90"
+        android:scaleX=".1"
+        android:scaleY=".1"
+        android:src="@drawable/arrowu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.575"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.295" />
+
+    <ImageButton
+        android:id="@+id/ARight"
+        android:layout_width="532dp"
+        android:layout_height="537dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="9dp"
+        android:onClick="ArrowRight"
+        android:rotation="+90"
+        android:scaleX=".1"
+        android:scaleY=".1"
+        android:src="@drawable/arrowu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rechargebutton"
+        app:layout_constraintHorizontal_bias="0.209"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/attackbutton"
+        app:layout_constraintVertical_bias="0.782" />
+
+    <ImageButton
+        android:id="@+id/ADown"
+        android:layout_width="532dp"
+        android:layout_height="537dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="800dp"
+        android:layout_marginBottom="10dp"
+        android:onClick="ArrowDown"
+        android:rotation="180"
+        android:scaleX=".1"
+        android:scaleY=".1"
+        android:src="@drawable/arrowu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.039" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
