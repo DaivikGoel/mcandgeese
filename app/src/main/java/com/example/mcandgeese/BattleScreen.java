@@ -30,11 +30,11 @@ public class BattleScreen extends AppCompatActivity {
 
 
 
-    int x_s = 606; //606
-    int y_s = 405;//65
+    int x_s = 605;
+    int y_s = 400;
 
-    int x_g = 1711;
-    int y_g = 405;
+    int x_g = 1710;
+    int y_g = 400;
 
     int[][] map = new int[9][27];
     int mx_s = 8;
@@ -67,10 +67,15 @@ public class BattleScreen extends AppCompatActivity {
         this.energy = ((GlobalVariables) this.getApplication()).getCurrentEnergy();
         setContentView(R.layout.battle_setup);
        // Arrays.fill(map, 0);
-        setupmap();
-        startlocations();
+      //  setupmap();
+        //startlocations();
+
+
+
+
 
     }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -78,10 +83,10 @@ public class BattleScreen extends AppCompatActivity {
             hideSystemUI();
         }
 
-        final ImageView imageView = (ImageView)findViewById(R.id.Student);
-        imageView.setX(x_s);
-        imageView.setY(y_s);
-        imageView.invalidate();
+        final ImageView StudentV = (ImageView)findViewById(R.id.Student);
+        StudentV.setX(x_s);
+        StudentV.setY(y_s);
+        StudentV.invalidate();
     }
 
     private void hideSystemUI() {
@@ -135,7 +140,7 @@ public class BattleScreen extends AppCompatActivity {
     }
 
     public void UpdateGrid(){
-        Arrays.fill(map, 0);
+      //  Arrays.fill(map, 0);
         map[mx_s][my_s] = 1; //student location
 
         map[mx_s+1][my_s] = 2; //student range
@@ -153,6 +158,9 @@ public class BattleScreen extends AppCompatActivity {
         setupmap();
 
     }
+
+    /*
+
 
     public void CheckMap(int value, int g_s){
         if (g_s == 0) //student
@@ -194,6 +202,7 @@ public class BattleScreen extends AppCompatActivity {
         }
 
     }
+*/
 
     public void GooseTurn(){
         //goose move toward student
@@ -309,7 +318,6 @@ public class BattleScreen extends AppCompatActivity {
         UpdateGrid();
         DisplayStudent();
         GooseTurn();
-
 
     }
 
