@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.example.mcandgeese.gamePanel.MonsterHealthBar;
 import com.example.mcandgeese.gamePanel.UserHealthBar;
 
+import java.util.Arrays;
+
 public class BattleScreen extends AppCompatActivity {
 
     int userhealth; //Remaining User Health (need to be set from previous state/battle)
@@ -27,8 +29,24 @@ public class BattleScreen extends AppCompatActivity {
     //need to load in counter that is globally held
 
 
-    int x_cord = 606; //606
-    int y_cord = 65;//65
+
+    int x_s = 606; //606
+    int y_s = 405;//65
+
+    int x_g = 1711;
+    int y_g = 405;
+
+    int[][] map = new int[9][27];
+    int mx_s = 8;
+    int my_s = 4;
+
+    int mx_g = 21;
+    int my_g = 4;
+
+    int value =0;
+
+
+
 
     // user info
     private UserHealthBar userHealthBar;
@@ -48,8 +66,11 @@ public class BattleScreen extends AppCompatActivity {
         this.userhealth = ((GlobalVariables) this.getApplication()).getCurrentHealth();
         this.energy = ((GlobalVariables) this.getApplication()).getCurrentEnergy();
         setContentView(R.layout.battle_setup);
-    }
+       // Arrays.fill(map, 0);
+        setupmap();
+        startlocations();
 
+    }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -58,8 +79,8 @@ public class BattleScreen extends AppCompatActivity {
         }
 
         final ImageView imageView = (ImageView)findViewById(R.id.Student);
-        imageView.setX(x_cord);
-        imageView.setY(y_cord);
+        imageView.setX(x_s);
+        imageView.setY(y_s);
         imageView.invalidate();
     }
 
@@ -74,37 +95,288 @@ public class BattleScreen extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
-    public void ArrowUp(View view) {
-        y_cord = y_cord -85;
+    public void setupmap(){
 
-        final ImageView imageView = (ImageView)findViewById(R.id.Student);
-        imageView.setY(y_cord);
-        imageView.invalidate();
+        for(int i = 0; i <=2; i++)//set out of bounds
+        {
+            for(int j =0; j<=5; j++)
+            {
+                map[j][i] = 5;
+            }
+        }
+
+        for(int l = 0; l <=27; l++)//set out of bounds
+        {
+            map[l][0] = 5;
+            map[l][9] = 5;
+        }
+        for(int k =0; k<=9; k++)
+        {
+            map[0][k] = 5;
+            map[27][k] = 5;
+        }
+    }
+
+    public void startlocations(){
+        map[mx_s][my_s] = 1; //student location
+
+        map[mx_s+1][my_s] = 2; //student range
+        map[mx_s-1][my_s] = 2;
+        map[mx_s][my_s+1] = 2;
+        map[mx_s][my_s-1] = 2;
+
+
+        map[mx_g][my_g] =3; //goose location
+
+        map[mx_g+1][my_g+1] =4; //goose range
+        map[mx_g+1][my_g-1] =4;
+        map[mx_g-1][my_g+1] =4;
+        map[mx_g-1][my_g-1] =4;
+    }
+
+    public void UpdateGrid(){
+        Arrays.fill(map, 0);
+        map[mx_s][my_s] = 1; //student location
+
+        map[mx_s+1][my_s] = 2; //student range
+        map[mx_s-1][my_s] = 2;
+        map[mx_s][my_s+1] = 2;
+        map[mx_s][my_s-1] = 2;
+
+
+        map[mx_g][my_g] =3; //goose location
+
+        map[mx_g+1][my_g+1] =4; //goose range
+        map[mx_g+1][my_g-1] =4;
+        map[mx_g-1][my_g+1] =4;
+        map[mx_g-1][my_g-1] =4;
+        setupmap();
+
+    }
+
+    public void CheckMap(int value, int g_s){
+        if (g_s == 0) //student
+        {
+            if (value ==0){
+
+            }
+            else if (value == 3) {
+
+            }
+            else if (value == 4) {
+
+            }
+            else if (value == 5) { //Blocked
+
+
+            }
+        }
+        else if (g_s == 1) // goose
+        {
+            if (value ==0){
+
+            }
+            else if (value == 1){
+
+            }
+            else if (value == 2){
+
+            }
+            else if (value == 3) {
+
+            }
+            else if (value == 4) {
+
+            }
+            else if (value == 5) {
+
+            }
+        }
+
+    }
+
+    public void GooseTurn(){
+        //goose move toward student
+        if (mx_s > mx_g){
+            mx_g = mx_g +1;
+            x_g = x_g +85;
+        }
+        else if (mx_s < mx_g){
+            mx_g = mx_g -1;
+            x_g = x_g -85;
+        }
+
+        if (my_s > my_g){
+            my_g = my_g +1;
+            y_g = y_g -85;
+        }
+        else if (my_s < my_g){
+            my_g = my_g -1;
+            y_g = y_g +85;
+        }
+
+        //if student within range -student_health
+        if (map[mx_g+1][my_g+1] == 1){
+            //-student health
+        }
+        else if (map[mx_g+1][my_g-1] == 1){
+            //-student health
+        }
+        else if (map[mx_g-1][my_g+1] == 1){
+            //-student health
+        }
+        else if (map[mx_g-1][my_g-1] == 1){
+            //-student health
+        }
+
+        DisplayGoose(); //update graphics
+    }
+
+    public void DisplayStudent(){ //add in range graphics and make similar for DisplayGoose()
+        final ImageView StudentV = (ImageView)findViewById(R.id.Student);
+        StudentV.setX(x_s);
+        StudentV.setY(y_s);
+        StudentV.invalidate();
+
+        final ImageView AS_R = (ImageView)findViewById(R.id.SAttackZoneR);
+        AS_R.setX(x_s+85);
+        AS_R.setY(y_s);
+        AS_R.invalidate();
+
+        final ImageView AS_L = (ImageView)findViewById(R.id.SAttackZoneL);
+        AS_L.setX(x_s-85);
+        AS_L.setY(y_s);
+        AS_L.invalidate();
+
+        final ImageView AS_U = (ImageView)findViewById(R.id.SAttackZoneU);
+        AS_U.setX(x_s);
+        AS_U.setY(y_s-85);
+        AS_U.invalidate();
+
+        final ImageView AS_D = (ImageView)findViewById(R.id.SAttackZoneD);
+        AS_D.setX(x_s);
+        AS_D.setY(y_s+85);
+        AS_D.invalidate();
+    }
+
+    public void DisplayGoose(){
+        final ImageView GooseV = (ImageView)findViewById(R.id.Goose);
+        GooseV.setX(x_g);
+        GooseV.setY(y_g);
+        GooseV.invalidate();
+
+        final ImageView AG_LU = (ImageView)findViewById(R.id.GAttackZoneLU);
+        AG_LU.setX(x_g-85);
+        AG_LU.setY(y_g-85);
+        AG_LU.invalidate();
+
+        final ImageView AG_RU = (ImageView)findViewById(R.id.GAttackZoneRU);
+        AG_RU.setX(x_g+85);
+        AG_RU.setY(y_g-85);
+        AG_RU.invalidate();
+
+        final ImageView AG_RD = (ImageView)findViewById(R.id.GAttackZoneRD);
+        AG_RD.setX(x_g+85);
+        AG_RD.setY(y_g+85);
+        AG_RD.invalidate();
+
+        final ImageView AG_LD = (ImageView)findViewById(R.id.GAttackZoneLD);
+        AG_LD.setX(x_g-85);
+        AG_LD.setY(y_g+85);
+        AG_LD.invalidate();
+
+    }
+
+
+
+    public void ArrowUp(View view) {
+        my_s = my_s +1;
+        value = map[mx_s][my_s];
+
+        if (value == 0){ //free
+            y_s = y_s -85;
+        }
+        else if (value == 2){ //student range
+            y_s = y_s -85;
+        }
+        else if (value == 4){ //goose range
+            y_s = y_s -85;
+        }
+        else{
+            my_s = my_s -1;
+        }
+
+        UpdateGrid();
+        DisplayStudent();
+        GooseTurn();
+
 
     }
 
     public void ArrowDown(View view) {
-        y_cord = y_cord +85;
+        my_s = my_s -1;
+        value = map[mx_s][my_s];
 
-        final ImageView imageView = (ImageView)findViewById(R.id.Student);
-        imageView.setY(y_cord);
-        imageView.invalidate();
+        if (value == 0){ //free
+            y_s = y_s +85;
+        }
+        else if (value == 2){ //student range
+            y_s = y_s +85;
+        }
+        else if (value == 4){ //goose range
+            y_s = y_s +85;
+        }
+        else{
+            my_s = my_s +1;
+        }
+
+        UpdateGrid();
+        DisplayStudent();
+        GooseTurn();
     }
 
     public void ArrowLeft(View view) {
-        x_cord = x_cord -85;
+        mx_s = mx_s -1;
+        value = map[mx_s][my_s];
 
-        final ImageView imageView = (ImageView)findViewById(R.id.Student);
-        imageView.setX(x_cord);
-        imageView.invalidate();
+        if (value == 0){ //free
+            x_s = x_s -85;
+        }
+        else if (value == 2){ //student range
+            x_s = x_s -85;
+        }
+        else if (value == 4){ //goose range
+            x_s = x_s -85;
+        }
+        else{
+            mx_s = mx_s +1;
+        }
+
+        UpdateGrid();
+        DisplayStudent();
+        GooseTurn();
     }
 
     public void ArrowRight(View view) {
-        x_cord = x_cord +85;
+        mx_s = mx_s +1;
+        value = map[mx_s][my_s];
 
-        final ImageView imageView = (ImageView)findViewById(R.id.Student);
-        imageView.setX(x_cord);
-        imageView.invalidate();
+        if (value == 0){ //free
+            x_s = x_s +85;
+        }
+        else if (value == 2){ //student range
+            x_s = x_s +85;
+        }
+        else if (value == 4){ //goose range
+            x_s = x_s +85;
+        }
+        else{
+            mx_s = mx_s -1;
+        }
+
+        UpdateGrid();
+        DisplayStudent();
+        GooseTurn();
 
     }
 

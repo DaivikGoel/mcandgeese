@@ -6,17 +6,40 @@
     android:layout_height="match_parent"
     android:background="@drawable/battle_background">
 
+    //1711,205
+
     <ImageView
         android:id="@+id/Student"
         android:layout_width="75px"
         android:layout_height="75px"
-
         android:layout_marginStart="620dp"
-        android:layout_marginLeft="@dimen/x_cord"
-        android:layout_marginTop="@dimen/y_cord"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="800dp"
+        android:layout_marginBottom="800dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/student_hat" />
+        app:layout_constraintVertical_bias="0.305"
+        app:srcCompat="@drawable/student_hat" /> //student
+    <ImageView
+        android:id="@+id/Goose"
+        android:layout_width="75px"
+        android:layout_height="75px"
+        android:layout_marginStart="800dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="780dp"
+        android:layout_marginBottom="366dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".634"
+        app:srcCompat="@drawable/goose" /> //goose
 
     <ImageButton
         android:id="@+id/attackbutton"
@@ -28,13 +51,13 @@
         android:scaleX=".114"
         android:scaleY=".114"
         android:src="@drawable/attack_button"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintVertical_bias="0.0" /> // attack/heal/energize buttons
     <ImageButton
         android:id="@+id/healbutton"
         android:layout_width="890dp"
@@ -45,13 +68,13 @@
         android:scaleX=".113"
         android:scaleY=".112"
         android:src="@drawable/heal_button"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.26" />
-
     <ImageButton
         android:id="@+id/rechargebutton"
         android:layout_width="866dp"
@@ -62,6 +85,7 @@
         android:scaleX=".116"
         android:scaleY=".116"
         android:src="@drawable/energize_button"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
@@ -84,8 +108,7 @@
         app:layout_constraintHorizontal_bias="0.325"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.229" />
-
+        app:layout_constraintVertical_bias="0.229" /> // arrows
     <ImageButton
         android:id="@+id/ALeft"
         android:layout_width="532dp"
@@ -103,7 +126,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.295" />
-
     <ImageButton
         android:id="@+id/ARight"
         android:layout_width="532dp"
@@ -121,7 +143,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/attackbutton"
         app:layout_constraintVertical_bias="0.782" />
-
     <ImageButton
         android:id="@+id/ADown"
         android:layout_width="532dp"
@@ -141,6 +162,148 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.039" />
+
+    <ImageView
+        android:id="@+id/SAttackZoneR"
+        android:layout_width="75px"
+        android:layout_height="75px"
+        android:layout_marginStart="620dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="850dp"
+        android:layout_marginBottom="800dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.305"
+        android:alpha=".5"
+        app:srcCompat="@drawable/attack_range" /> //student ranges
+    <ImageView
+        android:id="@+id/SAttackZoneL"
+        android:layout_width="75px"
+        android:layout_height="75px"
+        android:layout_marginStart="620dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="750dp"
+        android:layout_marginBottom="800dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.305"
+        android:alpha=".5"
+        app:srcCompat="@drawable/attack_range" />
+    <ImageView
+        android:id="@+id/SAttackZoneU"
+        android:layout_width="75px"
+        android:layout_height="75px"
+        android:layout_marginStart="620dp"
+        android:layout_marginTop="355dp"
+        android:layout_marginEnd="800dp"
+        android:layout_marginBottom="800dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.305"
+        android:alpha=".5"
+        app:srcCompat="@drawable/attack_range" />
+    <ImageView
+        android:id="@+id/SAttackZoneD"
+        android:layout_width="75px"
+        android:layout_height="75px"
+        android:layout_marginStart="620dp"
+        android:layout_marginTop="445dp"
+        android:layout_marginEnd="800dp"
+        android:layout_marginBottom="800dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.305"
+        android:alpha=".5"
+        app:srcCompat="@drawable/attack_range" />
+
+
+    <ImageView
+        android:id="@+id/GAttackZoneLU"
+        android:layout_width="75px"
+        android:layout_height="75px"
+        android:layout_marginStart="800dp"
+        android:layout_marginTop="315dp"
+        android:layout_marginEnd="920dp"
+        android:layout_marginBottom="366dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".634"
+        android:alpha=".5"
+        app:srcCompat="@drawable/attack_range" /> //goose ranges
+    <ImageView
+        android:id="@+id/GAttackZoneRU"
+        android:layout_width="75px"
+        android:layout_height="75px"
+        android:layout_marginStart="800dp"
+        android:layout_marginTop="315dp"
+        android:layout_marginEnd="640dp"
+        android:layout_marginBottom="366dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".634"
+        android:alpha=".5"
+        app:srcCompat="@drawable/attack_range" />
+    <ImageView
+        android:id="@+id/GAttackZoneLD"
+        android:layout_width="75px"
+        android:layout_height="75px"
+        android:layout_marginStart="800dp"
+        android:layout_marginTop="485dp"
+        android:layout_marginEnd="920dp"
+        android:layout_marginBottom="366dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".634"
+        android:alpha=".5"
+        app:srcCompat="@drawable/attack_range" />
+    <ImageView
+        android:id="@+id/GAttackZoneRD"
+        android:layout_width="75px"
+        android:layout_height="75px"
+        android:layout_marginStart="800dp"
+        android:layout_marginTop="485dp"
+        android:layout_marginEnd="640dp"
+        android:layout_marginBottom="366dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2225"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".634"
+        android:alpha=".5"
+        app:srcCompat="@drawable/attack_range" />
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
