@@ -10,15 +10,16 @@ import android.widget.ImageView;
 
 public class BuildingScreen extends AppCompatActivity {
     ImageView buildingImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_building_screen);
 
-        String imageId = getIntent().getStringExtra("BUILDING_ID");
+        String buildingId = getIntent().getStringExtra("BUILDING_ID");
         buildingImage = (ImageView) findViewById(R.id.secondImage);
         int imageResource = getResources().getIdentifier("@drawable/campusmap", null, this.getPackageName());
-        switch (imageId) {
+        switch (buildingId) {
             case ("E5"):
                 imageResource = getResources().getIdentifier("@drawable/e5", null, this.getPackageName());
                 break;
@@ -49,5 +50,11 @@ public class BuildingScreen extends AppCompatActivity {
     public void goToMapScreen(View view) {
         Intent intent = new Intent(BuildingScreen.this, MapScreen.class);
         startActivity(intent);
+    }
+
+    public String getStoryLine(String building) {
+        // TODO: add typing effect to displayed text
+        // use hashmap to store generic story lines and switch on whether if the building is cleared or not
+        return "";
     }
 }
