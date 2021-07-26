@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,7 +37,8 @@ public class BattleScreen extends AppCompatActivity {
     int x_g = 1710;
     int y_g = 400;
 
-    int[][] map = new int[9][27];
+    int[][] map = new int[10][28];
+    String forprint1,forprint2,forprint3,forprint4,forprint5,forprint6,forprint7,forprint8,forprint9,forprint10;
     int mx_s = 8;
     int my_s = 4;
 
@@ -66,13 +68,46 @@ public class BattleScreen extends AppCompatActivity {
         this.userhealth = ((GlobalVariables) this.getApplication()).getCurrentHealth();
         this.energy = ((GlobalVariables) this.getApplication()).getCurrentEnergy();
         setContentView(R.layout.battle_setup);
-       // Arrays.fill(map, 0);
-      //  setupmap();
-        //startlocations();
+        onWindowFocusChanged(true);
+        setupmap();
+        startlocations();
 
 
+  //      for(int i = 0; i < 10; i++)
+            for (int j =0; j <28;j++) {
 
+                forprint1 = forprint1 + " " + map[0][j];
+                forprint2 = forprint2 + " " + map[1][j];
+                forprint3 = forprint3 + " " + map[2][j];
+                forprint4 = forprint4 + " " + map[3][j];
+                forprint5 = forprint5 + " " + map[4][j];
+                forprint6 = forprint6 + " " + map[5][j];
+                forprint7 = forprint7 + " " + map[6][j];
+                forprint8 = forprint8 + " " + map[7][j];
+                forprint9 = forprint9 + " " + map[8][j];
+                forprint10 = forprint10 + " " + map[9][j];
+            }
 
+        TextView row0 = findViewById(R.id.textView9);
+        row0.setText(forprint1);
+        TextView row1 = findViewById(R.id.textView20);
+        row1.setText(forprint2);
+        TextView row2 = findViewById(R.id.textView21);
+        row2.setText(forprint3);
+        TextView row3 = findViewById(R.id.textView22);
+        row3.setText(forprint4);
+        TextView row4 = findViewById(R.id.textView23);
+        row4.setText(forprint5);
+        TextView row5 = findViewById(R.id.textView24);
+        row5.setText(forprint6);
+        TextView row6 = findViewById(R.id.textView25);
+        row6.setText(forprint7);
+        TextView row7 = findViewById(R.id.textView26);
+        row7.setText(forprint8);
+        TextView row8 = findViewById(R.id.textView27);
+        row8.setText(forprint9);
+        TextView row9 = findViewById(R.id.textView28);
+        row9.setText(forprint10);
 
     }
 
@@ -102,59 +137,60 @@ public class BattleScreen extends AppCompatActivity {
 
     public void setupmap(){
 
-        for(int i = 0; i <=2; i++)//set out of bounds
+        for(int i = 1; i <3; i++)//set out of bounds
         {
-            for(int j =0; j<=5; j++)
+            for(int j =1; j<7; j++)
             {
-                map[j][i] = 5;
+                map[i][j] = 5;
             }
         }
 
-        for(int l = 0; l <=27; l++)//set out of bounds
+        for(int l = 0; l <28; l++)//set out of bounds
         {
-            map[l][0] = 5;
-            map[l][9] = 5;
+            map[0][l] = 5;
+            map[9][l] = 5;
         }
-        for(int k =0; k<=9; k++)
+
+        for(int k =0; k<10; k++)
         {
-            map[0][k] = 5;
-            map[27][k] = 5;
+            map[k][0] = 5;
+            map[k][27] = 5;
         }
     }
 
     public void startlocations(){
-        map[mx_s][my_s] = 1; //student location
+        map[my_s][mx_s] = 1; //student location
 
-        map[mx_s+1][my_s] = 2; //student range
-        map[mx_s-1][my_s] = 2;
-        map[mx_s][my_s+1] = 2;
-        map[mx_s][my_s-1] = 2;
+        map[my_s][mx_s+1] = 2; //student range
+        map[my_s][mx_s-1] = 2;
+        map[my_s+1][mx_s] = 2;
+        map[my_s-1][mx_s] = 2;
 
 
-        map[mx_g][my_g] =3; //goose location
+        map[my_g][mx_g] =3; //goose location
 
-        map[mx_g+1][my_g+1] =4; //goose range
-        map[mx_g+1][my_g-1] =4;
-        map[mx_g-1][my_g+1] =4;
-        map[mx_g-1][my_g-1] =4;
+        map[my_g+1][mx_g+1] =4; //goose range
+        map[my_g-1][mx_g+1] =4;
+        map[my_g+1][mx_g-1] =4;
+        map[my_g-1][mx_g-1] =4;
     }
 
     public void UpdateGrid(){
-      //  Arrays.fill(map, 0);
-        map[mx_s][my_s] = 1; //student location
+      //  Arrays.fill(map, 0); pretty sure issue. still need to clear array tho
+        map[my_s][mx_s] = 1; //student location
 
-        map[mx_s+1][my_s] = 2; //student range
-        map[mx_s-1][my_s] = 2;
-        map[mx_s][my_s+1] = 2;
-        map[mx_s][my_s-1] = 2;
+        map[my_s][mx_s+1] = 2; //student range
+        map[my_s][mx_s-1] = 2;
+        map[my_s+1][mx_s] = 2;
+        map[my_s-1][mx_s] = 2;
 
 
-        map[mx_g][my_g] =3; //goose location
+        map[my_g][mx_g] =3; //goose location
 
-        map[mx_g+1][my_g+1] =4; //goose range
-        map[mx_g+1][my_g-1] =4;
-        map[mx_g-1][my_g+1] =4;
-        map[mx_g-1][my_g-1] =4;
+        map[my_g+1][mx_g+1] =4; //goose range
+        map[my_g-1][mx_g+1] =4;
+        map[my_g+1][mx_g-1] =4;
+        map[my_g-1][mx_g-1] =4;
         setupmap();
 
     }
@@ -214,8 +250,7 @@ public class BattleScreen extends AppCompatActivity {
             mx_g = mx_g -1;
             x_g = x_g -85;
         }
-
-        if (my_s > my_g){
+        else if (my_s > my_g){
             my_g = my_g +1;
             y_g = y_g -85;
         }
@@ -225,16 +260,16 @@ public class BattleScreen extends AppCompatActivity {
         }
 
         //if student within range -student_health
-        if (map[mx_g+1][my_g+1] == 1){
+        if (map[my_g+1][mx_g+1] == 1){
             //-student health
         }
-        else if (map[mx_g+1][my_g-1] == 1){
+        else if (map[my_g-1][mx_g+1] == 1){
             //-student health
         }
-        else if (map[mx_g-1][my_g+1] == 1){
+        else if (map[my_g+1][mx_g-1] == 1){
             //-student health
         }
-        else if (map[mx_g-1][my_g-1] == 1){
+        else if (map[my_g-1][mx_g-1] == 1){
             //-student health
         }
 
@@ -247,6 +282,7 @@ public class BattleScreen extends AppCompatActivity {
         StudentV.setY(y_s);
         StudentV.invalidate();
 
+        /*
         final ImageView AS_R = (ImageView)findViewById(R.id.SAttackZoneR);
         AS_R.setX(x_s+85);
         AS_R.setY(y_s);
@@ -266,6 +302,7 @@ public class BattleScreen extends AppCompatActivity {
         AS_D.setX(x_s);
         AS_D.setY(y_s+85);
         AS_D.invalidate();
+         */
     }
 
     public void DisplayGoose(){
@@ -273,7 +310,7 @@ public class BattleScreen extends AppCompatActivity {
         GooseV.setX(x_g);
         GooseV.setY(y_g);
         GooseV.invalidate();
-
+/*
         final ImageView AG_LU = (ImageView)findViewById(R.id.GAttackZoneLU);
         AG_LU.setX(x_g-85);
         AG_LU.setY(y_g-85);
@@ -293,14 +330,16 @@ public class BattleScreen extends AppCompatActivity {
         AG_LD.setX(x_g-85);
         AG_LD.setY(y_g+85);
         AG_LD.invalidate();
+*/
 
     }
 
 
 
     public void ArrowUp(View view) {
+
         my_s = my_s +1;
-        value = map[mx_s][my_s];
+        value = map[my_s][mx_s];
 
         if (value == 0){ //free
             y_s = y_s -85;
@@ -315,15 +354,14 @@ public class BattleScreen extends AppCompatActivity {
             my_s = my_s -1;
         }
 
-        UpdateGrid();
+      //  UpdateGrid();
         DisplayStudent();
         GooseTurn();
 
     }
-
     public void ArrowDown(View view) {
         my_s = my_s -1;
-        value = map[mx_s][my_s];
+        value = map[my_s][mx_s];
 
         if (value == 0){ //free
             y_s = y_s +85;
@@ -338,14 +376,13 @@ public class BattleScreen extends AppCompatActivity {
             my_s = my_s +1;
         }
 
-        UpdateGrid();
+      //  UpdateGrid();
         DisplayStudent();
         GooseTurn();
     }
-
     public void ArrowLeft(View view) {
         mx_s = mx_s -1;
-        value = map[mx_s][my_s];
+        value = map[my_s][mx_s];
 
         if (value == 0){ //free
             x_s = x_s -85;
@@ -360,14 +397,13 @@ public class BattleScreen extends AppCompatActivity {
             mx_s = mx_s +1;
         }
 
-        UpdateGrid();
+       // UpdateGrid();
         DisplayStudent();
         GooseTurn();
     }
-
     public void ArrowRight(View view) {
         mx_s = mx_s +1;
-        value = map[mx_s][my_s];
+        value = map[my_s][mx_s];
 
         if (value == 0){ //free
             x_s = x_s +85;
@@ -382,7 +418,7 @@ public class BattleScreen extends AppCompatActivity {
             mx_s = mx_s -1;
         }
 
-        UpdateGrid();
+     //   UpdateGrid();
         DisplayStudent();
         GooseTurn();
 
