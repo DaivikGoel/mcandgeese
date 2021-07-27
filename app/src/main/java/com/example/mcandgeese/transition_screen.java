@@ -9,6 +9,12 @@ import android.widget.VideoView;
 import android.content.Intent;
 import android.view.View;
 import android.net.Uri;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Arrays;
+
 public class transition_screen extends AppCompatActivity {
     VideoView transitionVideo;
     private Uri videPath;
@@ -43,6 +49,9 @@ public class transition_screen extends AppCompatActivity {
             case("begin"):
                 pathtovid ="android.resource://com.example.mcandgeese/raw/begin";
                 break;
+            case("Food"):
+                pathtovid = returnrandomfood();
+                break;
 
         }
         Uri videPath= Uri.parse(pathtovid);
@@ -73,7 +82,6 @@ public class transition_screen extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case ("DP"):
-
                 intent.putExtra("BUILDING_ID", "DP");
                 startActivity(intent);
                 break;
@@ -81,6 +89,7 @@ public class transition_screen extends AppCompatActivity {
                 intent.putExtra("BUILDING_ID", "SLC");
                 startActivity(intent);
                 break;
+            case ("Food"):
             case ("Plaza"):
                 intent.putExtra("BUILDING_ID", "Plaza");
                 startActivity(intent);
@@ -90,6 +99,18 @@ public class transition_screen extends AppCompatActivity {
                 startActivity(intent);
                 break;
         }
+
+    }
+
+    public String returnrandomfood(){
+        String path = "android.resource://com.example.mcandgeese/raw/";
+        List<String> foodchoices = new ArrayList<>(Arrays.asList("campuspizza", "lazeez", "panino", "sweetdreams"));
+
+        Random rand = new Random();
+        path = path + foodchoices.get(rand.nextInt(foodchoices.size()));
+        return path;
+
+
 
     }
 

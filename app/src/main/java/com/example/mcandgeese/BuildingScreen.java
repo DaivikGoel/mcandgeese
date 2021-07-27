@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Button;
 
 public class BuildingScreen extends AppCompatActivity {
     ImageView buildingImage;
@@ -34,6 +35,10 @@ public class BuildingScreen extends AppCompatActivity {
                 break;
             case("Plaza"):
                 imageResource = getResources().getIdentifier("@drawable/plaza", null, this.getPackageName());
+                Button eat = (Button) findViewById(R.id.FIGHT);
+                eat.setText("Eat/Drink");
+                Button goback = (Button) findViewById(R.id.RUN);
+                goback.setText("Return");
                 break;
             case("QNC"):
                 imageResource = getResources().getIdentifier("@drawable/quantum", null, this.getPackageName());
@@ -43,8 +48,20 @@ public class BuildingScreen extends AppCompatActivity {
     }
 
     public void goToBattleScreen(View view) {
-        Intent intent = new Intent(BuildingScreen.this, BattleScreen.class);
-        startActivity(intent);
+        String buildingId = getIntent().getStringExtra("BUILDING_ID");
+        switch(buildingId){
+            case("Plaza"):
+                ((GlobalVariables) this.getApplication()).setCurrentHealth(100);
+                ((GlobalVariables) this.getApplication()).setCurrentEnergy(100);
+                Intent intent = new Intent(BuildingScreen.this, transition_screen.class);
+                intent.putExtra("BUILDING_ID", "Food");
+                startActivity(intent);
+                break;
+            default:
+                Intent normal = new Intent(BuildingScreen.this, BattleScreen.class);
+                startActivity(normal);
+                break;
+        }
     }
 
     public void goToMapScreen(View view) {
