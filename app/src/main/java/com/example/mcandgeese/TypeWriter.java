@@ -4,35 +4,36 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.widget.TextView;
+import android.util.AttributeSet;
 
-@SuppressLint("AppCompatCustomView")
 public class TypeWriter extends TextView {
-    private CharSequence message;
-    private int idx;
-
-    // interval between letters in milliseconds
-    private long delay = 150;
-
+    private CharSequence mText;
+    private int mIndex;
+    private long mDelay = 150; // in ms
     public TypeWriter(Context context) {
         super(context);
     }
-
-    private Handler messageHandler = new Handler();
-    private Runnable characterStream = new Runnable() {
+    public TypeWriter(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+    private Handler mHandler = new Handler();
+    private Runnable characterAdder = new Runnable() {
         @Override
         public void run() {
-            setText(message.subSequence(0, idx++));
-            if (idx <= message.length()) {
-                messageHandler.postDelayed(characterStream, delay);
+            setText(mText.subSequence(0, mIndex++));
+            if (mIndex <= mText.length()) {
+                mHandler.postDelayed(characterAdder, mDelay);
             }
         }
     };
-
-    public void animateText(CharSequence text){
-        message = text;
-        idx = 0;
+    public void animateText(CharSequence txt) {
+        mText = txt;
+        mIndex = 0;
         setText("");
-        messageHandler.removeCallbacks(characterStream);
-        messageHandler.postDelayed(characterStream, delay);
+        mHandler.removeCallbacks(characterAdder);
+        mHandler.postDelayed(characterAdder, mDelay);
+    }
+    public void setCharacterDelay(long m) {
+        mDelay = m;
     }
 }
