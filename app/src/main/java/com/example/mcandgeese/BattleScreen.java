@@ -31,7 +31,7 @@ public class BattleScreen extends AppCompatActivity {
 
 
 
-    int x_s = 605;
+    int x_s = 605; //graphical value
     int y_s = 400;
 
     int x_g = 1710;
@@ -39,7 +39,7 @@ public class BattleScreen extends AppCompatActivity {
 
     int[][] map = new int[10][28];
     String forprint1,forprint2,forprint3,forprint4,forprint5,forprint6,forprint7,forprint8,forprint9,forprint10;
-    int mx_s = 8;
+    int mx_s = 8; //coordinate value
     int my_s = 4;
 
     int mx_g = 21;
@@ -71,45 +71,9 @@ public class BattleScreen extends AppCompatActivity {
         onWindowFocusChanged(true);
         setupmap();
         startlocations();
-
-
-  //      for(int i = 0; i < 10; i++)
-            for (int j =0; j <28;j++) {
-
-                forprint1 = forprint1 + " " + map[0][j];
-                forprint2 = forprint2 + " " + map[1][j];
-                forprint3 = forprint3 + " " + map[2][j];
-                forprint4 = forprint4 + " " + map[3][j];
-                forprint5 = forprint5 + " " + map[4][j];
-                forprint6 = forprint6 + " " + map[5][j];
-                forprint7 = forprint7 + " " + map[6][j];
-                forprint8 = forprint8 + " " + map[7][j];
-                forprint9 = forprint9 + " " + map[8][j];
-                forprint10 = forprint10 + " " + map[9][j];
-            }
-
-        TextView row0 = findViewById(R.id.textView9);
-        row0.setText(forprint1);
-        TextView row1 = findViewById(R.id.textView20);
-        row1.setText(forprint2);
-        TextView row2 = findViewById(R.id.textView21);
-        row2.setText(forprint3);
-        TextView row3 = findViewById(R.id.textView22);
-        row3.setText(forprint4);
-        TextView row4 = findViewById(R.id.textView23);
-        row4.setText(forprint5);
-        TextView row5 = findViewById(R.id.textView24);
-        row5.setText(forprint6);
-        TextView row6 = findViewById(R.id.textView25);
-        row6.setText(forprint7);
-        TextView row7 = findViewById(R.id.textView26);
-        row7.setText(forprint8);
-        TextView row8 = findViewById(R.id.textView27);
-        row8.setText(forprint9);
-        TextView row9 = findViewById(R.id.textView28);
-        row9.setText(forprint10);
-
+        RefreshArray();
     }
+
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -133,407 +97,6 @@ public class BattleScreen extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
-    }
-
-    public void setupmap(){
-
-        for(int i = 1; i <3; i++)//set out of bounds
-        {
-            for(int j =1; j<7; j++)
-            {
-                map[i][j] = 5;
-            }
-        }
-
-        for(int l = 0; l <28; l++)//set out of bounds
-        {
-            map[0][l] = 5;
-            map[9][l] = 5;
-        }
-
-        for(int k =0; k<10; k++)
-        {
-            map[k][0] = 5;
-            map[k][27] = 5;
-        }
-    }
-
-    public void startlocations(){
-        map[my_s][mx_s] = 1; //student location
-
-        map[my_s][mx_s+1] = 2; //student range
-        map[my_s][mx_s-1] = 2;
-        map[my_s+1][mx_s] = 2;
-        map[my_s-1][mx_s] = 2;
-
-
-        map[my_g][mx_g] =3; //goose location
-
-        map[my_g+1][mx_g+1] =4; //goose range
-        map[my_g-1][mx_g+1] =4;
-        map[my_g+1][mx_g-1] =4;
-        map[my_g-1][mx_g-1] =4;
-    }
-
-    public void UpdateGrid(){
-      //  Arrays.fill(map, 0); pretty sure issue. still need to clear array tho
-        map[my_s][mx_s] = 1; //student location
-
-        map[my_s][mx_s+1] = 2; //student range
-        map[my_s][mx_s-1] = 2;
-        map[my_s+1][mx_s] = 2;
-        map[my_s-1][mx_s] = 2;
-
-
-        map[my_g][mx_g] =3; //goose location
-
-        map[my_g+1][mx_g+1] =4; //goose range
-        map[my_g-1][mx_g+1] =4;
-        map[my_g+1][mx_g-1] =4;
-        map[my_g-1][mx_g-1] =4;
-        setupmap();
-
-    }
-
-    /*
-
-
-    public void CheckMap(int value, int g_s){
-        if (g_s == 0) //student
-        {
-            if (value ==0){
-
-            }
-            else if (value == 3) {
-
-            }
-            else if (value == 4) {
-
-            }
-            else if (value == 5) { //Blocked
-
-
-            }
-        }
-        else if (g_s == 1) // goose
-        {
-            if (value ==0){
-
-            }
-            else if (value == 1){
-
-            }
-            else if (value == 2){
-
-            }
-            else if (value == 3) {
-
-            }
-            else if (value == 4) {
-
-            }
-            else if (value == 5) {
-
-            }
-        }
-
-    }
-*/
-
-    public void GooseTurn(){
-        //goose move toward student
-        if (mx_s > mx_g){
-            mx_g = mx_g +1;
-            x_g = x_g +85;
-        }
-        else if (mx_s < mx_g){
-            mx_g = mx_g -1;
-            x_g = x_g -85;
-        }
-        else if (my_s > my_g){
-            my_g = my_g +1;
-            y_g = y_g -85;
-        }
-        else if (my_s < my_g){
-            my_g = my_g -1;
-            y_g = y_g +85;
-        }
-
-        //if student within range -student_health
-        if (map[my_g+1][mx_g+1] == 1){
-            //-student health
-        }
-        else if (map[my_g-1][mx_g+1] == 1){
-            //-student health
-        }
-        else if (map[my_g+1][mx_g-1] == 1){
-            //-student health
-        }
-        else if (map[my_g-1][mx_g-1] == 1){
-            //-student health
-        }
-
-        DisplayGoose(); //update graphics
-    }
-
-    public void DisplayStudent(){ //add in range graphics and make similar for DisplayGoose()
-        final ImageView StudentV = (ImageView)findViewById(R.id.Student);
-        StudentV.setX(x_s);
-        StudentV.setY(y_s);
-        StudentV.invalidate();
-
-        /*
-        final ImageView AS_R = (ImageView)findViewById(R.id.SAttackZoneR);
-        AS_R.setX(x_s+85);
-        AS_R.setY(y_s);
-        AS_R.invalidate();
-
-        final ImageView AS_L = (ImageView)findViewById(R.id.SAttackZoneL);
-        AS_L.setX(x_s-85);
-        AS_L.setY(y_s);
-        AS_L.invalidate();
-
-        final ImageView AS_U = (ImageView)findViewById(R.id.SAttackZoneU);
-        AS_U.setX(x_s);
-        AS_U.setY(y_s-85);
-        AS_U.invalidate();
-
-        final ImageView AS_D = (ImageView)findViewById(R.id.SAttackZoneD);
-        AS_D.setX(x_s);
-        AS_D.setY(y_s+85);
-        AS_D.invalidate();
-         */
-    }
-
-    public void DisplayGoose(){
-        final ImageView GooseV = (ImageView)findViewById(R.id.Goose);
-        GooseV.setX(x_g);
-        GooseV.setY(y_g);
-        GooseV.invalidate();
-/*
-        final ImageView AG_LU = (ImageView)findViewById(R.id.GAttackZoneLU);
-        AG_LU.setX(x_g-85);
-        AG_LU.setY(y_g-85);
-        AG_LU.invalidate();
-
-        final ImageView AG_RU = (ImageView)findViewById(R.id.GAttackZoneRU);
-        AG_RU.setX(x_g+85);
-        AG_RU.setY(y_g-85);
-        AG_RU.invalidate();
-
-        final ImageView AG_RD = (ImageView)findViewById(R.id.GAttackZoneRD);
-        AG_RD.setX(x_g+85);
-        AG_RD.setY(y_g+85);
-        AG_RD.invalidate();
-
-        final ImageView AG_LD = (ImageView)findViewById(R.id.GAttackZoneLD);
-        AG_LD.setX(x_g-85);
-        AG_LD.setY(y_g+85);
-        AG_LD.invalidate();
-*/
-
-    }
-
-
-
-    public void ArrowUp(View view) {
-
-        my_s = my_s +1;
-        value = map[my_s][mx_s];
-
-        if (value == 0){ //free
-            y_s = y_s -85;
-        }
-        else if (value == 2){ //student range
-            y_s = y_s -85;
-        }
-        else if (value == 4){ //goose range
-            y_s = y_s -85;
-        }
-        else{
-            my_s = my_s -1;
-        }
-
-      //  UpdateGrid();
-        DisplayStudent();
-        GooseTurn();
-
-    }
-    public void ArrowDown(View view) {
-        my_s = my_s -1;
-        value = map[my_s][mx_s];
-
-        if (value == 0){ //free
-            y_s = y_s +85;
-        }
-        else if (value == 2){ //student range
-            y_s = y_s +85;
-        }
-        else if (value == 4){ //goose range
-            y_s = y_s +85;
-        }
-        else{
-            my_s = my_s +1;
-        }
-
-      //  UpdateGrid();
-        DisplayStudent();
-        GooseTurn();
-    }
-    public void ArrowLeft(View view) {
-        mx_s = mx_s -1;
-        value = map[my_s][mx_s];
-
-        if (value == 0){ //free
-            x_s = x_s -85;
-        }
-        else if (value == 2){ //student range
-            x_s = x_s -85;
-        }
-        else if (value == 4){ //goose range
-            x_s = x_s -85;
-        }
-        else{
-            mx_s = mx_s +1;
-        }
-
-       // UpdateGrid();
-        DisplayStudent();
-        GooseTurn();
-    }
-    public void ArrowRight(View view) {
-        mx_s = mx_s +1;
-        value = map[my_s][mx_s];
-
-        if (value == 0){ //free
-            x_s = x_s +85;
-        }
-        else if (value == 2){ //student range
-            x_s = x_s +85;
-        }
-        else if (value == 4){ //goose range
-            x_s = x_s +85;
-        }
-        else{
-            mx_s = mx_s -1;
-        }
-
-     //   UpdateGrid();
-        DisplayStudent();
-        GooseTurn();
-
-    }
-
-
-    public void AttackMonster(View view) { // Runs when user presses 'ATTACK' Button
-        if (energy >= attackenergycost)
-        {
-            monsterhealth = monsterhealth - hitpoint;
-            energy = energy - attackenergycost;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
-
-            drawUserBars();
-            drawMonsterBar();
-
-            if (monsterhealth <= 0) { EndGameWin(); }
-            else { MonsterTurn();}
-        }
-        else
-        {
-            TextView textView = findViewById(R.id.textView);
-            textView.setText("Not Enough Energy!");
-        }
-
-    }
-
-    public void HealUser(View view) { // Runs when user presses 'HEAL'
-        if (energy >= healenergycost)
-        {
-            userhealth = userhealth + healpoint;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(userhealth);
-            energy = energy - healenergycost;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
-
-
-
-            // update the health and energy bars
-            drawUserBars();
-            drawMonsterBar();
-
-            MonsterTurn();
-        }
-        else
-        {
-            TextView textView = findViewById(R.id.textView);
-            textView.setText("Not Enough Energy!");
-        }
-    }
-
-    public void RechargeUser(View view) // Runs when user presses 'RECHARGE'
-    {
-        energy = energy + rechargeamount;
-        ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
-
-
-        drawUserBars();
-        drawMonsterBar();
-
-        MonsterTurn();
-
-    }
-
-    public void MonsterTurn() // Runs after any button is pressed, This is the monsters attack
-    {
-        TextView textView = findViewById(R.id.textView);
-        textView.setText("Monster Turn!");
-
-        userhealth = userhealth - monsterhitpoint ;
-        ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
-
-        // update health and energy bars
-        drawUserBars();
-        drawMonsterBar();
-
-        if (userhealth <= 0) { EndGameLoose(); }
-
-        textView.setText("User Turn!");
-    }
-
-
-    /*
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        this.userhealth = ((GlobalVariables) this.getApplication()).getCurrentHealth();
-        this.energy = ((GlobalVariables) this.getApplication()).getCurrentEnergy();
-        setContentView(R.layout.activity_battle_screen);
-
-
-        TextView BC = findViewById(R.id.textView12);
-        BC.setText(String.valueOf(hitpoint));
-
-        TextView CD = findViewById(R.id.textView13);
-        CD.setText(String.valueOf(attackenergycost));
-
-        TextView EF = findViewById(R.id.textView17);
-        EF.setText(String.valueOf(healpoint));
-
-        TextView FG = findViewById(R.id.textView18);
-        FG.setText(String.valueOf(healenergycost));
-
-        TextView GH = findViewById(R.id.textView19);
-        GH.setText(String.valueOf(rechargeamount));
-
-        TextView textView = findViewById(R.id.textView);
-        textView.setText("User Turn!");
-
-        // setup the user health and energy bars
-        setUpUserHealthAndEnergyBars();
-
-        // setup the monster health bar
-        setUpMonsterHealthBar();
     }
 
     private void setUpUserHealthAndEnergyBars() {
@@ -574,6 +137,465 @@ public class BattleScreen extends AppCompatActivity {
 
         // draw the health and energy bar
         drawMonsterBar();
+    }
+
+
+    public void RefreshArray(){
+        //      for(int i = 0; i < 10; i++)
+        for (int j =0; j <28; j++) {
+
+            forprint1 = "row0";
+            forprint2 = "row1";
+            forprint3 = "row2";
+            forprint4 = "row3";
+            forprint5 = "row4";
+            forprint6 = "row5";
+            forprint7 = "row6";
+            forprint8 = "row7";
+            forprint9 = "row8";
+            forprint10 = "row9";
+        }
+        for (int j =0; j <28; j++) {
+
+            forprint1 = forprint1 + " " + map[0][j];
+            forprint2 = forprint2 + " " + map[1][j];
+            forprint3 = forprint3 + " " + map[2][j];
+            forprint4 = forprint4 + " " + map[3][j];
+            forprint5 = forprint5 + " " + map[4][j];
+            forprint6 = forprint6 + " " + map[5][j];
+            forprint7 = forprint7 + " " + map[6][j];
+            forprint8 = forprint8 + " " + map[7][j];
+            forprint9 = forprint9 + " " + map[8][j];
+            forprint10 = forprint10 + " " + map[9][j];
+        }
+
+        TextView row0 = findViewById(R.id.textView9);
+        row0.setText(forprint1);
+        TextView row1 = findViewById(R.id.textView20);
+        row1.setText(forprint2);
+        TextView row2 = findViewById(R.id.textView21);
+        row2.setText(forprint3);
+        TextView row3 = findViewById(R.id.textView22);
+        row3.setText(forprint4);
+        TextView row4 = findViewById(R.id.textView23);
+        row4.setText(forprint5);
+        TextView row5 = findViewById(R.id.textView24);
+        row5.setText(forprint6);
+        TextView row6 = findViewById(R.id.textView25);
+        row6.setText(forprint7);
+        TextView row7 = findViewById(R.id.textView26);
+        row7.setText(forprint8);
+        TextView row8 = findViewById(R.id.textView27);
+        row8.setText(forprint9);
+        TextView row9 = findViewById(R.id.textView28);
+        row9.setText(forprint10);
+    }
+    public void setupmap(){
+
+
+        for(int i = 1; i <3; i++)//set out of bounds
+        {
+            for(int j =1; j<7; j++)
+            {
+                map[i][j] = 5;
+            }
+        }
+
+        for(int l = 0; l <28; l++)//set out of bounds
+        {
+            map[0][l] = 5;
+            map[9][l] = 5;
+        }
+
+        for(int k =0; k<10; k++)
+        {
+            map[k][0] = 5;
+            map[k][27] = 5;
+        }
+    }
+    public void startlocations(){
+        map[my_s][mx_s] = 1; //student location
+
+        map[my_s][mx_s+1] = 2; //student range
+        map[my_s][mx_s-1] = 2;
+        map[my_s+1][mx_s] = 2;
+        map[my_s-1][mx_s] = 2;
+
+
+        map[my_g][mx_g] =3; //goose location
+
+        map[my_g+1][mx_g+1] =4; //goose range
+        map[my_g-1][mx_g+1] =4;
+        map[my_g+1][mx_g-1] =4;
+        map[my_g-1][mx_g-1] =4;
+    }
+    public void UpdateGrid(){
+      //  Arrays.fill(map, 0); pretty sure issue. still need to clear array tho
+
+        for(int i = 0; i <10; i++)//set out of bounds
+        {
+            for(int j =0; j<28; j++)
+            {
+                map[i][j] = 0;
+            }
+        }
+
+        map[my_s][mx_s] = 1; //student location
+
+        map[my_s][mx_s+1] = 2; //student range
+        map[my_s][mx_s-1] = 2;
+        map[my_s+1][mx_s] = 2;
+        map[my_s-1][mx_s] = 2;
+
+
+        map[my_g][mx_g] =3; //goose location
+
+        map[my_g+1][mx_g+1] =4; //goose range
+        map[my_g-1][mx_g+1] =4;
+        map[my_g+1][mx_g-1] =4;
+        map[my_g-1][mx_g-1] =4;
+        setupmap();
+        RefreshArray();
+
+    }
+
+    public void GooseTurn(){
+        //goose move toward student
+        if (mx_s > mx_g){
+            mx_g = mx_g +1;
+            x_g = x_g +85;
+        }
+        else if (mx_s < mx_g){
+            mx_g = mx_g -1;
+            x_g = x_g -85;
+        }
+        else if (my_s > my_g){
+            my_g = my_g +1;
+            y_g = y_g -85;
+        }
+        else if (my_s < my_g){
+            my_g = my_g -1;
+            y_g = y_g +85;
+        }
+
+        //if student within range -student_health
+        if (map[my_g+1][mx_g+1] == 1){
+            //-student health
+        }
+        else if (map[my_g-1][mx_g+1] == 1){
+            //-student health
+        }
+        else if (map[my_g+1][mx_g-1] == 1){
+            //-student health
+        }
+        else if (map[my_g-1][mx_g-1] == 1){
+            //-student health
+        }
+
+        DisplayGoose(); //update graphics
+        RefreshArray();
+    }
+
+    public void DisplayStudent(){ //add in range graphics and make similar for DisplayGoose()
+        final ImageView StudentV = (ImageView)findViewById(R.id.Student);
+        StudentV.setX(x_s);
+        StudentV.setY(y_s);
+        StudentV.invalidate();
+
+
+        final ImageView AS_R = (ImageView)findViewById(R.id.SAttackZoneR);
+        AS_R.setX(x_s+85);
+        AS_R.setY(y_s);
+        AS_R.invalidate();
+
+        final ImageView AS_L = (ImageView)findViewById(R.id.SAttackZoneL);
+        AS_L.setX(x_s-85);
+        AS_L.setY(y_s);
+        AS_L.invalidate();
+
+        final ImageView AS_U = (ImageView)findViewById(R.id.SAttackZoneU);
+        AS_U.setX(x_s);
+        AS_U.setY(y_s-85);
+        AS_U.invalidate();
+
+        final ImageView AS_D = (ImageView)findViewById(R.id.SAttackZoneD);
+        AS_D.setX(x_s);
+        AS_D.setY(y_s+85);
+        AS_D.invalidate();
+
+    }
+    public void DisplayGoose(){
+        final ImageView GooseV = (ImageView)findViewById(R.id.Goose);
+        GooseV.setX(x_g);
+        GooseV.setY(y_g);
+        GooseV.invalidate();
+
+        final ImageView AG_LU = (ImageView)findViewById(R.id.GAttackZoneLU);
+        AG_LU.setX(x_g-85);
+        AG_LU.setY(y_g-85);
+        AG_LU.invalidate();
+
+        final ImageView AG_RU = (ImageView)findViewById(R.id.GAttackZoneRU);
+        AG_RU.setX(x_g+85);
+        AG_RU.setY(y_g-85);
+        AG_RU.invalidate();
+
+        final ImageView AG_RD = (ImageView)findViewById(R.id.GAttackZoneRD);
+        AG_RD.setX(x_g+85);
+        AG_RD.setY(y_g+85);
+        AG_RD.invalidate();
+
+        final ImageView AG_LD = (ImageView)findViewById(R.id.GAttackZoneLD);
+        AG_LD.setX(x_g-85);
+        AG_LD.setY(y_g+85);
+        AG_LD.invalidate();
+
+
+    }
+
+
+    public void ArrowUp(View view) {
+
+        my_s = my_s +1;
+        value = map[my_s][mx_s];
+
+        if (value == 0){ //free
+            y_s = y_s -85;
+        }
+        else if (value == 2){ //student range
+            y_s = y_s -85;
+        }
+        else if (value == 4){ //goose range
+            y_s = y_s -85;
+        }
+        else{
+            my_s = my_s -1;
+        }
+
+        UpdateGrid();
+        DisplayStudent();
+        GooseTurn();
+
+    }
+    public void ArrowDown(View view) {
+        my_s = my_s -1;
+        value = map[my_s][mx_s];
+
+        if (value == 0){ //free
+            y_s = y_s +85;
+        }
+        else if (value == 2){ //student range
+            y_s = y_s +85;
+        }
+        else if (value == 4){ //goose range
+            y_s = y_s +85;
+        }
+        else{
+            my_s = my_s +1;
+        }
+
+        UpdateGrid();
+        DisplayStudent();
+        GooseTurn();
+    }
+    public void ArrowLeft(View view) {
+        mx_s = mx_s -1;
+        value = map[my_s][mx_s];
+
+        if (value == 0){ //free
+            x_s = x_s -85;
+        }
+        else if (value == 2){ //student range
+            x_s = x_s -85;
+        }
+        else if (value == 4){ //goose range
+            x_s = x_s -85;
+        }
+        else{
+            mx_s = mx_s +1;
+        }
+
+       UpdateGrid();
+        DisplayStudent();
+        GooseTurn();
+    }
+    public void ArrowRight(View view) {
+        mx_s = mx_s +1;
+        value = map[my_s][mx_s];
+
+        if (value == 0){ //free
+            x_s = x_s +85;
+        }
+        else if (value == 2){ //student range
+            x_s = x_s +85;
+        }
+        else if (value == 4){ //goose range
+            x_s = x_s +85;
+        }
+        else{
+            mx_s = mx_s -1;
+        }
+
+       UpdateGrid();
+        DisplayStudent();
+        GooseTurn();
+
+    }
+
+
+    public void AttackMonster(View view) { // Runs when user presses 'ATTACK' Button
+         if (((mx_s == mx_g)&&(my_s+1 == my_g))||((mx_s == mx_g)&&(my_s-1 == my_g)))//check if within attack range
+        {
+            monsterhealth = monsterhealth - hitpoint;
+   //         energy = energy - attackenergycost;
+    //        ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+
+            drawUserBars();
+            drawMonsterBar();
+
+            if (monsterhealth <= 0) { EndGameWin(); }
+            else { GooseTurn();}
+        }
+         else if(((my_s == my_g)&&(mx_s+1 == mx_g))||((my_s == my_g)&&(mx_s-1 == mx_g)))
+         {
+             monsterhealth = monsterhealth - hitpoint;
+
+             drawUserBars();
+             drawMonsterBar();
+
+             if (monsterhealth <= 0) { EndGameWin(); }
+             else { GooseTurn();}
+        }
+
+        /*
+        if (energy >= attackenergycost)
+        {
+            monsterhealth = monsterhealth - hitpoint;
+            energy = energy - attackenergycost;
+            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+
+            drawUserBars();
+            drawMonsterBar();
+
+            if (monsterhealth <= 0) { EndGameWin(); }
+            else { MonsterTurn();}
+        }
+        else
+        {
+            TextView textView = findViewById(R.id.textView);
+            textView.setText("Not Enough Energy!");
+        }
+
+         */
+
+    }
+
+    public void HealUser(View view) { // Runs when user presses 'HEAL'
+
+        userhealth = userhealth + healpoint;
+        ((GlobalVariables) this.getApplication()).setCurrentEnergy(userhealth);
+        energy = energy - healenergycost;
+        ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+
+
+
+        // update the health and energy bars
+        drawUserBars();
+        drawMonsterBar();
+
+        GooseTurn();
+        /*
+        if (energy >= healenergycost)
+        {
+            userhealth = userhealth + healpoint;
+            ((GlobalVariables) this.getApplication()).setCurrentEnergy(userhealth);
+            energy = energy - healenergycost;
+            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+
+
+
+            // update the health and energy bars
+            drawUserBars();
+            drawMonsterBar();
+
+            MonsterTurn();
+        }
+        else
+        {
+            TextView textView = findViewById(R.id.textView);
+            textView.setText("Not Enough Energy!");
+        }
+        */
+
+    }
+
+    public void RechargeUser(View view) // Runs when user presses 'RECHARGE'
+    {
+        energy = energy + rechargeamount;
+        ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+
+
+        drawUserBars();
+        drawMonsterBar();
+
+        GooseTurn();
+
+    }
+
+
+
+
+    /*
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        this.userhealth = ((GlobalVariables) this.getApplication()).getCurrentHealth();
+        this.energy = ((GlobalVariables) this.getApplication()).getCurrentEnergy();
+        setContentView(R.layout.activity_battle_screen);
+
+
+        TextView BC = findViewById(R.id.textView12);
+        BC.setText(String.valueOf(hitpoint));
+
+        TextView CD = findViewById(R.id.textView13);
+        CD.setText(String.valueOf(attackenergycost));
+
+        TextView EF = findViewById(R.id.textView17);
+        EF.setText(String.valueOf(healpoint));
+
+        TextView FG = findViewById(R.id.textView18);
+        FG.setText(String.valueOf(healenergycost));
+
+        TextView GH = findViewById(R.id.textView19);
+        GH.setText(String.valueOf(rechargeamount));
+
+        TextView textView = findViewById(R.id.textView);
+        textView.setText("User Turn!");
+
+        // setup the user health and energy bars
+        setUpUserHealthAndEnergyBars();
+
+        // setup the monster health bar
+        setUpMonsterHealthBar();
+    }
+
+    public void MonsterTurn() // Runs after any button is pressed, This is the monsters attack
+    {
+        TextView textView = findViewById(R.id.textView);
+        textView.setText("Monster Turn!");
+
+        userhealth = userhealth - monsterhitpoint ;
+        ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+
+        // update health and energy bars
+        drawUserBars();
+        drawMonsterBar();
+
+        if (userhealth <= 0) { EndGameLoose(); }
+
+        textView.setText("User Turn!");
     }
 
 
