@@ -47,9 +47,6 @@ public class BattleScreen extends AppCompatActivity {
 
     int value =0;
 
-
-
-
     // user info
     private UserHealthBar userHealthBar;
     private Canvas userCanvas;
@@ -73,7 +70,6 @@ public class BattleScreen extends AppCompatActivity {
         startlocations();
         RefreshArray();
     }
-
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
