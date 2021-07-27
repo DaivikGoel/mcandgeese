@@ -61,30 +61,36 @@ public class transition_screen extends AppCompatActivity {
         String imageId = getIntent().getStringExtra("BUILDING_ID");
         Intent intent = new Intent(transition_screen.this, BuildingScreen.class);
         switch (imageId) {
+            case("begin"):
+                goToMapScreen(view);
+                break;
             case ("E5"):
                 intent.putExtra("BUILDING_ID", "E5");
+                startActivity(intent);
                 break;
             case ("E7"):
-
                 intent.putExtra("BUILDING_ID", "E7");
+                startActivity(intent);
                 break;
             case ("DP"):
 
                 intent.putExtra("BUILDING_ID", "DP");
+                startActivity(intent);
                 break;
             case ("SLC"):
                 intent.putExtra("BUILDING_ID", "SLC");
+                startActivity(intent);
                 break;
             case ("Plaza"):
                 intent.putExtra("BUILDING_ID", "Plaza");
+                startActivity(intent);
                 break;
             case ("QNC"):
                 intent.putExtra("BUILDING_ID", "QNC");
+                startActivity(intent);
                 break;
-            case("begin"):
-                goToMapScreen(view);
         }
-        startActivity(intent);
+
     }
 
 }
