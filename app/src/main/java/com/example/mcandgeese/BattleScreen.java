@@ -75,6 +75,7 @@ public class BattleScreen extends AppCompatActivity {
         // setup the user health/energy and monster health bars
         setUpUserHealthBar();
         setUpUserEnergyBar();
+        setUpMonsterHealthBar();
     }
 
     @Override
@@ -141,25 +142,25 @@ public class BattleScreen extends AppCompatActivity {
         drawUserEnergyBar();
     }
 
-//    private void setUpMonsterHealthBar() {
-//        // get the image view reference
-//        monsterImageView = (ImageView) findViewById(R.id.monsterHealthBar);
-//
-//        monsterBitMap = Bitmap.createBitmap(
-//                700, 150, Bitmap.Config.ARGB_8888);
-//
-//        // Associate the bitmap to the ImageView.
-//        monsterImageView.setImageBitmap(monsterBitMap);
-//
-//        // Create a Canvas with the bitmap.
-//        monsterCanvas = new Canvas(monsterBitMap);
-//
-//        // initialize health bar object
-//        monsterHealthBar = new InfoBar();
-//
-//        // draw the health and energy bar
-//        drawMonsterBar();
-//    }
+    private void setUpMonsterHealthBar() {
+        // get the image view reference
+        monsterImageView = (ImageView) findViewById(R.id.monsterhealthbar);
+
+        monsterBitMap = Bitmap.createBitmap(
+                700, 150, Bitmap.Config.ARGB_8888);
+
+        // Associate the bitmap to the ImageView.
+        monsterImageView.setImageBitmap(monsterBitMap);
+
+        // Create a Canvas with the bitmap.
+        monsterCanvas = new Canvas(monsterBitMap);
+
+        // initialize health bar object
+        monsterHealthBar = new InfoBar("#FF0000", 0, 40);
+
+        // draw the health and energy bar
+        drawMonsterBar();
+    }
 
 
     public void RefreshArray(){
@@ -472,8 +473,7 @@ public class BattleScreen extends AppCompatActivity {
    //         energy = energy - attackenergycost;
     //        ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
 
-            drawUserHealthBar();
-            drawMonsterBar();
+            drawBars();
 
             if (monsterhealth <= 0) { EndGameWin(); }
             else { GooseTurn();}
@@ -482,8 +482,7 @@ public class BattleScreen extends AppCompatActivity {
          {
              monsterhealth = monsterhealth - hitpoint;
 
-             drawUserHealthBar();
-             drawMonsterBar();
+             drawBars();
 
              if (monsterhealth <= 0) { EndGameWin(); }
              else { GooseTurn();}
@@ -522,8 +521,7 @@ public class BattleScreen extends AppCompatActivity {
 
 
         // update the health and energy bars
-        drawUserHealthBar();
-        drawMonsterBar();
+        drawBars();
 
         GooseTurn();
         /*
@@ -557,8 +555,7 @@ public class BattleScreen extends AppCompatActivity {
         ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
 
 
-        drawUserHealthBar();
-        drawMonsterBar();
+        drawBars();
 
         GooseTurn();
 
@@ -659,8 +656,7 @@ public class BattleScreen extends AppCompatActivity {
     public void drawBars() {
         drawUserHealthBar();
         drawUserEnergyBar();
-
-        // Add draw monster bar
+        drawMonsterBar();
     }
 
     public void resetStats() {

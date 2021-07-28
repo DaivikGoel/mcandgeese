@@ -27,7 +27,6 @@ public class InfoBar {
     // draw the infoBar
     public void drawBar(int curVal, Canvas canvas) {
         curPercentage = (float) curVal / MAX_INFO;
-        // curEnergyPercentage = (float) curEnergy / MAX_USER_ENERGY;
 
         float infoLeft = 0;
         float infoWidth = infoLeft + (canvas.getWidth() - infoLeft) * curPercentage;
