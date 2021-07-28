@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="userHealthBar">#99FF99</color>
-    <color name="userEnergyBar">#3399FF</color>
-    <color name="monsterHealthBar">#FF0000</color>
+    <color name="userHealthBar">#FF99FF99</color>
+    <color name="userEnergyBar">#FF3399FF</color>
+    <color name="monsterHealthBar">#FFFF0000</color>
 </resources>

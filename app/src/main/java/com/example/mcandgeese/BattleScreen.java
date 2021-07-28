@@ -6,15 +6,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mcandgeese.gamePanel.MonsterHealthBar;
-import com.example.mcandgeese.gamePanel.UserHealthBar;
-
-import java.util.Arrays;
+import com.example.mcandgeese.gamePanel.InfoBar;
 
 public class BattleScreen extends AppCompatActivity {
 
@@ -48,13 +44,19 @@ public class BattleScreen extends AppCompatActivity {
     int value =0;
 
     // user info
-    private UserHealthBar userHealthBar;
-    private Canvas userCanvas;
-    private ImageView userImageView;
-    private Bitmap userBitMap;
+    private InfoBar userHealthBar;
+    private Canvas userHealthCanvas;
+    private ImageView userHealthImageView;
+    private Bitmap userHealthBitMap;
+
+    // user energy bar
+    private InfoBar userEnergyBar;
+    private Canvas userEnergyCanvas;
+    private ImageView userEnergyImageView;
+    private Bitmap userEnergyBitMap;
 
     // monster info
-    private MonsterHealthBar monsterHealthBar;
+    private InfoBar monsterHealthBar;
     private Canvas monsterCanvas;
     private ImageView monsterImageView;
     private Bitmap monsterBitMap;
@@ -69,6 +71,10 @@ public class BattleScreen extends AppCompatActivity {
         setupmap();
         startlocations();
         RefreshArray();
+
+        // setup the user health/energy and monster health bars
+        setUpUserHealthBar();
+        setUpUserEnergyBar();
     }
 
     @Override
@@ -95,45 +101,65 @@ public class BattleScreen extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
-    private void setUpUserHealthAndEnergyBars() {
+    private void setUpUserHealthBar() {
         // get the image view reference
-        userImageView = (ImageView) findViewById(R.id.userHealthBar);
+        userHealthImageView = (ImageView) findViewById(R.id.userhealthbar);
 
-        userBitMap = Bitmap.createBitmap(
-                700, 150, Bitmap.Config.ARGB_8888);
+        userHealthBitMap = Bitmap.createBitmap(
+                500, 150, Bitmap.Config.ARGB_8888);
 
         // Associate the bitmap to the ImageView.
-        userImageView.setImageBitmap(userBitMap);
+        userHealthImageView.setImageBitmap(userHealthBitMap);
 
         // Create a Canvas with the bitmap.
-        userCanvas = new Canvas(userBitMap);
+        userHealthCanvas = new Canvas(userHealthBitMap);
 
         // initialize health bar object
-        userHealthBar = new UserHealthBar();
+        userHealthBar = new InfoBar("#99FF99", 0, 40);
 
         // draw the health and energy bar
-        drawUserBars();
+        drawUserHealthBar();
     }
 
-    private void setUpMonsterHealthBar() {
+    private void setUpUserEnergyBar() {
         // get the image view reference
-        monsterImageView = (ImageView) findViewById(R.id.monsterHealthBar);
+        userEnergyImageView = (ImageView) findViewById(R.id.userenergybar);
 
-        monsterBitMap = Bitmap.createBitmap(
-                700, 150, Bitmap.Config.ARGB_8888);
+        userEnergyBitMap = Bitmap.createBitmap(
+                500, 150, Bitmap.Config.ARGB_8888);
 
         // Associate the bitmap to the ImageView.
-        monsterImageView.setImageBitmap(monsterBitMap);
+        userEnergyImageView.setImageBitmap(userEnergyBitMap);
 
         // Create a Canvas with the bitmap.
-        monsterCanvas = new Canvas(monsterBitMap);
+        userEnergyCanvas = new Canvas(userEnergyBitMap);
 
         // initialize health bar object
-        monsterHealthBar = new MonsterHealthBar();
+        userEnergyBar = new InfoBar("#3399FF", 0, 40);
 
         // draw the health and energy bar
-        drawMonsterBar();
+        drawUserEnergyBar();
     }
+
+//    private void setUpMonsterHealthBar() {
+//        // get the image view reference
+//        monsterImageView = (ImageView) findViewById(R.id.monsterHealthBar);
+//
+//        monsterBitMap = Bitmap.createBitmap(
+//                700, 150, Bitmap.Config.ARGB_8888);
+//
+//        // Associate the bitmap to the ImageView.
+//        monsterImageView.setImageBitmap(monsterBitMap);
+//
+//        // Create a Canvas with the bitmap.
+//        monsterCanvas = new Canvas(monsterBitMap);
+//
+//        // initialize health bar object
+//        monsterHealthBar = new InfoBar();
+//
+//        // draw the health and energy bar
+//        drawMonsterBar();
+//    }
 
 
     public void RefreshArray(){
@@ -446,7 +472,7 @@ public class BattleScreen extends AppCompatActivity {
    //         energy = energy - attackenergycost;
     //        ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
 
-            drawUserBars();
+            drawUserHealthBar();
             drawMonsterBar();
 
             if (monsterhealth <= 0) { EndGameWin(); }
@@ -456,7 +482,7 @@ public class BattleScreen extends AppCompatActivity {
          {
              monsterhealth = monsterhealth - hitpoint;
 
-             drawUserBars();
+             drawUserHealthBar();
              drawMonsterBar();
 
              if (monsterhealth <= 0) { EndGameWin(); }
@@ -496,7 +522,7 @@ public class BattleScreen extends AppCompatActivity {
 
 
         // update the health and energy bars
-        drawUserBars();
+        drawUserHealthBar();
         drawMonsterBar();
 
         GooseTurn();
@@ -531,7 +557,7 @@ public class BattleScreen extends AppCompatActivity {
         ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
 
 
-        drawUserBars();
+        drawUserHealthBar();
         drawMonsterBar();
 
         GooseTurn();
@@ -613,15 +639,28 @@ public class BattleScreen extends AppCompatActivity {
         setContentView(R.layout.user_loose);
     }
 
-    public void drawUserBars() {
+    private void drawUserHealthBar() {
 
         // draw/update health and energy bars
-        this.userHealthBar.drawBar(userhealth, energy, userCanvas);
+        this.userHealthBar.drawBar(userhealth, userHealthCanvas);
     }
 
-    public void drawMonsterBar() {
+    private void drawUserEnergyBar() {
+
+        // draw/update health and energy bars
+        this.userEnergyBar.drawBar(energy, userEnergyCanvas);
+    }
+
+    private void drawMonsterBar() {
         // draw/update health and energy bars
         this.monsterHealthBar.drawBar(monsterhealth, monsterCanvas);
+    }
+
+    public void drawBars() {
+        drawUserHealthBar();
+        drawUserEnergyBar();
+
+        // Add draw monster bar
     }
 
     public void resetStats() {
