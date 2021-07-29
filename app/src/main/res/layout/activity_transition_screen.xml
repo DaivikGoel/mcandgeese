@@ -26,13 +26,17 @@
 
     <VideoView
         android:id="@+id/transitionvideo"
-        android:layout_width="418dp"
-        android:layout_height="491dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="154dp"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        android:layout_width="426dp"
+        android:layout_height="213dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="155dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic"
+        tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="422dp"
         android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -45,28 +49,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="navigateToScreen"
-            android:text="Skip"
+            android:text="Next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.835"
+            app:layout_constraintHorizontal_bias="0.464"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.203" />
-
-        <com.example.mcandgeese.TypeWriter
-            android:id="@+id/animatedtyping"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10pt"
-            android:text="Test"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/skip" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.example.mcandgeese.TypeWriter
+        android:id="@+id/animatedtyping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:padding="10pt"
+        android:text="Test"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transitionvideo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
