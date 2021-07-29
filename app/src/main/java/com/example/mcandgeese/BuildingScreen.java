@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Button;
 
+import java.util.HashMap;
+
 public class BuildingScreen extends AppCompatActivity {
     ImageView buildingImage;
 
@@ -45,6 +47,11 @@ public class BuildingScreen extends AppCompatActivity {
                 break;
         }
         buildingImage.setImageResource(imageResource);
+
+        final TypeWriter tw = (TypeWriter) findViewById(R.id.buildingTypeWriter);
+        tw.setText("");
+        tw.setCharacterDelay(70);
+        tw.animateText(getStoryLine(buildingId));
     }
 
     public void goToBattleScreen(View view) {
@@ -69,9 +76,23 @@ public class BuildingScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public String getStoryLine(String building) {
-        // TODO: add typing effect to displayed text
-        // use hashmap to store generic story lines and switch on whether if the building is cleared or not
-        return "";
+    public String getStoryLine(String buildingId) {
+        // use hashmap to store building activities
+        HashMap<String, String> buildingActivity = new HashMap<>();
+        buildingActivity.put("E5", "see cool chemistry sculptures");
+        buildingActivity.put("E7", "procrastinate in the gear lab");
+        buildingActivity.put("SLC", "find our lost items at turnkey");
+        buildingActivity.put("DP", "enjoy the christmas tree in the winter");
+        buildingActivity.put("Plaza", "spend all our money on bubble tea");
+        buildingActivity.put("QNC","study next to the big windows");
+
+        StringBuilder sb = new StringBuilder();
+
+        // TODO check if building is cleared and switch intro
+        sb.append("Looks like the geese have invaded " + buildingId + "! ");
+        sb.append("Please clear this building so that we can " + buildingActivity.get(buildingId) + " again! \n");
+
+        sb.append("Please choose an action!");
+        return sb.toString();
     }
 }

@@ -6,18 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".BuildingScreen">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="411dp"
-        android:layout_height="51dp"
-        android:ems="10"
-        android:gravity='center'
-        android:inputType="text"
-        android:text="Choose What you Want to Do!"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="107dp" />
-
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="417dp"
         android:layout_height="59dp"
         android:orientation="vertical"
@@ -53,8 +43,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/PAC"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buildingTypeWriter"
         app:layout_constraintVertical_bias="0.908" />
 
     <Button
@@ -67,7 +56,20 @@
         app:layout_constraintEnd_toStartOf="@+id/RUN"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buildingTypeWriter"
         app:layout_constraintVertical_bias="0.911" />
+
+    <com.example.mcandgeese.TypeWriter
+        android:id="@+id/buildingTypeWriter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:padding="10pt"
+        android:text="Test"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secondImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
