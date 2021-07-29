@@ -17,7 +17,7 @@ public class BattleScreen extends AppCompatActivity {
     int userhealth; //Remaining User Health (need to be set from previous state/battle)
     int energy; //Remaining User Energy (need to be set from previous state/battle)
     int monsterhealth = 100; // Starting Monster Health
-    int monsterhitpoint = 50; // Amount of Damage to user (per turn)
+    int monsterhitpoint = 10; // Amount of Damage to user (per turn)
     int attackenergycost = 25; // Cost of energy per attack to monster
     int healenergycost = 5; //Cost of energy per heal to user
     int hitpoint = 20; // Amount of damage per attack to monster
@@ -286,19 +286,23 @@ public class BattleScreen extends AppCompatActivity {
         //if student within range -student_health
         if (map[my_g+1][mx_g+1] == 1){
             userhealth = userhealth - monsterhitpoint;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(userhealth);
+            ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+            CheckUserHealth();
         }
         else if (map[my_g-1][mx_g+1] == 1){
             userhealth = userhealth - monsterhitpoint;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(userhealth);
+            ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+            CheckUserHealth();
         }
         else if (map[my_g+1][mx_g-1] == 1){
             userhealth = userhealth - monsterhitpoint;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(userhealth);
+            ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+            CheckUserHealth();
         }
         else if (map[my_g-1][mx_g-1] == 1){
             userhealth = userhealth - monsterhitpoint;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(userhealth);
+            ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+            CheckUserHealth();
         }
         //if student out of range goose move toward student
         else if ((my_g == my_s)&&((mx_s+1 == mx_g)||(mx_s-1 == mx_g))){
@@ -401,6 +405,12 @@ public class BattleScreen extends AppCompatActivity {
 
     }
 
+    public void CheckUserHealth(){
+        if (userhealth <= 0){
+            EndGameLoose();
+        }
+    }
+
     public void ValidateLocation(int direction){
 
         //left - down-
@@ -410,40 +420,37 @@ public class BattleScreen extends AppCompatActivity {
         if (direction == 1)//up
         {
             if (map[my_g][mx_g] == 5){
-                mx_g = mx_g -1;
-                x_g = x_g -85;
+                my_g = my_g -3;
+                y_g = y_g +255;
             }
         }
         else if (direction == 2)//down
         {
             if (map[my_g][mx_g] == 5){
-
-                mx_g = mx_g +1;
-                x_g = x_g +85;
+                my_g = my_g +3;
+                y_g = y_g -255;
             }
 
         }
         else if (direction == 3)//left
         {
             if (map[my_g][mx_g] == 5){
-                my_g = my_g -1;
-                y_g = y_g +85;
-
+                mx_g = mx_g +3;
+                x_g = x_g +255;
 
             }
         }
         else if (direction == 4)//right
         {
             if (map[my_g][mx_g] == 5){
-                my_g = my_g +1;
-                y_g = y_g -85;
+                mx_g = mx_g -3;
+                x_g = x_g -255;
             }
         }
 
     }
 
     public void ArrowUp(View view) {
-
         my_s = my_s +1;
         value = map[my_s][mx_s];
 
@@ -579,7 +586,7 @@ public class BattleScreen extends AppCompatActivity {
     public void HealUser(View view) { // Runs when user presses 'HEAL'
 
         userhealth = userhealth + healpoint;
-        ((GlobalVariables) this.getApplication()).setCurrentEnergy(userhealth);
+        ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
         energy = energy - healenergycost;
         ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
 
