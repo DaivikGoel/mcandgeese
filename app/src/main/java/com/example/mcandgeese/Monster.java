@@ -24,6 +24,8 @@ public class Monster extends AppCompatActivity {
     }};
     public List<String> monsterQuotes = new ArrayList<>(Arrays.asList("Wow would you look at that, it's an ECE student", "ECE students must be punished for what they have done to us"));
 
+    // TODO: Have to make the global variables remember which monsters are dead. For some reason i get null pointer exceptions when referencing global variable sets.
+
     // generates a monster
     public Monster() {
         HashMap<Integer, String> tempMonsters = new HashMap<>(monsters);

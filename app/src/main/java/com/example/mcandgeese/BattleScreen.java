@@ -16,8 +16,8 @@ public class BattleScreen extends AppCompatActivity {
 
     int userhealth; //Remaining User Health (need to be set from previous state/battle)
     int energy; //Remaining User Energy (need to be set from previous state/battle)
-    int monsterhealth = 100; // Starting Monster Health
-    int monsterhitpoint = 10; // Amount of Damage to user (per turn)
+    int monsterhealth; // Starting Monster Health
+    int monsterhitpoint; // Amount of Damage to user (per turn)
     int attackenergycost = 25; // Cost of energy per attack to monster
     int healenergycost = 5; //Cost of energy per heal to user
     int hitpoint = 20; // Amount of damage per attack to monster
@@ -66,6 +66,10 @@ public class BattleScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.userhealth = ((GlobalVariables) this.getApplication()).getCurrentHealth();
         this.energy = ((GlobalVariables) this.getApplication()).getCurrentEnergy();
+        int monsterHealth = getIntent().getIntExtra("MONSTER_HEALTH", 100);
+        int monsterHitPoints = getIntent().getIntExtra("MONSTER_HIT_POINTS", 15);
+        this.monsterhealth = monsterHealth;
+        this.monsterhitpoint = monsterHitPoints;
         setContentView(R.layout.battle_setup);
         onWindowFocusChanged(true);
         setupmap();

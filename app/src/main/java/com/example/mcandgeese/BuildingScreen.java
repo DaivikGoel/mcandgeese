@@ -54,6 +54,7 @@ public class BuildingScreen extends AppCompatActivity {
         tw.animateText(getStoryLine(buildingId));
     }
 
+    /*
     public void goToBattleScreen(View view) {
         String buildingId = getIntent().getStringExtra("BUILDING_ID");
         switch(buildingId){
@@ -70,13 +71,27 @@ public class BuildingScreen extends AppCompatActivity {
                 break;
         }
     }
+    */
 
     public void goToMonsterTransitionScreen(View view) {
+        String buildingId = getIntent().getStringExtra("BUILDING_ID");
+        if (buildingId.equals("Plaza")) {
+            ((GlobalVariables) this.getApplication()).setCurrentHealth(100);
+            ((GlobalVariables) this.getApplication()).setCurrentEnergy(100);
+            Intent intent = new Intent(BuildingScreen.this, transition_screen.class);
+            intent.putExtra("BUILDING_ID", "Food");
+            startActivity(intent);
+            return;
+        }
+
         Intent intent = new Intent(BuildingScreen.this, MonsterTransitionScreen.class);
         Monster generatedMonster = new Monster();
         System.out.println(generatedMonster.getMonsterName());
         intent.putExtra("MONSTER_ID", generatedMonster.getMonsterID());
+        intent.putExtra("MONSTER_HEALTH", generatedMonster.getMonsterHealth());
+        intent.putExtra("MONSTER_HIT_POINTS", generatedMonster.getMonsterHitPoints());
         intent.putExtra("MONSTER_NAME", generatedMonster.getMonsterName());
+
         startActivity(intent);
     }
 
