@@ -45,4 +45,9 @@ public class MapScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToFreeRoamScreen(View view) {
+        Intent intent = new Intent(MapScreen.this, ScrollableMap.class);
+        startActivity(intent);
+    }
+
 }

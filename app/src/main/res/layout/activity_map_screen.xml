@@ -33,19 +33,21 @@
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="422dp"
         android:layout_height="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstImage"
-        tools:layout_editor_absoluteX="-5dp">
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-11dp">
 
 
         <Button
             android:id="@+id/E5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="E5"
             android:onClick="goToBuildingScreen"
+            android:text="E5"
             app:layout_constraintBottom_toBottomOf="@+id/DP"
             app:layout_constraintEnd_toStartOf="@+id/E7"
             app:layout_constraintHorizontal_bias="0.5"
@@ -57,8 +59,8 @@
             android:id="@+id/E7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="E7"
             android:onClick="goToBuildingScreen"
+            android:text="E7"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -70,46 +72,58 @@
             android:id="@+id/DP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DP"
             android:onClick="goToBuildingScreen"
-            app:layout_constraintTop_toBottomOf="@+id/E5"
+            android:text="DP"
             app:layout_constraintEnd_toStartOf="@+id/SLC"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/E5" />
 
         <Button
             android:id="@+id/SLC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SLC"
             android:onClick="goToBuildingScreen"
-            app:layout_constraintTop_toBottomOf="@+id/E7"
+            android:text="SLC"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/DP" />
+            app:layout_constraintStart_toEndOf="@+id/DP"
+            app:layout_constraintTop_toBottomOf="@+id/E7" />
 
         <Button
             android:id="@+id/Plaza"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Plaza"
             android:onClick="goToBuildingScreen"
-            app:layout_constraintTop_toBottomOf="@+id/DP"
+            android:text="Plaza"
             app:layout_constraintEnd_toStartOf="@+id/QNC"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/DP" />
 
         <Button
             android:id="@+id/QNC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="QNC"
             android:onClick="goToBuildingScreen"
-            app:layout_constraintTop_toBottomOf="@+id/SLC"
+            android:text="QNC"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/Plaza" />
+            app:layout_constraintStart_toEndOf="@+id/Plaza"
+            app:layout_constraintTop_toBottomOf="@+id/SLC" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/FreeRoam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goToFreeRoamScreen"
+        android:text="Free Roam"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

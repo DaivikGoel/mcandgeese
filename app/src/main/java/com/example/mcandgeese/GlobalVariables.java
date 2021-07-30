@@ -44,7 +44,8 @@ public class GlobalVariables extends Application {
 
     public int getCurrentLocationY() { return this.currentLocationY; }
 
-    public void setCurrentLocationX(int locX) { this.currentLocationX = locX; }
-
-    public void setCurrentLocationY(int locY) { this.currentLocationY = locY; }
+    public void setCurrentLocation(int locX, int locY) {
+        this.currentLocationX = locX;
+        this.currentLocationY = locY;
+    }
 }
