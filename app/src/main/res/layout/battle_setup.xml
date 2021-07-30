@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/battle_background">
 
-    //1711,205
-
     <ImageView
         android:id="@+id/Student"
         android:layout_width="75px"
@@ -21,8 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
-        app:srcCompat="@drawable/student_hat" />
-    //student
+        app:srcCompat="@drawable/student_hat" /> //student
 
     <ImageView
         android:id="@+id/Goose"
@@ -432,7 +429,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.229" />
-    //arrows
 
     <ImageButton
         android:id="@+id/ALeft"
@@ -489,26 +485,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.039" />
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/userhealthbar"-->
-    <!--        android:layout_width="193dp"-->
-    <!--        android:layout_height="24dp"-->
-    <!--        android:layout_marginStart="189dp"-->
-    <!--        android:layout_marginTop="304dp"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        tools:srcCompat="@tools:sample/avatars" />-->
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/userenergybar"-->
-    <!--        android:layout_width="193dp"-->
-    <!--        android:layout_height="24dp"-->
-    <!--        android:layout_marginStart="189dp"-->
-    <!--        android:layout_marginTop="363dp"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        tools:srcCompat="@tools:sample/avatars" />-->
 
     <ImageView
         android:id="@+id/userhealthbar"

@@ -350,14 +350,15 @@ public class BattleScreen extends AppCompatActivity {
                 y_g = y_g +85;
         }
 
-       ValidateLocation(direction);
+        ValidateLocation(direction);
         drawBars();
         DisplayGoose(); //update graphics
         RefreshArray();
     }
 
 
-    public void DisplayStudent(){ //add in range graphics and make similar for DisplayGoose()
+    public void DisplayStudent()
+    {
         final ImageView StudentV = (ImageView)findViewById(R.id.Student);
         StudentV.setX(x_s);
         StudentV.setY(y_s);
@@ -385,7 +386,8 @@ public class BattleScreen extends AppCompatActivity {
         AS_D.invalidate();
 
     }
-    public void DisplayGoose(){
+    public void DisplayGoose()
+    {
         final ImageView GooseV = (ImageView)findViewById(R.id.Goose);
         GooseV.setX(x_g);
         GooseV.setY(y_g);
@@ -414,13 +416,15 @@ public class BattleScreen extends AppCompatActivity {
 
     }
 
-    public void CheckUserHealth(){
+    public void CheckUserHealth()
+    {
         if (userhealth <= 0){
             EndGameLoose();
         }
     }
 
-    public void ValidateLocation(int direction){
+    public void ValidateLocation(int direction)
+    {
         if (direction == 1)//up
         {
             if ((map[my_g][mx_g] == 5)||(map[my_g][mx_g] == 1))
@@ -455,7 +459,8 @@ public class BattleScreen extends AppCompatActivity {
         }
     }
 
-    public void ValidateLocationStudent(int direction){
+    public void ValidateLocationStudent(int direction)
+    {
         if (direction == 1)//up
         {
             if ((map[my_s][mx_s] == 5)||(map[my_s][mx_s] == 3))
@@ -491,7 +496,8 @@ public class BattleScreen extends AppCompatActivity {
     }
 
 
-    public void ArrowUp(View view) {
+    public void ArrowUp(View view)
+    {
         if (userhealth<=0)
         {
             EndGameLoose();
@@ -584,95 +590,55 @@ public class BattleScreen extends AppCompatActivity {
     }
 
 
-    public void AttackMonster(View view) { // Runs when user presses 'ATTACK' Button
-         if (((mx_s == mx_g)&&(my_s+1 == my_g))||((mx_s == mx_g)&&(my_s-1 == my_g)))//check if within attack range
+
+    public void AttackMonster(View view) // Runs when user presses 'ATTACK' Button
+    {
+         if (((mx_s == mx_g)&&(my_s+1 == my_g))||((mx_s == mx_g)&&(my_s-1 == my_g)))
+             //check if within x attack range
         {
             monsterhealth = monsterhealth - hitpoint;
-   //         energy = energy - attackenergycost;
-    //        ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
-
             drawBars();
-
-            if (monsterhealth <= 0) { EndGameWin(); }
-            else { GooseTurn();}
+            if (monsterhealth <= 0)
+            {
+                EndGameWin();
+            }
+            else
+            {
+                GooseTurn();
+            }
         }
          else if(((my_s == my_g)&&(mx_s+1 == mx_g))||((my_s == my_g)&&(mx_s-1 == mx_g)))
+             //check if within y attack range
          {
              monsterhealth = monsterhealth - hitpoint;
-
              drawBars();
 
-             if (monsterhealth <= 0) { EndGameWin(); }
-             else { GooseTurn();}
+             if (monsterhealth <= 0)
+             {
+                 EndGameWin();
+             }
+             else
+             {
+                 GooseTurn();
+             }
         }
-
-        /*
-        if (energy >= attackenergycost)
-        {
-            monsterhealth = monsterhealth - hitpoint;
-            energy = energy - attackenergycost;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
-
-            drawUserBars();
-            drawMonsterBar();
-
-            if (monsterhealth <= 0) { EndGameWin(); }
-            else { MonsterTurn();}
-        }
-        else
-        {
-            TextView textView = findViewById(R.id.textView);
-            textView.setText("Not Enough Energy!");
-        }
-
-         */
-
     }
 
-    public void HealUser(View view) { // Runs when user presses 'HEAL'
+    public void HealUser(View view) // Runs when user presses 'HEAL'
+    {
 
         userhealth = userhealth + healpoint;
         ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
         energy = energy - healenergycost;
         ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
-
-
-
-        // update the health and energy bars
         drawBars();
-
         GooseTurn();
-        /*
-        if (energy >= healenergycost)
-        {
-            userhealth = userhealth + healpoint;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(userhealth);
-            energy = energy - healenergycost;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
-
-
-
-            // update the health and energy bars
-            drawUserBars();
-            drawMonsterBar();
-
-            MonsterTurn();
-        }
-        else
-        {
-            TextView textView = findViewById(R.id.textView);
-            textView.setText("Not Enough Energy!");
-        }
-        */
-
     }
 
     public void RechargeUser(View view) // Runs when user presses 'RECHARGE'
     {
         energy = energy + rechargeamount;
         ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
-
-
         drawBars();
         GooseTurn();
     }
@@ -680,32 +646,29 @@ public class BattleScreen extends AppCompatActivity {
 
     public void EndGameWin() // if user wins
     {
-        //Need to import counter for number of remaining monsters and if counter ==0 then user has completed game
-        //setContentView(R.layout.user_win_final
-
         setContentView(R.layout.user_win_return);
     }
 
     public void EndGameLoose() // if user looses
     {
-        // On loss, reset the user's health and energy
         resetStats();
         setContentView(R.layout.user_loose);
     }
 
-    private void drawUserHealthBar() {
-
+    private void drawUserHealthBar()
+    {
         // draw/update health and energy bars
         this.userHealthBar.drawBar(userhealth, userHealthCanvas);
     }
 
-    private void drawUserEnergyBar() {
-
+    private void drawUserEnergyBar()
+    {
         // draw/update health and energy bars
         this.userEnergyBar.drawBar(energy, userEnergyCanvas);
     }
 
-    private void drawMonsterBar() {
+    private void drawMonsterBar()
+    {
         // draw/update health and energy bars
         this.monsterHealthBar.drawBar(monsterhealth, monsterCanvas);
     }
