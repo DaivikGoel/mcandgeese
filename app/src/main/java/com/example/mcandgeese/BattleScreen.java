@@ -23,6 +23,7 @@ public class BattleScreen extends AppCompatActivity {
     int hitpoint = 20; // Amount of damage per attack to monster
     int healpoint = 15; // Amount user heals per heal
     int rechargeamount = 10; // Amount user energy increases per recharge
+    int movementcost = 3;
     //need to load in counter that is globally held
 
 
@@ -292,21 +293,25 @@ public class BattleScreen extends AppCompatActivity {
             userhealth = userhealth - monsterhitpoint;
             ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
             CheckUserHealth();
+            drawBars();
         }
         else if (map[my_g-1][mx_g+1] == 1){
             userhealth = userhealth - monsterhitpoint;
             ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
             CheckUserHealth();
+            drawBars();
         }
         else if (map[my_g+1][mx_g-1] == 1){
             userhealth = userhealth - monsterhitpoint;
             ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
             CheckUserHealth();
+            drawBars();
         }
         else if (map[my_g-1][mx_g-1] == 1){
             userhealth = userhealth - monsterhitpoint;
             ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
             CheckUserHealth();
+            drawBars();
         }
         //if student out of range goose move toward student
         else if ((my_g == my_s)&&((mx_s+1 == mx_g)||(mx_s-1 == mx_g))){
@@ -416,129 +421,166 @@ public class BattleScreen extends AppCompatActivity {
     }
 
     public void ValidateLocation(int direction){
-
-        //left - down-
-        //down - right-
-        //right - up-
-        //up - left-
         if (direction == 1)//up
         {
-            if (map[my_g][mx_g] == 5){
+            if ((map[my_g][mx_g] == 5)||(map[my_g][mx_g] == 1))
+            {
                 my_g = my_g -3;
                 y_g = y_g +255;
             }
         }
         else if (direction == 2)//down
         {
-            if (map[my_g][mx_g] == 5){
+            if ((map[my_g][mx_g] == 5)||(map[my_g][mx_g] == 1))
+            {
                 my_g = my_g +3;
                 y_g = y_g -255;
             }
-
         }
         else if (direction == 3)//left
         {
-            if (map[my_g][mx_g] == 5){
+            if ((map[my_g][mx_g] == 5)||(map[my_g][mx_g] == 1))
+            {
                 mx_g = mx_g +3;
                 x_g = x_g +255;
-
             }
         }
         else if (direction == 4)//right
         {
-            if (map[my_g][mx_g] == 5){
+            if ((map[my_g][mx_g] == 5)||(map[my_g][mx_g] == 1))
+            {
                 mx_g = mx_g -3;
                 x_g = x_g -255;
             }
         }
-
     }
 
+    public void ValidateLocationStudent(int direction){
+        if (direction == 1)//up
+        {
+            if ((map[my_s][mx_s] == 5)||(map[my_s][mx_s] == 3))
+            {
+                my_s = my_s - 3;
+                y_s = y_s + 255;
+            }
+        }
+        else if (direction == 2)//down
+        {
+            if ((map[my_s][mx_s] == 5)||(map[my_s][mx_s] == 3))
+            {
+                y_s = y_s - 255;
+                my_s = my_s + 3;
+            }
+        }
+        else if (direction == 3)//left
+        {
+            if ((map[my_s][mx_s] == 5)||(map[my_s][mx_s] == 3))
+            {
+                mx_s = mx_s + 3;
+                x_s = x_s + 255;
+            }
+        }
+        else if (direction == 4)//right
+        {
+            if ((map[my_s][mx_s] == 5)||(map[my_s][mx_s] == 3))
+            {
+                mx_s = mx_s - 3;
+                x_s = x_s - 255;
+            }
+        }
+    }
+
+
     public void ArrowUp(View view) {
-        my_s = my_s +1;
-        value = map[my_s][mx_s];
+        if (userhealth<=0)
+        {
+            EndGameLoose();
+        }
+        else if (energy >= movementcost )
+        {
+            my_s = my_s + 1;
+            y_s = y_s - 85;
+            value = 1;
 
-        if (value == 0){ //free
-            y_s = y_s -85;
-        }
-        else if (value == 2){ //student range
-            y_s = y_s -85;
-        }
-        else if (value == 4){ //goose range
-            y_s = y_s -85;
-        }
-        else{
-            my_s = my_s -1;
-        }
+            ValidateLocationStudent(value);
 
-        UpdateGrid();
-        DisplayStudent();
+            energy = energy - movementcost;
+            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+            drawBars();
+
+            UpdateGrid();
+            DisplayStudent();
+
+        }
         GooseTurn();
 
     }
     public void ArrowDown(View view) {
-        my_s = my_s -1;
-        value = map[my_s][mx_s];
+        if (userhealth<=0)
+        {
+            EndGameLoose();
+        }
+        else if (energy >= movementcost )
+        {
+            my_s = my_s - 1;
+            y_s = y_s + 85;
+            value = 2;
+            ValidateLocationStudent(value);
 
-        if (value == 0){ //free
-            y_s = y_s +85;
-        }
-        else if (value == 2){ //student range
-            y_s = y_s +85;
-        }
-        else if (value == 4){ //goose range
-            y_s = y_s +85;
-        }
-        else{
-            my_s = my_s +1;
-        }
+            energy = energy - movementcost;
+            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+            drawBars();
 
-        UpdateGrid();
-        DisplayStudent();
+            UpdateGrid();
+            DisplayStudent();
+
+        }
         GooseTurn();
     }
     public void ArrowLeft(View view) {
-        mx_s = mx_s -1;
-        value = map[my_s][mx_s];
+        if (userhealth<=0)
+        {
+            EndGameLoose();
+        }
+        else if (energy >= movementcost )
+        {
+            mx_s = mx_s - 1;
+            x_s = x_s - 85;
+            value = 3;
 
-        if (value == 0){ //free
-            x_s = x_s -85;
-        }
-        else if (value == 2){ //student range
-            x_s = x_s -85;
-        }
-        else if (value == 4){ //goose range
-            x_s = x_s -85;
-        }
-        else{
-            mx_s = mx_s +1;
-        }
+            ValidateLocationStudent(value);
 
-       UpdateGrid();
-        DisplayStudent();
+            energy = energy - movementcost;
+            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+            drawBars();
+
+            UpdateGrid();
+            DisplayStudent();
+
+        }
         GooseTurn();
     }
     public void ArrowRight(View view) {
-        mx_s = mx_s +1;
-        value = map[my_s][mx_s];
+        if (userhealth<=0)
+        {
+            EndGameLoose();
+        }
+        else if (energy >= movementcost )
+        {
+            mx_s = mx_s + 1;
+            x_s = x_s + 85;
+            value = 4;
 
-        if (value == 0){ //free
-            x_s = x_s +85;
-        }
-        else if (value == 2){ //student range
-            x_s = x_s +85;
-        }
-        else if (value == 4){ //goose range
-            x_s = x_s +85;
-        }
-        else{
-            mx_s = mx_s -1;
-        }
+            ValidateLocationStudent(value);
+            energy = energy - movementcost;
+            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+            drawBars();
 
-       UpdateGrid();
-        DisplayStudent();
+            UpdateGrid();
+            DisplayStudent();
+
+        }
         GooseTurn();
-
     }
 
 
@@ -632,9 +674,7 @@ public class BattleScreen extends AppCompatActivity {
 
 
         drawBars();
-
         GooseTurn();
-
     }
 
 
