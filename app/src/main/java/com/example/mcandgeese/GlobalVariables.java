@@ -39,4 +39,12 @@ public class GlobalVariables extends Application {
     }
 
     public void resetClearedLocations() { clearedBuildings.clear(); }
+
+    public int getCurrentLocationX() { return this.currentLocationX; }
+
+    public int getCurrentLocationY() { return this.currentLocationY; }
+
+    public void setCurrentLocationX(int locX) { this.currentLocationX = locX; }
+
+    public void setCurrentLocationY(int locY) { this.currentLocationY = locY; }
 }
