@@ -121,7 +121,6 @@ public class BattleScreen extends AppCompatActivity {
         // draw the health and energy bar
         drawUserHealthBar();
     }
-
     private void setUpUserEnergyBar() {
         // get the image view reference
         userEnergyImageView = (ImageView) findViewById(R.id.userenergybar);
@@ -141,7 +140,6 @@ public class BattleScreen extends AppCompatActivity {
         // draw the health and energy bar
         drawUserEnergyBar();
     }
-
     private void setUpMonsterHealthBar() {
         // get the image view reference
         monsterImageView = (ImageView) findViewById(R.id.monsterhealthbar);
@@ -255,7 +253,7 @@ public class BattleScreen extends AppCompatActivity {
     public void UpdateGrid(){
       //  Arrays.fill(map, 0); pretty sure issue. still need to clear array tho
 
-        for(int i = 0; i <10; i++)//set out of bounds
+        for(int i = 0; i <10; i++)//clear grid
         {
             for(int j =0; j<28; j++)
             {
@@ -283,41 +281,72 @@ public class BattleScreen extends AppCompatActivity {
     }
 
     public void GooseTurn(){
-        //goose move toward student
-        if (mx_s > mx_g){
-            mx_g = mx_g +1;
-            x_g = x_g +85;
-        }
-        else if (mx_s < mx_g){
-            mx_g = mx_g -1;
-            x_g = x_g -85;
-        }
-        else if (my_s > my_g){
-            my_g = my_g +1;
-            y_g = y_g -85;
-        }
-        else if (my_s < my_g){
-            my_g = my_g -1;
-            y_g = y_g +85;
-        }
+        int direction = 0;
 
         //if student within range -student_health
         if (map[my_g+1][mx_g+1] == 1){
-            //-student health
+            userhealth = userhealth - monsterhitpoint;
+            ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+            CheckUserHealth();
         }
         else if (map[my_g-1][mx_g+1] == 1){
-            //-student health
+            userhealth = userhealth - monsterhitpoint;
+            ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+            CheckUserHealth();
         }
         else if (map[my_g+1][mx_g-1] == 1){
-            //-student health
+            userhealth = userhealth - monsterhitpoint;
+            ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+            CheckUserHealth();
         }
         else if (map[my_g-1][mx_g-1] == 1){
-            //-student health
+            userhealth = userhealth - monsterhitpoint;
+            ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+            CheckUserHealth();
+        }
+        //if student out of range goose move toward student
+        else if ((my_g == my_s)&&((mx_s+1 == mx_g)||(mx_s-1 == mx_g))){
+            direction = 2;
+            my_g = my_g -1;
+            y_g = y_g +85;
+            //else gy+1
+        }
+        else if ((mx_g == mx_s)&&((my_s+1 == my_g)||(my_s-1 == my_g)))
+        {
+            direction =3;
+            mx_g = mx_g -1;
+            x_g = x_g -85;
+            //else gx+1
+        }
+        else if (mx_s > mx_g){
+            direction = 4;
+                mx_g = mx_g +1;
+                x_g = x_g +85;
+        }
+        else if (mx_s < mx_g){
+                direction =3;
+                mx_g = mx_g -1;
+                x_g = x_g -85;
+
+        }
+        else if (my_s > my_g){
+             direction =1;
+                my_g = my_g +1;
+                y_g = y_g -85;
+
+        }
+        else if (my_s < my_g){
+            direction = 2;
+                my_g = my_g -1;
+                y_g = y_g +85;
         }
 
+       ValidateLocation(direction);
+        drawBars();
         DisplayGoose(); //update graphics
         RefreshArray();
     }
+
 
     public void DisplayStudent(){ //add in range graphics and make similar for DisplayGoose()
         final ImageView StudentV = (ImageView)findViewById(R.id.Student);
@@ -376,9 +405,52 @@ public class BattleScreen extends AppCompatActivity {
 
     }
 
+    public void CheckUserHealth(){
+        if (userhealth <= 0){
+            EndGameLoose();
+        }
+    }
+
+    public void ValidateLocation(int direction){
+
+        //left - down-
+        //down - right-
+        //right - up-
+        //up - left-
+        if (direction == 1)//up
+        {
+            if (map[my_g][mx_g] == 5){
+                my_g = my_g -3;
+                y_g = y_g +255;
+            }
+        }
+        else if (direction == 2)//down
+        {
+            if (map[my_g][mx_g] == 5){
+                my_g = my_g +3;
+                y_g = y_g -255;
+            }
+
+        }
+        else if (direction == 3)//left
+        {
+            if (map[my_g][mx_g] == 5){
+                mx_g = mx_g +3;
+                x_g = x_g +255;
+
+            }
+        }
+        else if (direction == 4)//right
+        {
+            if (map[my_g][mx_g] == 5){
+                mx_g = mx_g -3;
+                x_g = x_g -255;
+            }
+        }
+
+    }
 
     public void ArrowUp(View view) {
-
         my_s = my_s +1;
         value = map[my_s][mx_s];
 
@@ -514,7 +586,7 @@ public class BattleScreen extends AppCompatActivity {
     public void HealUser(View view) { // Runs when user presses 'HEAL'
 
         userhealth = userhealth + healpoint;
-        ((GlobalVariables) this.getApplication()).setCurrentEnergy(userhealth);
+        ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
         energy = energy - healenergycost;
         ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
 
@@ -561,65 +633,6 @@ public class BattleScreen extends AppCompatActivity {
 
     }
 
-
-
-
-    /*
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        this.userhealth = ((GlobalVariables) this.getApplication()).getCurrentHealth();
-        this.energy = ((GlobalVariables) this.getApplication()).getCurrentEnergy();
-        setContentView(R.layout.activity_battle_screen);
-
-
-        TextView BC = findViewById(R.id.textView12);
-        BC.setText(String.valueOf(hitpoint));
-
-        TextView CD = findViewById(R.id.textView13);
-        CD.setText(String.valueOf(attackenergycost));
-
-        TextView EF = findViewById(R.id.textView17);
-        EF.setText(String.valueOf(healpoint));
-
-        TextView FG = findViewById(R.id.textView18);
-        FG.setText(String.valueOf(healenergycost));
-
-        TextView GH = findViewById(R.id.textView19);
-        GH.setText(String.valueOf(rechargeamount));
-
-        TextView textView = findViewById(R.id.textView);
-        textView.setText("User Turn!");
-
-        // setup the user health and energy bars
-        setUpUserHealthAndEnergyBars();
-
-        // setup the monster health bar
-        setUpMonsterHealthBar();
-    }
-
-    public void MonsterTurn() // Runs after any button is pressed, This is the monsters attack
-    {
-        TextView textView = findViewById(R.id.textView);
-        textView.setText("Monster Turn!");
-
-        userhealth = userhealth - monsterhitpoint ;
-        ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
-
-        // update health and energy bars
-        drawUserBars();
-        drawMonsterBar();
-
-        if (userhealth <= 0) { EndGameLoose(); }
-
-        textView.setText("User Turn!");
-    }
-
-
-
-    */
 
     public void EndGameWin() // if user wins
     {
