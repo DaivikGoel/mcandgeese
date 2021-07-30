@@ -10,7 +10,7 @@ public class GlobalVariables extends Application {
     public int currentLocationX = 0;
     public int currentLocationY = 0;
     public HashSet<String> clearedBuildings = new HashSet<>();
-    public HashSet<String> clearedMonsters = new HashSet<>();
+    public HashSet<Integer> clearedMonsters = new HashSet<>();
 
     public int getCurrentHealth() {
         return this.currentHealth;
@@ -28,14 +28,14 @@ public class GlobalVariables extends Application {
         this.currentEnergy = newEnergy;
     }
 
-    public void addClearedBuilding(String location){ clearedBuildings.add(location); }
+    public void addClearedBuilding(String location){ this.clearedBuildings.add(location); }
 
-    public HashSet<String> getClearedMonsters(){
-        return this.clearedMonsters;
+    public HashSet<Integer> getClearedMonsters(){
+        return new HashSet<>(this.clearedMonsters);
     }
 
-    public void addClearedMonsters(String monsterName) {
-        clearedMonsters.add(monsterName);
+    public void addClearedMonsters(Integer monsterID) {
+        this.clearedMonsters.add(monsterID);
     }
 
     public void resetClearedLocations() { clearedBuildings.clear(); }

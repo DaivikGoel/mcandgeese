@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mcandgeese">
         <activity android:name=".transition_screen"></activity>
+        <activity android:name=".MonsterTransitionScreen"></activity>
         <activity android:name=".BattleScreen" />
         <activity android:name=".BuildingScreen" />
         <activity

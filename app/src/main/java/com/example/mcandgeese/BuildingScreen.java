@@ -71,6 +71,15 @@ public class BuildingScreen extends AppCompatActivity {
         }
     }
 
+    public void goToMonsterTransitionScreen(View view) {
+        Intent intent = new Intent(BuildingScreen.this, MonsterTransitionScreen.class);
+        Monster generatedMonster = new Monster();
+        System.out.println(generatedMonster.getMonsterName());
+        intent.putExtra("MONSTER_ID", generatedMonster.getMonsterID());
+        intent.putExtra("MONSTER_NAME", generatedMonster.getMonsterName());
+        startActivity(intent);
+    }
+
     public void goToMapScreen(View view) {
         Intent intent = new Intent(BuildingScreen.this, MapScreen.class);
         startActivity(intent);
