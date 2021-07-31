@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 public class ScrollableMap extends AppCompatActivity {
@@ -14,11 +12,11 @@ public class ScrollableMap extends AppCompatActivity {
     private int userLocX;
     private int userLocY;
 
-//    private int tempX = 1115;
-//    private int tempY = 400;
-
     private int screenHeight;
     private int screenWidth;
+
+    // grid for marking building locations
+    String[][] grid = new String[26][12];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +25,10 @@ public class ScrollableMap extends AppCompatActivity {
         setContentView(R.layout.activity_scrollable_map);
         onWindowFocusChanged(true);
 
-        // set current user location
+        // initialize grid
+        markBuildingLocations();
+
+        // get current user location
         this.userLocX = ((GlobalVariables) this.getApplication()).getCurrentLocationX();
         this.userLocY = ((GlobalVariables) this.getApplication()).getCurrentLocationY();
 
@@ -50,6 +51,41 @@ public class ScrollableMap extends AppCompatActivity {
         StudentV.setX(userLocX);
         StudentV.setY(userLocY);
         StudentV.invalidate();
+    }
+
+    private void markBuildingLocations() {
+        // fill empty
+        for (int i = 0; i < 26; i++) {
+            for (int j = 0; j < 12; j++) {
+                grid[i][j] = "";
+            }
+        }
+
+        // SLC
+        grid[13][3] = "SLC";
+
+        // E7
+        grid[20][4] = "E7";
+
+        // E5
+        grid[19][4] = "E5";
+
+        // Plaza
+        for (int i = 19; i < 23; i++) {
+            for (int j = 5; j < 7; j++) {
+                grid[i][j] = "Plaza";
+            }
+        }
+        grid[20][7] = "Plaza";
+
+        // QNC
+        grid[14][4] = "QNC";
+
+        // DP
+        grid[14][7] = "DP";
+        grid[15][7] = "DP";
+
+        // Add MC, DC, PAC later
     }
 
     // function to get rid of the header and footer
@@ -80,6 +116,16 @@ public class ScrollableMap extends AppCompatActivity {
         ((GlobalVariables) this.getApplication()).setCurrentLocation(userLocX, userLocY);
     }
 
+    private void enterBuildingIfPossible() {
+        int gridX = userLocX / 85;
+        int gridY = userLocY / 85;
+
+        if (grid[gridX][gridY] != "") {
+            System.out.println(grid[gridX][gridY]);
+        }
+        System.out.println("\n");
+    }
+
     public void goUp(View view) {
 
         // validate position
@@ -88,7 +134,11 @@ public class ScrollableMap extends AppCompatActivity {
             // move the user up
             userLocY -= 85;
 
+            // store updated location in state
             storeUserLocationInState();
+
+            // show enter button if possible to enter building
+            enterBuildingIfPossible();
 
             drawPlayer();
         }
@@ -102,7 +152,11 @@ public class ScrollableMap extends AppCompatActivity {
             // move user to left
             userLocX -= 85;
 
+            // store updated location in state
             storeUserLocationInState();
+
+            // show enter button if possible to enter building
+            enterBuildingIfPossible();
 
             drawPlayer();
         }
@@ -116,7 +170,11 @@ public class ScrollableMap extends AppCompatActivity {
             // move user right
             userLocX += 85;
 
+            // store updated location in state
             storeUserLocationInState();
+
+            // show enter button if possible to enter building
+            enterBuildingIfPossible();
 
             drawPlayer();
         }
@@ -127,7 +185,11 @@ public class ScrollableMap extends AppCompatActivity {
         if (userLocY + 85 < screenHeight) {
             userLocY += 85;
 
+            // store updated location in state
             storeUserLocationInState();
+
+            // show enter button if possible to enter building
+            enterBuildingIfPossible();
 
             drawPlayer();
         }
