@@ -3,6 +3,7 @@ package com.example.mcandgeese;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,6 +17,9 @@ public class ScrollableMap extends AppCompatActivity {
 //    private int tempX = 1115;
 //    private int tempY = 400;
 
+    private int screenHeight;
+    private int screenWidth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,12 @@ public class ScrollableMap extends AppCompatActivity {
         // set current user location
         this.userLocX = ((GlobalVariables) this.getApplication()).getCurrentLocationX();
         this.userLocY = ((GlobalVariables) this.getApplication()).getCurrentLocationY();
+
+        // get the screen height and width
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        this.screenHeight = displayMetrics.heightPixels;
+        this.screenWidth = displayMetrics.widthPixels;
     }
 
     @Override
@@ -65,26 +75,47 @@ public class ScrollableMap extends AppCompatActivity {
     }
 
     public void goUp(View view) {
-        userLocY -= 85;
 
-        drawPlayer();
+        // validate position
+        if (userLocY - 85 >= 0) {
+
+            // move the user up
+            userLocY -= 85;
+
+            drawPlayer();
+        }
     }
 
     public void goLeft(View view) {
-        userLocX -= 85;
 
-        drawPlayer();
+        // validate position
+        if (userLocX - 85 >= 0) {
+
+            // move user to left
+            userLocX -= 85;
+
+            drawPlayer();
+        }
     }
 
     public void goRight(View view) {
-        userLocX += 85;
 
-        drawPlayer();
+        // validate position
+        if (userLocX + 85 < screenWidth) {
+
+            // move user right
+            userLocX += 85;
+
+            drawPlayer();
+        }
     }
 
     public void goDown(View view) {
-        userLocY += 85;
 
-        drawPlayer();
+        if (userLocY + 85 < screenHeight) {
+            userLocY += 85;
+
+            drawPlayer();
+        }
     }
 }
