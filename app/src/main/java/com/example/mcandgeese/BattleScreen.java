@@ -12,6 +12,10 @@ import android.widget.TextView;
 
 import com.example.mcandgeese.gamePanel.InfoBar;
 
+import java.util.Random;
+
+import static java.lang.Math.abs;
+
 public class BattleScreen extends AppCompatActivity {
 
     int userhealth; //Remaining User Health (need to be set from previous state/battle)
@@ -44,6 +48,10 @@ public class BattleScreen extends AppCompatActivity {
 
     int value =0;
 
+    int[][] boulderlocation = new int[5][2];
+    int randomx;
+    int randomy;
+
     // user info
     private InfoBar userHealthBar;
     private Canvas userHealthCanvas;
@@ -75,7 +83,10 @@ public class BattleScreen extends AppCompatActivity {
         onWindowFocusChanged(true);
         setupmap();
         startlocations();
+        BoulderSetUp();
         RefreshArray();
+        UpdateGrid();
+
 
         // setup the user health/energy and monster health bars
         setUpUserHealthBar();
@@ -216,9 +227,9 @@ public class BattleScreen extends AppCompatActivity {
         TextView row9 = findViewById(R.id.textView28);
         row9.setText(forprint10);
     }
-    public void setupmap(){
 
-
+    public void setupmap()
+    {
         for(int i = 1; i <3; i++)//set out of bounds
         {
             for(int j =1; j<7; j++)
@@ -238,8 +249,14 @@ public class BattleScreen extends AppCompatActivity {
             map[k][0] = 5;
             map[k][27] = 5;
         }
+
+        for(int j=0;j<5;j++){
+            map[boulderlocation[j][1]][boulderlocation[j][0]] = 5;
+        }
     }
-    public void startlocations(){
+
+    public void startlocations()
+    {
         map[my_s][mx_s] = 1; //student location
 
         map[my_s][mx_s+1] = 2; //student range
@@ -255,6 +272,35 @@ public class BattleScreen extends AppCompatActivity {
         map[my_g+1][mx_g-1] =4;
         map[my_g-1][mx_g-1] =4;
     }
+
+    public void BoulderSetUp()
+    {
+      //  int blx;
+       // int bly;
+
+        for (int i=0;i<5;i++)
+        {
+        randomx = new Random().nextInt(26) + 1;
+        randomy = new Random().nextInt(7) + 1;
+
+        if (map[randomy][randomx]==0) {
+     //       blx = ((randomx - 1) * 85);// + 10;
+      //      bly = ((randomy - 1) * 85);// - 60;
+
+            boulderlocation[i][0]= randomx;
+            boulderlocation[i][1]= randomy;
+        }
+            else
+            {
+                i=i-1;
+            }
+        }
+
+        RefreshArray();
+        DisplayBoulder();
+
+    }
+
     public void UpdateGrid(){
       //  Arrays.fill(map, 0); pretty sure issue. still need to clear array tho
 
@@ -266,7 +312,6 @@ public class BattleScreen extends AppCompatActivity {
             }
         }
 
-        map[my_s][mx_s] = 1; //student location
 
         map[my_s][mx_s+1] = 2; //student range
         map[my_s][mx_s-1] = 2;
@@ -274,12 +319,13 @@ public class BattleScreen extends AppCompatActivity {
         map[my_s-1][mx_s] = 2;
 
 
-        map[my_g][mx_g] =3; //goose location
-
         map[my_g+1][mx_g+1] =4; //goose range
         map[my_g-1][mx_g+1] =4;
         map[my_g+1][mx_g-1] =4;
         map[my_g-1][mx_g-1] =4;
+
+        map[my_s][mx_s] = 1; //student location
+        map[my_g][mx_g] =3; //goose location
         setupmap();
         RefreshArray();
 
@@ -353,6 +399,7 @@ public class BattleScreen extends AppCompatActivity {
         ValidateLocation(direction);
         drawBars();
         DisplayGoose(); //update graphics
+        UpdateGrid();
         RefreshArray();
     }
 
@@ -414,6 +461,34 @@ public class BattleScreen extends AppCompatActivity {
         AG_LD.invalidate();
 
 
+    }
+    public void DisplayBoulder()
+    {
+       // int y1 = abs((boulderlocation[0][1]-1)-28) ;
+        final ImageView B1 = (ImageView)findViewById(R.id.Boulder1);
+        B1.setX((boulderlocation[0][0]-1)*85);
+        B1.setY(595-((boulderlocation[0][1]-1)*85));
+        B1.invalidate();
+
+        final ImageView B2 = (ImageView)findViewById(R.id.Boulder2);
+        B2.setX((boulderlocation[1][0]-1)*85);
+        B2.setY(595-((boulderlocation[1][1]-1)*85));
+        B2.invalidate();
+
+        final ImageView B3 = (ImageView)findViewById(R.id.Boulder3);
+        B3.setX((boulderlocation[2][0]-1)*85);
+        B3.setY(595-((boulderlocation[2][1]-1)*85));
+        B3.invalidate();
+
+        final ImageView B4 = (ImageView)findViewById(R.id.Boulder4);
+        B4.setX((boulderlocation[3][0]-1)*85);
+        B4.setY(595-((boulderlocation[3][1]-1)*85));
+        B4.invalidate();
+
+        final ImageView B5 = (ImageView)findViewById(R.id.Boulder5);
+        B5.setX((boulderlocation[4][0]-1)*85);
+        B5.setY(595-((boulderlocation[4][1]-1)*85));
+        B5.invalidate();
     }
 
     public void CheckUserHealth()
@@ -498,11 +573,8 @@ public class BattleScreen extends AppCompatActivity {
 
     public void ArrowUp(View view)
     {
-        if (userhealth<=0)
-        {
-            EndGameLoose();
-        }
-        else if (energy >= movementcost )
+        CheckUserHealth();
+         if (energy >= movementcost )
         {
             my_s = my_s + 1;
             y_s = y_s - 85;
@@ -522,11 +594,8 @@ public class BattleScreen extends AppCompatActivity {
 
     }
     public void ArrowDown(View view) {
-        if (userhealth<=0)
-        {
-            EndGameLoose();
-        }
-        else if (energy >= movementcost )
+        CheckUserHealth();
+         if (energy >= movementcost )
         {
             my_s = my_s - 1;
             y_s = y_s + 85;
@@ -544,11 +613,8 @@ public class BattleScreen extends AppCompatActivity {
         GooseTurn();
     }
     public void ArrowLeft(View view) {
-        if (userhealth<=0)
-        {
-            EndGameLoose();
-        }
-        else if (energy >= movementcost )
+        CheckUserHealth();
+        if (energy >= movementcost )
         {
             mx_s = mx_s - 1;
             x_s = x_s - 85;
@@ -567,11 +633,8 @@ public class BattleScreen extends AppCompatActivity {
         GooseTurn();
     }
     public void ArrowRight(View view) {
-        if (userhealth<=0)
-        {
-            EndGameLoose();
-        }
-        else if (energy >= movementcost )
+        CheckUserHealth();
+        if (energy >= movementcost )
         {
             mx_s = mx_s + 1;
             x_s = x_s + 85;
