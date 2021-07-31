@@ -7,8 +7,8 @@ import java.util.HashSet;
 public class GlobalVariables extends Application {
     public int currentHealth = 100;
     public int currentEnergy = 100;
-    public int currentLocationX = 0;
-    public int currentLocationY = 0;
+    public int currentLocationX = 1115;
+    public int currentLocationY = 400;
     public HashSet<String> clearedBuildings = new HashSet<>();
     public HashSet<Integer> clearedMonsters = new HashSet<>();
 
