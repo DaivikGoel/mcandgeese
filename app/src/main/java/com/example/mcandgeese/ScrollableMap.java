@@ -45,12 +45,14 @@ public class ScrollableMap extends AppCompatActivity {
             hideSystemUI();
         }
 
+        // set the user image location
         final ImageView StudentV = (ImageView)findViewById(R.id.FreeRoamStudent);
         StudentV.setX(userLocX);
         StudentV.setY(userLocY);
         StudentV.invalidate();
     }
 
+    // function to get rid of the header and footer
     private void hideSystemUI() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
@@ -74,6 +76,10 @@ public class ScrollableMap extends AppCompatActivity {
         StudentV.invalidate();
     }
 
+    private void storeUserLocationInState() {
+        ((GlobalVariables) this.getApplication()).setCurrentLocation(userLocX, userLocY);
+    }
+
     public void goUp(View view) {
 
         // validate position
@@ -81,6 +87,8 @@ public class ScrollableMap extends AppCompatActivity {
 
             // move the user up
             userLocY -= 85;
+
+            storeUserLocationInState();
 
             drawPlayer();
         }
@@ -94,6 +102,8 @@ public class ScrollableMap extends AppCompatActivity {
             // move user to left
             userLocX -= 85;
 
+            storeUserLocationInState();
+
             drawPlayer();
         }
     }
@@ -106,6 +116,8 @@ public class ScrollableMap extends AppCompatActivity {
             // move user right
             userLocX += 85;
 
+            storeUserLocationInState();
+
             drawPlayer();
         }
     }
@@ -114,6 +126,8 @@ public class ScrollableMap extends AppCompatActivity {
 
         if (userLocY + 85 < screenHeight) {
             userLocY += 85;
+
+            storeUserLocationInState();
 
             drawPlayer();
         }
