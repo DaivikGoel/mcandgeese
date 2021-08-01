@@ -23,6 +23,7 @@ public class Monster extends AppCompatActivity {
     // Ghost of Goose: -1
     // Levine: 1
     // Goose: 2
+    // Arriba: 3
 
     // generates a monster
     public Monster(String monsterName, int monsterHealth, int monsterHitPoints, int monsterID) {
@@ -48,6 +49,14 @@ public class Monster extends AppCompatActivity {
         return new Monster(monsterName, monsterHealth, monsterHitPoints, monsterID);
     }
 
+    public static Monster getAmoeba() {
+        int monsterHitPoints = 20;
+        int monsterHealth = 150;
+        String monsterName = "Remants of Arriba";
+        int monsterID = 3;
+        return new Monster(monsterName, monsterHealth, monsterHitPoints, monsterID);
+    }
+
     public static Monster getGhost() {
         int monsterHitPoints = 1;
         int monsterHealth = 10;
@@ -62,6 +71,8 @@ public class Monster extends AppCompatActivity {
                 return getLevine();
             case(2):
                 return getGoose();
+            case(3):
+                return getAmoeba();
             default:
                 return getGhost();
         }
@@ -75,7 +86,7 @@ public class Monster extends AppCompatActivity {
                 return 2;
             case("SLC"):
                 return 3;
-            case("PAC"):
+            case("DP"):
                 return 4;
             case("QNC"):
                 return 5;

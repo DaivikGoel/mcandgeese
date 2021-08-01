@@ -21,12 +21,13 @@ public class GlobalVariables extends Application {
     // Monsters
     // Peter Levine: 1
     // Goose: 2
+    // Arriba: 3
 
     // Buildings
     // e5: 1
     // e7: 2
     // slc: 3
-    // pac: 4
+    // dp: 4
     // quantum: 5
 
     public void initializeVariables() {
@@ -40,6 +41,7 @@ public class GlobalVariables extends Application {
         this.remainingMonsters = new LinkedList<>();
         this.remainingMonsters.add(1);
         this.remainingMonsters.add(2);
+        this.remainingMonsters.add(3);
         randomizeMonsterLocations();
     }
 
@@ -83,11 +85,11 @@ public class GlobalVariables extends Application {
     public void randomizeMonsterLocations() {
         this.buildingToMonster.clear();
         this.occupiedBuilding.clear();
-        int buildingNum = this.remainingBuildings.size();
+        int buildingNum = this.remainingBuildings.size() + 1;
         Random rand = new Random();
         for (Integer remainingMonster : this.remainingMonsters) {
             int randomBuilding = rand.nextInt(buildingNum);
-            while (this.occupiedBuilding.contains(randomBuilding) || !this.remainingBuildings.contains(randomBuilding)) {
+            while (this.occupiedBuilding.contains(Integer.valueOf(randomBuilding)) || !this.remainingBuildings.contains(Integer.valueOf(randomBuilding))) {
                 randomBuilding = rand.nextInt(buildingNum);
             }
             this.buildingToMonster.put(randomBuilding, remainingMonster);

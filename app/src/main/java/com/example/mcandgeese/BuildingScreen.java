@@ -78,19 +78,12 @@ public class BuildingScreen extends AppCompatActivity {
         }
 
         Monster generatedMonster = Monster.getMonsterFromID(monsterID);
-        if (monsterID != -1) {
-            ((GlobalVariables) this.getApplication()).defeatMonster(monsterID);
-            ((GlobalVariables) this.getApplication()).removeBuilding(buildingID);
-            ((GlobalVariables) this.getApplication()).randomizeMonsterLocations();
-        }
-
-
-        System.out.println(generatedMonster.getMonsterName());
         intent.putExtra("MONSTER_ID", generatedMonster.getMonsterID());
         intent.putExtra("MONSTER_HEALTH", generatedMonster.getMonsterHealth());
         intent.putExtra("MONSTER_HIT_POINTS", generatedMonster.getMonsterHitPoints());
         intent.putExtra("MONSTER_NAME", generatedMonster.getMonsterName());
-
+        intent.putExtra("BUILDING_ID", buildingID);
+        intent.putExtra("MONSTER_ID", monsterID);
         startActivity(intent);
     }
 

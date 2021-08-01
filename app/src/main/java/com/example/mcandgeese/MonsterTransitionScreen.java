@@ -29,6 +29,13 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                 monsterText = "It's Peter Levine! I had him for ECE240. It will be a long, difficult and painful struggle. But we have no choice but to take him on.";
                 imageResource = getResources().getIdentifier("@drawable/pmlevine", null, this.getPackageName());
                 break;
+            case(3):
+                monsterText = "Impossible. I believed we defeated Arriba the Amoeba long ago." +
+                        " It seems that despite our alumnis' greatest efforts, ancient foes still linger." +
+                        " Let us hope that Arriba is but a shadow of her former self. Or I fear " +
+                        "our end draws near.";
+                imageResource = getResources().getIdentifier("@drawable/arriba_amoeba", null, this.getPackageName());
+                break;
             default:
                 monsterText = "We have already defeated an enemy here" +
                         " The opponent was a powerful one, but it looks like we have " +

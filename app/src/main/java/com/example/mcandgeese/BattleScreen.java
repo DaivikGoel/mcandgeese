@@ -28,8 +28,9 @@ public class BattleScreen extends AppCompatActivity {
     int healpoint = 15; // Amount user heals per heal
     int rechargeamount = 10; // Amount user energy increases per recharge
     int movementcost = 3;
+    int buildingID;
+    int monsterID;
     //need to load in counter that is globally held
-
 
 
     int x_s = 605; //graphical value
@@ -77,8 +78,11 @@ public class BattleScreen extends AppCompatActivity {
         this.energy = ((GlobalVariables) this.getApplication()).getCurrentEnergy();
         int monsterHealth = getIntent().getIntExtra("MONSTER_HEALTH", 100);
         int monsterHitPoints = getIntent().getIntExtra("MONSTER_HIT_POINTS", 15);
+        this.monsterID = getIntent().getIntExtra("MONSTER_ID", -1);
+        this.buildingID = getIntent().getIntExtra("BUILDING_ID", -1);
         this.monsterhealth = monsterHealth;
         this.monsterhitpoint = monsterHitPoints;
+        this.
         setContentView(R.layout.battle_setup);
         onWindowFocusChanged(true);
         setupmap();
@@ -709,6 +713,11 @@ public class BattleScreen extends AppCompatActivity {
 
     public void EndGameWin() // if user wins
     {
+        if (this.monsterID != -1 && this.buildingID != -1) {
+            ((GlobalVariables) this.getApplication()).defeatMonster(this.monsterID);
+            ((GlobalVariables) this.getApplication()).removeBuilding(this.buildingID);
+            ((GlobalVariables) this.getApplication()).randomizeMonsterLocations();
+        }
         setContentView(R.layout.user_win_return);
     }
 
