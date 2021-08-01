@@ -46,7 +46,7 @@ public class MonsterTransitionScreen extends AppCompatActivity {
 
         final TypeWriter tw = (TypeWriter) findViewById(R.id.animatedtyping2);
         tw.setText("");
-        tw.setCharacterDelay(70);
+        tw.setCharacterDelay(35);
         tw.animateText(monsterText);
     }
 
