@@ -1,5 +1,7 @@
 package com.example.mcandgeese;
 
+import android.provider.Settings;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -18,48 +20,68 @@ public class Monster extends AppCompatActivity {
     public int monsterHitPoints;
     public int monsterID;
 
-    Map<Integer, String> monsters = new HashMap<Integer, String>() {{
-        put(1, "Goose");
-        put(2, "Peter Levine");
-    }};
-    public List<String> monsterQuotes = new ArrayList<>(Arrays.asList("Wow would you look at that, it's an ECE student", "ECE students must be punished for what they have done to us"));
-
-    // TODO: Have to make the global variables remember which monsters are dead. For some reason i get null pointer exceptions when referencing global variable sets.
+    // Ghost of Goose: -1
+    // Levine: 1
+    // Goose: 2
 
     // generates a monster
-    public Monster() {
-        HashMap<Integer, String> tempMonsters = new HashMap<>(monsters);
-        //HashSet<Integer> visited = ((GlobalVariables) this.getApplication()).clearedMonsters;
-        HashSet<Integer> visited = new HashSet<>();
-        for (Integer i: visited) {
-            tempMonsters.remove(i);
+    public Monster(String monsterName, int monsterHealth, int monsterHitPoints, int monsterID) {
+        this.monsterName = monsterName;
+        this.monsterHealth = monsterHealth;
+        this.monsterHitPoints = monsterHitPoints;
+        this.monsterID = monsterID;
+    }
+
+    public static Monster getLevine() {
+        int monsterHitPoints = 20;
+        int monsterHealth = 150;
+        String monsterName = "Peter Levine";
+        int monsterID = 1;
+        return new Monster(monsterName, monsterHealth, monsterHitPoints, monsterID);
+    }
+
+    public static Monster getGoose() {
+        int monsterHitPoints = 20;
+        int monsterHealth = 150;
+        String monsterName = "Menacing Goose";
+        int monsterID = 2;
+        return new Monster(monsterName, monsterHealth, monsterHitPoints, monsterID);
+    }
+
+    public static Monster getGhost() {
+        int monsterHitPoints = 1;
+        int monsterHealth = 10;
+        String monsterName = "Ghost of Goose";
+        int monsterID = -1;
+        return new Monster(monsterName, monsterHealth, monsterHitPoints, monsterID);
+    }
+
+    public static Monster getMonsterFromID(int monsterID) {
+        switch(monsterID){
+            case(1):
+                return getLevine();
+            case(2):
+                return getGoose();
+            default:
+                return getGhost();
         }
-        Random rand = new Random();
-        int upper = tempMonsters.size();
-        int randomInt = rand.nextInt(upper);
-        if (upper == 0) {
-            this.monsterName = "A ghost of a former enemy lies here";
-            this.monsterID = 0;
-            this.monsterHealth = 1;
-            this.monsterHitPoints = 1;
-            return;
+    }
+
+    public static int getBuildingFromString(String building) {
+        switch(building) {
+            case("E5"):
+                return 1;
+            case("E7"):
+                return 2;
+            case("SLC"):
+                return 3;
+            case("PAC"):
+                return 4;
+            case("QNC"):
+                return 5;
+            default:
+                return -1;
         }
-        int iterator = 0;
-        for (Integer i : tempMonsters.keySet()) {
-            if (iterator == randomInt) {
-                this.monsterID = i;
-                this.monsterName = tempMonsters.get(i);
-                this.monsterHealth = new Random().nextInt(100);
-                this.monsterHitPoints = new Random().nextInt(20);
-                //((GlobalVariables) this.getApplication()).addClearedMonsters(i);
-                return;
-            }
-            iterator++;
-        }
-        this.monsterID = -1;
-        this.monsterName = "A mysterious being prowls in the night";
-        this.monsterHealth = new Random().nextInt(200);
-        this.monsterHitPoints = new Random().nextInt(69);
     }
 
     public int getMonsterHealth() {

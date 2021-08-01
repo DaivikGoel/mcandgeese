@@ -29,6 +29,11 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                 monsterText = "It's Peter Levine! I had him for ECE240. It will be a long, difficult and painful struggle. But we have no choice but to take him on.";
                 imageResource = getResources().getIdentifier("@drawable/pmlevine", null, this.getPackageName());
                 break;
+            default:
+                monsterText = "We have already defeated an enemy here" +
+                        " The opponent was a powerful one, but it looks like we have " +
+                        "cleared this area of the plague that is geese.";
+                imageResource = getResources().getIdentifier("@drawable/empty_battlefield", null, this.getPackageName());
         }
         image.setImageResource(imageResource);
 

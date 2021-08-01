@@ -54,25 +54,6 @@ public class BuildingScreen extends AppCompatActivity {
         tw.animateText(getStoryLine(buildingId));
     }
 
-    /*
-    public void goToBattleScreen(View view) {
-        String buildingId = getIntent().getStringExtra("BUILDING_ID");
-        switch(buildingId){
-            case("Plaza"):
-                ((GlobalVariables) this.getApplication()).setCurrentHealth(100);
-                ((GlobalVariables) this.getApplication()).setCurrentEnergy(100);
-                Intent intent = new Intent(BuildingScreen.this, transition_screen.class);
-                intent.putExtra("BUILDING_ID", "Food");
-                startActivity(intent);
-                break;
-            default:
-                Intent normal = new Intent(BuildingScreen.this, BattleScreen.class);
-                startActivity(normal);
-                break;
-        }
-    }
-    */
-
     public void goToMonsterTransitionScreen(View view) {
         String buildingId = getIntent().getStringExtra("BUILDING_ID");
         if (buildingId.equals("Plaza")) {
@@ -85,7 +66,19 @@ public class BuildingScreen extends AppCompatActivity {
         }
 
         Intent intent = new Intent(BuildingScreen.this, MonsterTransitionScreen.class);
-        Monster generatedMonster = new Monster();
+        HashMap<Integer, Integer> buildingToMonster = ((GlobalVariables) this.getApplication()).getBuildingToMonster();
+
+        int building = Monster.getBuildingFromString(buildingId);
+        int monsterID;
+
+        if (buildingToMonster.get(building) != null) {
+            monsterID = buildingToMonster.get(building);
+        } else {
+            monsterID = -1;
+        }
+
+        Monster generatedMonster = Monster.getMonsterFromID(monsterID);
+
         System.out.println(generatedMonster.getMonsterName());
         intent.putExtra("MONSTER_ID", generatedMonster.getMonsterID());
         intent.putExtra("MONSTER_HEALTH", generatedMonster.getMonsterHealth());
