@@ -72,4 +72,55 @@ public class Item {
                 "only be wielded by an owner of an iron ring";
         return new Item(name, quantity, imageId, description);
     }
+
+    public static Item getAmoeba(){
+        String name = "Amoeba";
+        int quantity = 1;
+        int imageId = R.drawable.amoeba;
+        String description = "A small amoeba cell from the huge Arriba the Amoeba monster." +
+                "This creature is the mascot for the science society and not gonna lie " +
+                "lowkey scares me a little bit - its appearance reminds me of the scream mask";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getLionTooth(){
+        String name = "Lion Tooth";
+        int quantity = 1;
+        int imageId = R.drawable.lion_tooth;
+        String description = "A tooth from the legendary Athletics mascot King Warrior. " +
+                "Rumor has it if you cheer loud enough for the waterloo team, King " +
+                "Warrior will make sure our team wins - go out and try it!";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getWoodPiece(){
+        String name = "Wood Piece";
+        int quantity = 1;
+        int imageId = R.drawable.wood_piece;
+        String description = "A processed wooden piece from the Mathematics Society's " +
+                "mascot, natural log. Ba-dum-ch, it is actually a pretty good pun I " +
+                "will give them that - this item will give you good luck on math questions";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getPinkBracelet(){
+        String name = "Bracelet";
+        int quantity = 1;
+        int imageId = R.drawable.pink_bracelet;
+        String description = "A beautiful pink bracelet made from the threads of the " +
+                "mascot of the Faculty of Mathematics, the huge pink tie that you might" +
+                "see on the side of a building on campus. For some math exams you also " +
+                "need to have your calculator verified by the pink tie to use it, who knew.";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getBronzePiece(){
+        String name = "Bronze Piece";
+        int quantity = 1;
+        int imageId = R.drawable.bronze_piece;
+        String description = "A bronze piece obtained by defeating the mascot for the Faculty " +
+                "of Arts, the boar. I hope you rubbed the nose of the boar before the battle " +
+                "since it is known to give good luck!";
+        return new Item(name, quantity, imageId, description);
+    }
 }

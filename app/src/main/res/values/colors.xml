@@ -10,4 +10,5 @@
     <color name="userHealthBar">#FF99FF99</color>
     <color name="userEnergyBar">#FF3399FF</color>
     <color name="monsterHealthBar">#FFFF0000</color>
+    <color name="pressed_color">#FF888888</color>
 </resources>
