@@ -86,6 +86,13 @@ public class GlobalVariables extends Application {
         this.remainingBuildings.remove(Integer.valueOf(buildingID));
     }
 
+    public boolean monstersRemain() {
+        if (this.remainingMonsters.size() == 0) {
+            return true;
+        }
+        return false;
+    }
+
     public void randomizeMonsterLocations() {
         this.buildingToMonster.clear();
         this.occupiedBuilding.clear();

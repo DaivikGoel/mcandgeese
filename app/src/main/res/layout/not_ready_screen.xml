@@ -5,19 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/monsterImage"
-        android:layout_width="295dp"
-        android:layout_height="380dp"
-        tools:layout_editor_absoluteX="58dp"
-        tools:layout_editor_absoluteY="257dp"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
     <Button
-        android:id="@+id/skip2"
+        android:id="@+id/returnMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="monsterToBattleScreen"
+        android:onClick="goToMapScreen"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,8 +18,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.912" />
 
+    <ImageView
+        android:id="@+id/notReady"
+        android:layout_width="295dp"
+        android:layout_height="380dp"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="175dp"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
     <com.example.mcandgeese.TypeWriter
-        android:id="@+id/animatedtyping2"
+        android:id="@+id/animatedtyping3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="33dp"
@@ -36,8 +36,6 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.548"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/transitionvideo" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

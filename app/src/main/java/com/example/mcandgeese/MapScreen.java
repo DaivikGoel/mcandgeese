@@ -50,4 +50,14 @@ public class MapScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToFinalEventsScreen(View view) {
+        boolean isReady = ((GlobalVariables) this.getApplication()).monstersRemain();
+
+        if (!isReady) {
+            Intent intent = new Intent(MapScreen.this, NotReadyScreen.class);
+            startActivity(intent);
+        }
+
+    }
+
 }
