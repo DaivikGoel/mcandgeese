@@ -15,6 +15,7 @@
         <activity android:name=".MonsterTransitionScreen" />
         <activity android:name=".BattleScreen" />
         <activity android:name=".BuildingScreen" />
+        <activity android:name=".InventoryScreen" />
         <activity
             android:name=".MapScreen"
             android:label="@string/app_name" />

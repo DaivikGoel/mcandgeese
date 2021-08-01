@@ -100,11 +100,16 @@ public class BuildingScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToInventoryScreen(View view) {
+        Intent intent = new Intent(BuildingScreen.this, InventoryScreen.class);
+        startActivity(intent);
+    }
+
     public String getStoryLine(String buildingId) {
         // use hashmap to store building activities
         HashMap<String, String> buildingActivity = new HashMap<>();
-        buildingActivity.put("E5", "see cool chemistry sculptures");
-        buildingActivity.put("E7", "procrastinate in the gear lab");
+        buildingActivity.put("E5", "take linkedin pictures");
+        buildingActivity.put("E7", "play with the light up pucks");
         buildingActivity.put("SLC", "find our lost items at turnkey");
         buildingActivity.put("DP", "enjoy the christmas tree in the winter");
         buildingActivity.put("Plaza", "spend all our money on bubble tea");

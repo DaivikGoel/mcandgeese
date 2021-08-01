@@ -34,21 +34,21 @@
 
     <Button
         android:id="@+id/RUN"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="117dp"
+        android:layout_height="40dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="76dp"
+        android:layout_marginEnd="48dp"
         android:onClick="goToMapScreen"
         android:text="RUN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buildingTypeWriter"
-        app:layout_constraintVertical_bias="0.59" />
+        app:layout_constraintVertical_bias="0.564" />
 
     <Button
         android:id="@+id/FIGHT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="47dp"
         android:onClick="goToMonsterTransitionScreen"
         android:text="FIGHT"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -57,6 +57,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buildingTypeWriter"
         app:layout_constraintVertical_bias="0.662" />
+
+    <Button
+        android:id="@+id/Inventory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goToInventoryScreen"
+        android:text="INVENTORY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/RUN"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buildingTypeWriter"
+        app:layout_constraintVertical_bias="0.918" />
 
     <com.example.mcandgeese.TypeWriter
         android:id="@+id/buildingTypeWriter"
