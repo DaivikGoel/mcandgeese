@@ -22,6 +22,8 @@ public class GlobalVariables extends Application {
     // Peter Levine: 1
     // Goose: 2
     // Arriba: 3
+    // King: 4
+    // Pink: 5
 
     // Buildings
     // e5: 1
@@ -42,6 +44,8 @@ public class GlobalVariables extends Application {
         this.remainingMonsters.add(1);
         this.remainingMonsters.add(2);
         this.remainingMonsters.add(3);
+        this.remainingMonsters.add(4);
+        this.remainingMonsters.add(5);
         randomizeMonsterLocations();
     }
 

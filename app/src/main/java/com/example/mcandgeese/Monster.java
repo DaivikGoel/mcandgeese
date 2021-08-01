@@ -57,6 +57,22 @@ public class Monster extends AppCompatActivity {
         return new Monster(monsterName, monsterHealth, monsterHitPoints, monsterID);
     }
 
+    public static Monster getKing() {
+        int monsterHitPoints = 20;
+        int monsterHealth = 150;
+        String monsterName = "King Warrior";
+        int monsterID = 4;
+        return new Monster(monsterName, monsterHealth, monsterHitPoints, monsterID);
+    }
+
+    public static Monster getPink() {
+        int monsterHitPoints = 20;
+        int monsterHealth = 150;
+        String monsterName = "Lord of Pink";
+        int monsterID = 5;
+        return new Monster(monsterName, monsterHealth, monsterHitPoints, monsterID);
+    }
+
     public static Monster getGhost() {
         int monsterHitPoints = 1;
         int monsterHealth = 10;
@@ -73,6 +89,10 @@ public class Monster extends AppCompatActivity {
                 return getGoose();
             case(3):
                 return getAmoeba();
+            case(4):
+                return getKing();
+            case(5):
+                return getPink();
             default:
                 return getGhost();
         }

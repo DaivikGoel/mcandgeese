@@ -36,6 +36,21 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                         "our end draws near.";
                 imageResource = getResources().getIdentifier("@drawable/arriba_amoeba", null, this.getPackageName());
                 break;
+            case(4):
+                monsterText = "King Warrior. How could this be? The goose droppings must have corrupted him!" +
+                        " Many look up to him, and I'm no exception. Yet fate places us here as enemies. " +
+                        "In many a day of the past, my comrades and I balled in CIF under his watchful gaze. " +
+                        "Yolo swag." +
+                        " We must do what we can to take back MC.";
+                imageResource = getResources().getIdentifier("@drawable/king_warrior", null, this.getPackageName());
+                break;
+            case(5):
+                monsterText = "Has the math society fallen as well?" +
+                        " They were one of the pillars of our school. Without them" +
+                        ", the future will be much more difficult. I used to pray that they would shower. Now I just" +
+                        " pray for their safety. Amen." ;
+                imageResource = getResources().getIdentifier("@drawable/pink", null, this.getPackageName());
+                break;
             default:
                 monsterText = "We have already defeated an enemy here" +
                         " The opponent was a powerful one, but it looks like we have " +
