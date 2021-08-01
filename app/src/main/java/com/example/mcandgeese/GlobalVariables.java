@@ -72,15 +72,26 @@ public class GlobalVariables extends Application {
         return this.buildingToMonster;
     }
 
+    public void defeatMonster(int monsterID) {
+        this.remainingMonsters.remove(Integer.valueOf(monsterID));
+    }
+
+    public void removeBuilding(int buildingID) {
+        this.remainingBuildings.remove(Integer.valueOf(buildingID));
+    }
+
     public void randomizeMonsterLocations() {
+        this.buildingToMonster.clear();
+        this.occupiedBuilding.clear();
         int buildingNum = this.remainingBuildings.size();
         Random rand = new Random();
         for (Integer remainingMonster : this.remainingMonsters) {
             int randomBuilding = rand.nextInt(buildingNum);
-            while (this.occupiedBuilding.contains(randomBuilding)) {
+            while (this.occupiedBuilding.contains(randomBuilding) || !this.remainingBuildings.contains(randomBuilding)) {
                 randomBuilding = rand.nextInt(buildingNum);
             }
             this.buildingToMonster.put(randomBuilding, remainingMonster);
+            this.occupiedBuilding.add(randomBuilding);
         }
     }
 }

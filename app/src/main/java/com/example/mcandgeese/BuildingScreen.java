@@ -68,16 +68,22 @@ public class BuildingScreen extends AppCompatActivity {
         Intent intent = new Intent(BuildingScreen.this, MonsterTransitionScreen.class);
         HashMap<Integer, Integer> buildingToMonster = ((GlobalVariables) this.getApplication()).getBuildingToMonster();
 
-        int building = Monster.getBuildingFromString(buildingId);
+        int buildingID = Monster.getBuildingFromString(buildingId);
         int monsterID;
 
-        if (buildingToMonster.get(building) != null) {
-            monsterID = buildingToMonster.get(building);
+        if (buildingToMonster.get(buildingID) != null) {
+            monsterID = buildingToMonster.get(buildingID);
         } else {
             monsterID = -1;
         }
 
         Monster generatedMonster = Monster.getMonsterFromID(monsterID);
+        if (monsterID != -1) {
+            ((GlobalVariables) this.getApplication()).defeatMonster(monsterID);
+            ((GlobalVariables) this.getApplication()).removeBuilding(buildingID);
+            ((GlobalVariables) this.getApplication()).randomizeMonsterLocations();
+        }
+
 
         System.out.println(generatedMonster.getMonsterName());
         intent.putExtra("MONSTER_ID", generatedMonster.getMonsterID());
