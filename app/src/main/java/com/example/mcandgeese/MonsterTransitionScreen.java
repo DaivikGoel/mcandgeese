@@ -69,6 +69,7 @@ public class MonsterTransitionScreen extends AppCompatActivity {
         video.setVideoURI(videPath);
         video.start();
         int monsterID = getIntent().getIntExtra("MONSTER_ID", -1);
+
         String monsterName = getIntent().getStringExtra("MONSTER_NAME");
         String monsterText = "";
         int imageResource = getResources().getIdentifier("@drawable/campusmap", null, this.getPackageName());
@@ -108,6 +109,7 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                         " The opponent was a powerful one, but it looks like we have " +
                         "cleared this area of the plague that is geese.";
                 imageResource = getResources().getIdentifier("@drawable/empty_battlefield", null, this.getPackageName());
+
         }
         image.setImageResource(imageResource);
 
@@ -170,12 +172,14 @@ public class MonsterTransitionScreen extends AppCompatActivity {
         }
 
         int monsterID = getIntent().getIntExtra("MONSTER_ID", -1);
+        int buildingID = getIntent().getIntExtra("BUILDING_ID", -1);
         int monsterHealth = getIntent().getIntExtra("MONSTER_HEALTH", 100);
         int monsterHitPoints = getIntent().getIntExtra("MONSTER_HIT_POINTS", 15);
         intent = new Intent(MonsterTransitionScreen.this, BattleScreen.class);
         intent.putExtra("MONSTER_ID", monsterID);
         intent.putExtra("MONSTER_HEALTH", monsterHealth);
         intent.putExtra("MONSTER_HIT_POINTS", monsterHitPoints);
+        intent.putExtra("BUILDING_ID", buildingID);
         startActivity(intent);
     }
 }

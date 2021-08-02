@@ -144,7 +144,7 @@ public class GlobalVariables extends Application implements Serializable {
     public void randomizeMonsterLocations() {
         this.buildingToMonster.clear();
         this.occupiedBuilding.clear();
-        int buildingNum = this.remainingBuildings.size() + 1;
+        int buildingNum = 6;
         Random rand = new Random();
         for (Integer remainingMonster : this.remainingMonsters) {
             int randomBuilding = rand.nextInt(buildingNum);
