@@ -25,7 +25,7 @@ public class MapScreen extends AppCompatActivity {
         updateMonsterEmoji();
         Button finalEvent = (Button) findViewById(R.id.finalEvent);
 
-        finalEvent.setVisibility(View.GONE);
+        //finalEvent.setVisibility(View.GONE);
 
         int imageResource = getResources().getIdentifier("@drawable/campusmap", null, this.getPackageName());
         firstImage.setImageResource(imageResource);

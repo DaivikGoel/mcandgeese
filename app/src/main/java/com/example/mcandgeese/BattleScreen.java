@@ -684,6 +684,12 @@ public class BattleScreen extends AppCompatActivity {
             ((GlobalVariables) this.getApplication()).removeBuilding(this.buildingID);
             ((GlobalVariables) this.getApplication()).randomizeMonsterLocations();
         }
+        if (this.monsterID == 420) {
+            Intent intent = new Intent(BattleScreen.this, GameEndScreen.class);
+            startActivity(intent);
+            return;
+        }
+
         Intent intent = new Intent(BattleScreen.this, VictoryScreen.class);
         startActivity(intent);
     }

@@ -10,6 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mcandgeese">
+        <activity android:name=".GameEndScreen"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
+            ></activity>
         <activity android:name=".VictoryScreen"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
