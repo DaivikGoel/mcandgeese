@@ -19,7 +19,7 @@ public class ScrollableMap extends AppCompatActivity {
 
     // grid for marking building locations
     private String[][] grid = new String[26][12];
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,8 +126,15 @@ public class ScrollableMap extends AppCompatActivity {
 
         Button enter = (Button) findViewById(R.id.enterButton);
         if (grid[gridX][gridY] != "") {
+
+            // change button text based on building
+            enter.setText("Enter " + grid[gridX][gridY]);
+            
+            // make button visible if youa are on top of a building
             enter.setVisibility(View.VISIBLE);
         } else {
+
+            // make button invisible
             enter.setVisibility(View.GONE);
         }
 
