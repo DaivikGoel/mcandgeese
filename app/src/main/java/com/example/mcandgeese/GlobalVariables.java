@@ -1,22 +1,39 @@
 package com.example.mcandgeese;
 
 import android.app.Application;
+import android.os.Build;
 
+import androidx.annotation.RequiresApi;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class GlobalVariables extends Application {
-    public int currentHealth = 100;
-    public int currentEnergy = 100;
-    public int currentLocationX = 1115;
-    public int currentLocationY = 400;
+public class GlobalVariables extends Application implements Serializable {
+    public int currentHealth;
+    public int currentEnergy;
+    public int currentLocationX;
+    public int currentLocationY;
     public List<Integer> remainingBuildings;
     public List<Integer> remainingMonsters;
-    public HashMap<Integer, Integer> buildingToMonster = new HashMap<>();
+    public HashMap<Integer, Integer> buildingToMonster;
     public HashSet<Integer> occupiedBuilding;
+    public List<Item> items;
+
+    // game started flag is used to indicate if we should save state and give user option to
+    // continue previous game - we only want to do this if they have started a game
+    public boolean gameStarted;
 
     // Monsters
     // Peter Levine: 1
@@ -33,6 +50,13 @@ public class GlobalVariables extends Application {
     // quantum: 5
 
     public void initializeVariables() {
+        this.items = new ArrayList<>();
+        this.currentHealth = 100;
+        this.currentEnergy = 100;
+        this.currentLocationX = 1115;
+        this.currentLocationY = 400;
+        this.gameStarted = false;
+        this.buildingToMonster = new HashMap<>();
         this.occupiedBuilding = new HashSet<>();
         this.remainingBuildings = new LinkedList<>();
         this.remainingBuildings.add(1);
@@ -47,6 +71,27 @@ public class GlobalVariables extends Application {
         this.remainingMonsters.add(4);
         this.remainingMonsters.add(5);
         randomizeMonsterLocations();
+    }
+
+    public boolean getGameStarted() { return this.gameStarted; }
+
+    public void setGameStarted(boolean gameStarted) { this.gameStarted = gameStarted; }
+
+    public List<Item> getItems() { return this.items; }
+
+    public void setItems(List<Item> items) { this.items = items; }
+
+    public void addItem(Item item) {
+        boolean itemExists = false;
+        for (Item existingItem : items){
+            if (existingItem.getName() == item.getName()){
+                existingItem.setQuantity(existingItem.getQuantity()+1);
+                itemExists = true;
+            }
+        }
+        if (!itemExists){
+            items.add(item);
+        }
     }
 
     public int getCurrentHealth() {
@@ -80,6 +125,7 @@ public class GlobalVariables extends Application {
 
     public void defeatMonster(int monsterID) {
         this.remainingMonsters.remove(Integer.valueOf(monsterID));
+        addItem(Monster.getItemFromID(monsterID));
     }
 
     public void removeBuilding(int buildingID) {
@@ -106,5 +152,29 @@ public class GlobalVariables extends Application {
             this.buildingToMonster.put(randomBuilding, remainingMonster);
             this.occupiedBuilding.add(randomBuilding);
         }
+    }
+
+    /** Read the object from Base64 string. */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void fromString(String s ) throws IOException , ClassNotFoundException {
+        byte [] data = Base64.getDecoder().decode( s );
+        ObjectInputStream ois = new ObjectInputStream(
+                new ByteArrayInputStream(  data ) );
+        GlobalVariables o  = (GlobalVariables)ois.readObject();
+        ois.close();
+        this.buildingToMonster = o.buildingToMonster;
+        this.currentLocationY = o.currentLocationY;
+        this.currentLocationX = o.currentLocationX;
+        this.items = o.items;
+    }
+
+    /** Write the object to a Base64 string. */
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String toString(String dummyString) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream( baos );
+        oos.writeObject( this );
+        oos.close();
+        return Base64.getEncoder().encodeToString(baos.toByteArray());
     }
 }

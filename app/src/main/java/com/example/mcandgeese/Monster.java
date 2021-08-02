@@ -98,6 +98,24 @@ public class Monster extends AppCompatActivity {
         }
     }
 
+    public static Item getItemFromID(int monsterID){
+        switch (monsterID){
+            case(1):
+                return Item.getWoodPiece();
+            case(2):
+                return Item.getGooseFeather();
+            case(3):
+                return Item.getAmoeba();
+            case(4):
+                return Item.getLionTooth();
+            case(5):
+                return Item.getPinkBracelet();
+            case(6):
+                return Item.getBronzePiece();
+        }
+        return null;
+    }
+
     public static int getBuildingFromString(String building) {
         switch(building) {
             case("E5"):

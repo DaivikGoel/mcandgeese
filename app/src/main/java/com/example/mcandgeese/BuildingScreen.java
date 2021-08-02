@@ -54,6 +54,11 @@ public class BuildingScreen extends AppCompatActivity {
         tw.animateText(getStoryLine(buildingId));
     }
 
+    public void testInventory(View view){
+        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        globalVariables.defeatMonster(2);
+    }
+
     public void goToMonsterTransitionScreen(View view) {
         String buildingId = getIntent().getStringExtra("BUILDING_ID");
         if (buildingId.equals("Plaza")) {

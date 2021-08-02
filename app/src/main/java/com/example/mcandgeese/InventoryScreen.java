@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InventoryScreen extends AppCompatActivity {
     ListView simpleList;
     ImageView inventoryImage;
@@ -18,12 +21,14 @@ public class InventoryScreen extends AppCompatActivity {
 
     // height in px to be scrolled each time
     final int heightToScroll = 50;
-    Item[] items = new Item[]{Item.getGooseFeather(), Item.getMetalPiece(), Item.getAmoeba(),
-            Item.getLionTooth(), Item.getPinkBracelet(), Item.getWoodPiece()};
+    List<Item> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        items = globalVariables.getItems() == null ? new ArrayList<>() : globalVariables.getItems();
+
         setContentView(R.layout.activity_inventory_screen);
         simpleList = (ListView) findViewById(R.id.simpleListView);
         simpleList.setNestedScrollingEnabled(true);
@@ -34,11 +39,15 @@ public class InventoryScreen extends AppCompatActivity {
         simpleList.setAdapter(customAdapter);
         listIdx = 0;
 
-        if (items.length > 0){
+        if (items.size() > 0){
             simpleList.setItemChecked(listIdx, true);
             simpleList.setSelection(listIdx);
-            inventoryImage.setImageResource(items[listIdx].getImageId());
-            inventoryText.setText(items[listIdx].getDescription());
+            inventoryImage.setImageResource(items.get(listIdx).getImageId());
+            inventoryText.setText(items.get(listIdx).getDescription());
+        }
+
+        if (items.size() == 0){
+            inventoryImage.setImageResource(R.drawable.tumbleweed);
         }
     }
 
@@ -47,25 +56,35 @@ public class InventoryScreen extends AppCompatActivity {
     }
 
     public void moveListCursorDown(View cursorDown){
+        // nothing happens if list is empty
+        if (items.size() == 0){
+            return;
+        }
+
         listIdx++;
-        listIdx = Math.min(listIdx, items.length-1);
+        listIdx = Math.min(listIdx, items.size()-1);
         simpleList.setItemChecked(listIdx, true);
         simpleList.setSelection(listIdx);
-        inventoryImage.setImageResource(items[listIdx].getImageId());
-        inventoryText.setText(items[listIdx].getDescription());
+        inventoryImage.setImageResource(items.get(listIdx).getImageId());
+        inventoryText.setText(items.get(listIdx).getDescription());
         // scrolling the list down a bit to follow cursor
-        if (listIdx != items.length-1) {
+        if (listIdx != items.size()-1) {
             // simpleList.scrollBy(0, heightToScroll);
         }
     }
 
     public void moveListCursorUp(View cursorUp){
+        // nothing happens if list is empty
+        if (items.size() == 0){
+            return;
+        }
+
         listIdx--;
         listIdx = Math.max(listIdx, 0);
         simpleList.setItemChecked(listIdx, true);
         simpleList.setSelection(listIdx);
-        inventoryImage.setImageResource(items[listIdx].getImageId());
-        inventoryText.setText(items[listIdx].getDescription());
+        inventoryImage.setImageResource(items.get(listIdx).getImageId());
+        inventoryText.setText(items.get(listIdx).getDescription());
         // scrolling the list up a bit to follow cursor
         if (listIdx != 0) {
             // simpleList.scrollBy(0, -heightToScroll);

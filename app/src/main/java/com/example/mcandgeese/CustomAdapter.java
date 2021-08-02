@@ -8,12 +8,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class CustomAdapter extends BaseAdapter {
     Context context;
-    Item[] items;
+    List<Item> items;
     LayoutInflater inflter;
 
-    public CustomAdapter(Context applicationContext, Item[] items) {
+    public CustomAdapter(Context applicationContext, List<Item> items) {
         this.context = context;
         this.items = items;
         inflter = (LayoutInflater.from(applicationContext));
@@ -21,7 +23,7 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return items.length;
+        return items.size();
     }
 
     @Override
@@ -45,7 +47,7 @@ public class CustomAdapter extends BaseAdapter {
         TextView name = (TextView) view.findViewById(R.id.textView);
         TextView quantity = (TextView) view.findViewById(R.id.quantity);
         ImageView icon = (ImageView) view.findViewById(R.id.icon);
-        Item item = items[i];
+        Item item = items.get(i);
         name.setText(item.getName());
         quantity.setText("x" + item.getQuantity());
         icon.setImageResource(item.getImageId());
