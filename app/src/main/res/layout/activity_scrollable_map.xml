@@ -75,4 +75,19 @@
         android:onClick="goDown"
         app:srcCompat="@drawable/arrowu" />
 
+    <Button
+        android:id="@+id/enterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#150703"
+        android:text="Enter Building"
+        android:onClick="enterBuilding"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.942" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

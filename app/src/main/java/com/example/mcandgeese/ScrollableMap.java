@@ -2,9 +2,11 @@ package com.example.mcandgeese;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class ScrollableMap extends AppCompatActivity {
@@ -16,8 +18,8 @@ public class ScrollableMap extends AppCompatActivity {
     private int screenWidth;
 
     // grid for marking building locations
-    String[][] grid = new String[26][12];
-
+    private String[][] grid = new String[26][12];
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,8 @@ public class ScrollableMap extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         this.screenHeight = displayMetrics.heightPixels;
         this.screenWidth = displayMetrics.widthPixels;
+        
+        System.out.println(this.screenWidth);
     }
 
     @Override
@@ -120,9 +124,13 @@ public class ScrollableMap extends AppCompatActivity {
         int gridX = userLocX / 85;
         int gridY = userLocY / 85;
 
+        Button enter = (Button) findViewById(R.id.enterButton);
         if (grid[gridX][gridY] != "") {
-            System.out.println(grid[gridX][gridY]);
+            enter.setVisibility(View.VISIBLE);
+        } else {
+            enter.setVisibility(View.GONE);
         }
+
         System.out.println("\n");
     }
 
@@ -192,6 +200,17 @@ public class ScrollableMap extends AppCompatActivity {
             enterBuildingIfPossible();
 
             drawPlayer();
+        }
+    }
+
+    public void enterBuilding(View view) {
+        int gridX = userLocX / 85;
+        int gridY = userLocY / 85;
+
+        if (grid[gridX][gridY] != "") {
+            Intent intent = new Intent(ScrollableMap.this, transition_screen.class);
+            intent.putExtra("BUILDING_ID", grid[gridX][gridY]);
+            startActivity(intent);
         }
     }
 }

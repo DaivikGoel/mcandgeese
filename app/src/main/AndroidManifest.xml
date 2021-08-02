@@ -15,7 +15,7 @@
             android:configChanges="orientation|keyboardHidden"
             ></activity>
         <activity android:name=".ScrollableMap"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden"
             ></activity>
         <activity android:name=".transition_screen"
