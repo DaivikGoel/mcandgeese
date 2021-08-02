@@ -36,7 +36,7 @@ public class Monster extends AppCompatActivity {
     public static Monster getLevine() {
         int monsterHitPoints = 15;
         int monsterHealth = 150;
-        String monsterName = "Peter Levine";
+        String monsterName = "Natural Log";
         int monsterID = 1;
         return new Monster(monsterName, monsterHealth, monsterHitPoints, monsterID);
     }

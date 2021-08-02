@@ -104,8 +104,10 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                 imageResource = getResources().getIdentifier("@drawable/goosemad", null, this.getPackageName());
                 break;
             case(2):
-                monsterText = "It's Peter Levine! I had him for ECE240. It will be a long, difficult and painful struggle. But we have no choice but to take him on.";
-                imageResource = getResources().getIdentifier("@drawable/pmlevine", null, this.getPackageName());
+                monsterText = "Is that Natural Log? Legends speak of the day this great being was uprooted. It took the combined might" +
+                        " of multiple professors. One of who, Peter Levine, was known to many as one of the most powerful individuals to walk this very earth. " +
+                        "The fact that the Log returns must mean that the hidden powers ruling this campus are shifting. ";
+                imageResource = getResources().getIdentifier("@drawable/natural_log", null, this.getPackageName());
                 break;
             case(3):
                 monsterText = "Impossible. I believed we defeated Arriba the Amoeba long ago." +
