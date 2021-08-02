@@ -23,7 +23,9 @@ public class MapScreen extends AppCompatActivity {
         setContentView(R.layout.activity_map_screen);
         firstImage = (ImageView) findViewById(R.id.firstImage);
         updateMonsterEmoji();
+        Button finalEvent = (Button) findViewById(R.id.finalEvent);
 
+        finalEvent.setVisibility(View.GONE);
 
         int imageResource = getResources().getIdentifier("@drawable/campusmap", null, this.getPackageName());
         firstImage.setImageResource(imageResource);
@@ -54,6 +56,10 @@ public class MapScreen extends AppCompatActivity {
     {
         super.onResume();
         updateMonsterEmoji();
+        if(((GlobalVariables) this.getApplication()).noMonstersRemain()){
+            Button finalEvent = (Button) findViewById(R.id.finalEvent);
+            finalEvent.setVisibility(View.VISIBLE);
+    }
     }
     public void goToBuildingScreen(View view) {
         HashMap<Integer, Integer> test = ((GlobalVariables) this.getApplication()).getBuildingToMonster();
@@ -110,7 +116,7 @@ public class MapScreen extends AppCompatActivity {
         String recharge = "/" + getEmojiByUnicode(bolt);
         String clear = "/" + getEmojiByUnicode(angel);
 
-        Mystery.setText("Mystery" + getEmojiByUnicode(demon));
+        Mystery.setText("FINAL BOSS" + getEmojiByUnicode(demon));
         FreeRoam.setText("Free Roam" + getEmojiByUnicode(map));
 
         Plaza.setText("Plaza" + recharge);
