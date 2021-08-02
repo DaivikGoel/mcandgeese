@@ -1,10 +1,13 @@
 package com.example.mcandgeese;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.mcandgeese.gamePanel.InfoBar;
 
+import java.io.IOException;
 import java.util.Random;
 
 import static java.lang.Math.abs;
@@ -96,6 +100,26 @@ public class BattleScreen extends AppCompatActivity {
         setUpUserHealthBar();
         setUpUserEnergyBar();
         setUpMonsterHealthBar();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onPause() {
+        // Save the user's current game state
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.sharedPreferencesKey,MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        boolean gameStarted = globalVariables.getGameStarted();
+        if (gameStarted) {
+            try {
+                String serializedGame = globalVariables.toString("");
+                edit.putString("game", serializedGame);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        edit.commit();
+        super.onPause();
     }
 
     @Override

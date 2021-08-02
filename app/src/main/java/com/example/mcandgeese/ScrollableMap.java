@@ -1,13 +1,19 @@
 package com.example.mcandgeese;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.io.IOException;
 
 public class ScrollableMap extends AppCompatActivity {
 
@@ -41,6 +47,26 @@ public class ScrollableMap extends AppCompatActivity {
         this.screenWidth = displayMetrics.widthPixels;
         
         System.out.println(this.screenWidth);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onPause() {
+        // Save the user's current game state
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.sharedPreferencesKey,MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        boolean gameStarted = globalVariables.getGameStarted();
+        if (gameStarted) {
+            try {
+                String serializedGame = globalVariables.toString("");
+                edit.putString("game", serializedGame);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        edit.commit();
+        super.onPause();
     }
 
     @Override

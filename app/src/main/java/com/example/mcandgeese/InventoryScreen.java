@@ -1,15 +1,20 @@
 package com.example.mcandgeese;
 
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +54,26 @@ public class InventoryScreen extends AppCompatActivity {
         if (items.size() == 0){
             inventoryImage.setImageResource(R.drawable.tumbleweed);
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onPause() {
+        // Save the user's current game state
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.sharedPreferencesKey,MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        boolean gameStarted = globalVariables.getGameStarted();
+        if (gameStarted) {
+            try {
+                String serializedGame = globalVariables.toString("");
+                edit.putString("game", serializedGame);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        edit.commit();
+        super.onPause();
     }
 
     public void moveBack(View view){
