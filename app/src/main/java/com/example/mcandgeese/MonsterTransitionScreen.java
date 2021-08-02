@@ -25,6 +25,15 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                             "It can't be anything good.";
                     imageR = getResources().getIdentifier("@drawable/final1", null, this.getPackageName());
                     break;
+                case(2):
+                    finalText = "There is something behind that door. My heart is pounding. No matter what it is, we must move forward.";
+                    imageR = getResources().getIdentifier("@drawable/final1", null, this.getPackageName());
+                    break;
+                case(3):
+                    finalText = "It looks like we're in the V1 basements. It's in a much better state than when I lived here, just 3 years ago. " +
+                            "It's hard to imagine what dangers lurk in these depths.";
+                    imageR = getResources().getIdentifier("@drawable/v1_basement", null, this.getPackageName());
+                    break;
             }
 
             image.setImageResource(imageR);
@@ -86,11 +95,19 @@ public class MonsterTransitionScreen extends AppCompatActivity {
 
     public void monsterToBattleScreen(View view) {
         int finalEvent = getIntent().getIntExtra("FINAL_EVENT", 0);
+        Intent intent = new Intent(MonsterTransitionScreen.this, MonsterTransitionScreen.class);
         if (finalEvent != 0) {
             switch(finalEvent) {
                 case(1):
-                    Intent intent = new Intent(MonsterTransitionScreen.this, MonsterTransitionScreen.class);
                     intent.putExtra("FINAL_EVENT", 2);
+                    startActivity(intent);
+                    return;
+                case(2):
+                    intent.putExtra("FINAL_EVENT", 3);
+                    startActivity(intent);
+                    return;
+                case(3):
+                    intent.putExtra("FINAL_EVENT", 4);
                     startActivity(intent);
                     return;
             }
@@ -99,7 +116,7 @@ public class MonsterTransitionScreen extends AppCompatActivity {
         int monsterID = getIntent().getIntExtra("MONSTER_ID", -1);
         int monsterHealth = getIntent().getIntExtra("MONSTER_HEALTH", 100);
         int monsterHitPoints = getIntent().getIntExtra("MONSTER_HIT_POINTS", 15);
-        Intent intent = new Intent(MonsterTransitionScreen.this, BattleScreen.class);
+        intent = new Intent(MonsterTransitionScreen.this, BattleScreen.class);
         intent.putExtra("MONSTER_ID", monsterID);
         intent.putExtra("MONSTER_HEALTH", monsterHealth);
         intent.putExtra("MONSTER_HIT_POINTS", monsterHitPoints);

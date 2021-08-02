@@ -9,8 +9,11 @@
         android:id="@+id/monsterImage"
         android:layout_width="295dp"
         android:layout_height="380dp"
-        tools:layout_editor_absoluteX="58dp"
-        tools:layout_editor_absoluteY="257dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.829"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <Button
