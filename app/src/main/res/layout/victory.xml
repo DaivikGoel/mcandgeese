@@ -6,10 +6,10 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/returnMap"
+        android:id="@+id/returnMap2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="goToMapScreen"
+        android:onClick="goToBuildingScreen"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,15 +19,18 @@
         app:layout_constraintVertical_bias="0.9" />
 
     <ImageView
-        android:id="@+id/notReady"
+        android:id="@+id/notReady3"
+        tools:srcCompat="@tools:sample/backgrounds/scenic"
         android:layout_width="295dp"
         android:layout_height="380dp"
-        tools:layout_editor_absoluteX="58dp"
-        tools:layout_editor_absoluteY="175dp"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.586" />
 
     <com.example.mcandgeese.TypeWriter
-        android:id="@+id/animatedtyping3"
+        android:id="@+id/animatedtyping5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="33dp"
@@ -36,6 +39,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/transitionvideo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

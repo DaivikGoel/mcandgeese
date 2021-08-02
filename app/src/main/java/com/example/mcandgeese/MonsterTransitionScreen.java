@@ -23,7 +23,7 @@ public class MonsterTransitionScreen extends AppCompatActivity {
         ImageView image = (ImageView) findViewById(R.id.monsterImage);
         int finalEvent = getIntent().getIntExtra("FINAL_EVENT", 0);
         String finalText = "";
-        VideoView video;
+        VideoView video = (VideoView) findViewById(R.id.soundCutscene);
         int imageR = 0;
         if (finalEvent != 0) {
             switch(finalEvent) {
@@ -50,7 +50,6 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                 case(5):
                     finalText = "I hear a familiar sound. I think we are approaching the secrets we have been searching for.";
                     imageR = getResources().getIdentifier("@drawable/ear", null, this.getPackageName());
-                    video = (VideoView) findViewById(R.id.soundCutscene);
                     String pathtovid ="android.resource://com.example.mcandgeese/raw/laughter";
                     Uri videPath= Uri.parse(pathtovid);
                     video.setVideoURI(videPath);
@@ -65,7 +64,10 @@ public class MonsterTransitionScreen extends AppCompatActivity {
             tw.animateText(finalText);
             return;
         }
-
+        String encounterSound ="android.resource://com.example.mcandgeese/raw/encounter";
+        Uri videPath= Uri.parse(encounterSound);
+        video.setVideoURI(videPath);
+        video.start();
         int monsterID = getIntent().getIntExtra("MONSTER_ID", -1);
         String monsterName = getIntent().getStringExtra("MONSTER_NAME");
         String monsterText = "";

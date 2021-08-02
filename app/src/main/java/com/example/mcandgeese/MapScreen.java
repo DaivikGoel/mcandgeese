@@ -111,6 +111,9 @@ public class MapScreen extends AppCompatActivity {
     }
 
     public void goToBuildingScreen(View view) {
+        HashMap<Integer, Integer> test = ((GlobalVariables) this.getApplication()).getBuildingToMonster();
+        System.out.println(test);
+
         Intent intent = new Intent(MapScreen.this, transition_screen.class);
         switch (view.getId()) {
             case (R.id.E5):

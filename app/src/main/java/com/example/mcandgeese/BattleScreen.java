@@ -28,7 +28,7 @@ public class BattleScreen extends AppCompatActivity {
     int monsterhitpoint; // Amount of Damage to user (per turn)
  //   int attackenergycost = 25; // Cost of energy per attack to monster
     int healenergycost = 5; //Cost of energy per heal to user
-    int hitpoint = 20; // Amount of damage per attack to monster
+    int hitpoint = 99999; // Amount of damage per attack to monster
     int healpoint = 15; // Amount user heals per heal
     int rechargeamount = 10; // Amount user energy increases per recharge
     int movementcost = 3;
@@ -684,8 +684,8 @@ public class BattleScreen extends AppCompatActivity {
             ((GlobalVariables) this.getApplication()).removeBuilding(this.buildingID);
             ((GlobalVariables) this.getApplication()).randomizeMonsterLocations();
         }
-        Intent winscreen = new Intent(BattleScreen.this, Win_screen.class);
-        startActivity(winscreen);
+        Intent intent = new Intent(BattleScreen.this, VictoryScreen.class);
+        startActivity(intent);
     }
 
     public void EndGameLoose() // if user looses

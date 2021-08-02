@@ -143,11 +143,10 @@ public class BuildingScreen extends AppCompatActivity {
         }
 
         Monster generatedMonster = Monster.getMonsterFromID(monsterID);
-        intent.putExtra("MONSTER_ID", generatedMonster.getMonsterID());
         intent.putExtra("MONSTER_HEALTH", generatedMonster.getMonsterHealth());
         intent.putExtra("MONSTER_HIT_POINTS", generatedMonster.getMonsterHitPoints());
         intent.putExtra("MONSTER_NAME", generatedMonster.getMonsterName());
-        intent.putExtra("BUILDING_ID", buildingID);
+        intent.putExtra("BUILDING_ID_INT", buildingID);
         intent.putExtra("MONSTER_ID", monsterID);
         startActivity(intent);
     }
