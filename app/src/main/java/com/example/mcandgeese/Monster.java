@@ -73,6 +73,14 @@ public class Monster extends AppCompatActivity {
         return new Monster(monsterName, monsterHealth, monsterHitPoints, monsterID);
     }
 
+    public static Monster getFeridun() {
+        int monsterHitPoints = 15;
+        int monsterHealth = 450;
+        String monsterName = "Feridun Hamdullahpur";
+        int monsterID = 420;
+        return new Monster(monsterName, monsterHealth, monsterHitPoints, monsterID);
+    }
+
     public static Monster getGhost() {
         int monsterHitPoints = 1;
         int monsterHealth = 10;

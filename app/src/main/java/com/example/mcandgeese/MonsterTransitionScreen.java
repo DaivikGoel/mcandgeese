@@ -55,12 +55,37 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                     video.setVideoURI(videPath);
                     video.start();
                     break;
+                case(6):
+                    finalText = "Oh no. It can't be. Is that MC? How is that even possible. Aren't we underground? " +
+                            "I've always thought something was wrong about that place. Math and Computer? More like misery and calamity." +
+                            " Maybe there will be something inside? Let's take a look.";
+                    imageR = getResources().getIdentifier("@drawable/mc", null, this.getPackageName());
+                    break;
+                case(7):
+                    finalText = "The ambience here is just as I recall it. The air is moist and humid. I think I smell something? " +
+                            "Ah, it's just a Jamaican patty. Let's head towards the fourth floor. Something of immense power must be lurking there.";
+                    imageR = getResources().getIdentifier("@drawable/mc_hall", null, this.getPackageName());
+                    break;
+                case(8):
+                    finalText = "What is that? Do you see it? I sense enormous power from it. Is that a human being? But that" +
+                            " figure is far too handsome for it to be that simple. Don't tell me. No. Impossible. If that is who I think it is," +
+                            " we stand no chance. What am I saying. We have come too far to give up so easily.";
+                    imageR = getResources().getIdentifier("@drawable/shadow", null, this.getPackageName());
+                    break;
+                case(9):
+                    finalText = "Is... Is that... Feridun? Of the Hamdullahpurs? This cannot be.";
+                    imageR = getResources().getIdentifier("@drawable/final_boss", null, this.getPackageName());
+                    String feridunPath ="android.resource://com.example.mcandgeese/raw/feridun";
+                    Uri videoPath= Uri.parse(feridunPath);
+                    video.setVideoURI(videoPath);
+                    video.start();
+                    break;
             }
 
             image.setImageResource(imageR);
             final TypeWriter tw = (TypeWriter) findViewById(R.id.animatedtyping2);
             tw.setText("");
-            tw.setCharacterDelay(35);
+            tw.setCharacterDelay(30);
             tw.animateText(finalText);
             return;
         }
@@ -103,6 +128,12 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                         ", the future will be much more difficult. I used to pray that they would shower. Now I just" +
                         " pray for their safety. Amen." ;
                 imageResource = getResources().getIdentifier("@drawable/pink", null, this.getPackageName());
+                break;
+            case(420):
+                monsterText = "As President of the coveted University of Waterloo, Feridun has gathered enormous power." +
+                        " It seems that he has already sided with the geese. There is nothing left to say. We must do what" +
+                        " we can to stop him. Before it's too late.";
+                imageResource = getResources().getIdentifier("@drawable/boss_fight", null, this.getPackageName());
                 break;
             default:
                 monsterText = "We have already defeated an enemy here" +
@@ -166,6 +197,21 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                     return;
                 case(6):
                     intent.putExtra("FINAL_EVENT", 7);
+                    startActivity(intent);
+                    return;
+                case(7):
+                    intent.putExtra("FINAL_EVENT", 8);
+                    startActivity(intent);
+                    return;
+                case(8):
+                    intent.putExtra("FINAL_EVENT", 9);
+                    startActivity(intent);
+                    return;
+                default:
+                    Monster feridun = Monster.getFeridun();
+                    intent.putExtra("MONSTER_ID", feridun.getMonsterID());
+                    intent.putExtra("MONSTER_HEALTH", feridun.getMonsterHealth());
+                    intent.putExtra("MONSTER_HIT_POINTS", feridun.getMonsterHitPoints());
                     startActivity(intent);
                     return;
             }
