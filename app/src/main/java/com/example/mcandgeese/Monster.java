@@ -34,7 +34,7 @@ public class Monster extends AppCompatActivity {
     }
 
     public static Monster getLevine() {
-        int monsterHitPoints = 20;
+        int monsterHitPoints = 15;
         int monsterHealth = 150;
         String monsterName = "Peter Levine";
         int monsterID = 1;
@@ -42,7 +42,7 @@ public class Monster extends AppCompatActivity {
     }
 
     public static Monster getGoose() {
-        int monsterHitPoints = 20;
+        int monsterHitPoints = 15;
         int monsterHealth = 150;
         String monsterName = "Menacing Goose";
         int monsterID = 2;
@@ -50,7 +50,7 @@ public class Monster extends AppCompatActivity {
     }
 
     public static Monster getAmoeba() {
-        int monsterHitPoints = 20;
+        int monsterHitPoints = 10;
         int monsterHealth = 150;
         String monsterName = "Remants of Arriba";
         int monsterID = 3;

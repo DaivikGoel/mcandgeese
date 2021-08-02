@@ -26,7 +26,7 @@ public class BattleScreen extends AppCompatActivity {
     int energy; //Remaining User Energy (need to be set from previous state/battle)
     int monsterhealth; // Starting Monster Health
     int monsterhitpoint; // Amount of Damage to user (per turn)
-    int attackenergycost = 25; // Cost of energy per attack to monster
+ //   int attackenergycost = 25; // Cost of energy per attack to monster
     int healenergycost = 5; //Cost of energy per heal to user
     int hitpoint = 20; // Amount of damage per attack to monster
     int healpoint = 15; // Amount user heals per heal
@@ -92,7 +92,6 @@ public class BattleScreen extends AppCompatActivity {
         setupmap();
         startlocations();
         BoulderSetUp();
-        RefreshArray();
         UpdateGrid();
 
 
@@ -205,56 +204,7 @@ public class BattleScreen extends AppCompatActivity {
     }
 
 
-    public void RefreshArray(){
-        //      for(int i = 0; i < 10; i++)
-        for (int j =0; j <28; j++) {
 
-            forprint1 = "row0";
-            forprint2 = "row1";
-            forprint3 = "row2";
-            forprint4 = "row3";
-            forprint5 = "row4";
-            forprint6 = "row5";
-            forprint7 = "row6";
-            forprint8 = "row7";
-            forprint9 = "row8";
-            forprint10 = "row9";
-        }
-        for (int j =0; j <28; j++) {
-
-            forprint1 = forprint1 + " " + map[0][j];
-            forprint2 = forprint2 + " " + map[1][j];
-            forprint3 = forprint3 + " " + map[2][j];
-            forprint4 = forprint4 + " " + map[3][j];
-            forprint5 = forprint5 + " " + map[4][j];
-            forprint6 = forprint6 + " " + map[5][j];
-            forprint7 = forprint7 + " " + map[6][j];
-            forprint8 = forprint8 + " " + map[7][j];
-            forprint9 = forprint9 + " " + map[8][j];
-            forprint10 = forprint10 + " " + map[9][j];
-        }
-
-        TextView row0 = findViewById(R.id.textView9);
-        row0.setText(forprint1);
-        TextView row1 = findViewById(R.id.textView20);
-        row1.setText(forprint2);
-        TextView row2 = findViewById(R.id.textView21);
-        row2.setText(forprint3);
-        TextView row3 = findViewById(R.id.textView22);
-        row3.setText(forprint4);
-        TextView row4 = findViewById(R.id.textView23);
-        row4.setText(forprint5);
-        TextView row5 = findViewById(R.id.textView24);
-        row5.setText(forprint6);
-        TextView row6 = findViewById(R.id.textView25);
-        row6.setText(forprint7);
-        TextView row7 = findViewById(R.id.textView26);
-        row7.setText(forprint8);
-        TextView row8 = findViewById(R.id.textView27);
-        row8.setText(forprint9);
-        TextView row9 = findViewById(R.id.textView28);
-        row9.setText(forprint10);
-    }
 
     public void setupmap()
     {
@@ -323,15 +273,11 @@ public class BattleScreen extends AppCompatActivity {
                 i=i-1;
             }
         }
-
-        RefreshArray();
         DisplayBoulder();
 
     }
 
     public void UpdateGrid(){
-      //  Arrays.fill(map, 0); pretty sure issue. still need to clear array tho
-
         for(int i = 0; i <10; i++)//clear grid
         {
             for(int j =0; j<28; j++)
@@ -347,15 +293,14 @@ public class BattleScreen extends AppCompatActivity {
         map[my_s-1][mx_s] = 2;
 
 
-        map[my_g+1][mx_g+1] =4; //goose range
-        map[my_g-1][mx_g+1] =4;
-        map[my_g+1][mx_g-1] =4;
-        map[my_g-1][mx_g-1] =4;
+        map[my_g+1][mx_g+1] = 4; //goose range
+        map[my_g-1][mx_g+1] = 4;
+        map[my_g+1][mx_g-1] = 4;
+        map[my_g-1][mx_g-1] = 4;
 
         map[my_s][mx_s] = 1; //student location
-        map[my_g][mx_g] =3; //goose location
+        map[my_g][mx_g] = 3; //goose location
         setupmap();
-        RefreshArray();
 
     }
 
@@ -428,7 +373,6 @@ public class BattleScreen extends AppCompatActivity {
         drawBars();
         DisplayGoose(); //update graphics
         UpdateGrid();
-        RefreshArray();
     }
 
 
@@ -561,7 +505,6 @@ public class BattleScreen extends AppCompatActivity {
             }
         }
     }
-
     public void ValidateLocationStudent(int direction)
     {
         if (direction == 1)//up
@@ -599,8 +542,7 @@ public class BattleScreen extends AppCompatActivity {
     }
 
 
-    public void ArrowUp(View view)
-    {
+    public void ArrowUp(View view) {
         CheckUserHealth();
          if (energy >= movementcost )
         {
@@ -726,7 +668,7 @@ public class BattleScreen extends AppCompatActivity {
         GooseTurn();
     }
 
-    public void RechargeUser(View view) // Runs when user presses 'RECHARGE'
+    public void RechargeUser(View view) // Runs when user presses 'ENERGIZE'
     {
         energy = energy + rechargeamount;
         ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
