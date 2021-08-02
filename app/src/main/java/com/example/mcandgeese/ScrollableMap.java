@@ -3,11 +3,15 @@ package com.example.mcandgeese;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.example.mcandgeese.gamePanel.InfoBar;
 
 public class ScrollableMap extends AppCompatActivity {
 
@@ -16,6 +20,20 @@ public class ScrollableMap extends AppCompatActivity {
 
     private int screenHeight;
     private int screenWidth;
+
+    // user info
+    private int userHealth;
+    private InfoBar userHealthBar;
+    private Canvas userHealthCanvas;
+    private ImageView userHealthImageView;
+    private Bitmap userHealthBitMap;
+
+    // user energy bar
+    private int userEnergy;
+    private InfoBar userEnergyBar;
+    private Canvas userEnergyCanvas;
+    private ImageView userEnergyImageView;
+    private Bitmap userEnergyBitMap;
 
     // grid for marking building locations
     private String[][] grid = new String[26][12];
@@ -34,11 +52,18 @@ public class ScrollableMap extends AppCompatActivity {
         this.userLocX = ((GlobalVariables) this.getApplication()).getCurrentLocationX();
         this.userLocY = ((GlobalVariables) this.getApplication()).getCurrentLocationY();
 
+        // get the user health and energy from state
+        this.userHealth = ((GlobalVariables) this.getApplication()).getCurrentHealth();
+        this.userEnergy = ((GlobalVariables) this.getApplication()).getCurrentEnergy();
+
         // get the screen height and width
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         this.screenHeight = displayMetrics.heightPixels;
         this.screenWidth = displayMetrics.widthPixels;
+
+        setUpUserHealthBar();
+        setUpUserEnergyBar();
         
         System.out.println(this.screenWidth);
     }
@@ -55,6 +80,57 @@ public class ScrollableMap extends AppCompatActivity {
         StudentV.setX(userLocX);
         StudentV.setY(userLocY);
         StudentV.invalidate();
+    }
+
+    private void setUpUserHealthBar() {
+        // get the image view reference
+        userHealthImageView = (ImageView) findViewById(R.id.userHealthBarFreeRoam);
+
+        userHealthBitMap = Bitmap.createBitmap(
+                500, 150, Bitmap.Config.ARGB_8888);
+
+        // Associate the bitmap to the ImageView.
+        userHealthImageView.setImageBitmap(userHealthBitMap);
+
+        // Create a Canvas with the bitmap.
+        userHealthCanvas = new Canvas(userHealthBitMap);
+
+        // initialize health bar object
+        userHealthBar = new InfoBar("#99FF99", 0, 40);
+
+        // draw the health and energy bar
+        drawUserHealthBar();
+    }
+    private void setUpUserEnergyBar() {
+        // get the image view reference
+        userEnergyImageView = (ImageView) findViewById(R.id.userEnergyBarFreeRoam);
+
+        userEnergyBitMap = Bitmap.createBitmap(
+                500, 150, Bitmap.Config.ARGB_8888);
+
+        // Associate the bitmap to the ImageView.
+        userEnergyImageView.setImageBitmap(userEnergyBitMap);
+
+        // Create a Canvas with the bitmap.
+        userEnergyCanvas = new Canvas(userEnergyBitMap);
+
+        // initialize health bar object
+        userEnergyBar = new InfoBar("#3399FF", 0, 40);
+
+        // draw the health and energy bar
+        drawUserEnergyBar();
+    }
+
+    private void drawUserHealthBar()
+    {
+        // draw/update health and energy bars
+        this.userHealthBar.drawBar(this.userHealth, userHealthCanvas);
+    }
+
+    private void drawUserEnergyBar()
+    {
+        // draw/update health and energy bars
+        this.userEnergyBar.drawBar(this.userEnergy, userEnergyCanvas);
     }
 
     private void markBuildingLocations() {
@@ -129,7 +205,7 @@ public class ScrollableMap extends AppCompatActivity {
 
             // change button text based on building
             enter.setText("Enter " + grid[gridX][gridY]);
-            
+
             // make button visible if youa are on top of a building
             enter.setVisibility(View.VISIBLE);
         } else {
