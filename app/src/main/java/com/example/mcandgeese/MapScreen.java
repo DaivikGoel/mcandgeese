@@ -25,7 +25,7 @@ public class MapScreen extends AppCompatActivity {
         updateMonsterEmoji();
         Button finalEvent = (Button) findViewById(R.id.finalEvent);
 
-        //finalEvent.setVisibility(View.GONE);
+        finalEvent.setVisibility(View.GONE);
 
         int imageResource = getResources().getIdentifier("@drawable/campusmap", null, this.getPackageName());
         firstImage.setImageResource(imageResource);
@@ -180,10 +180,10 @@ public class MapScreen extends AppCompatActivity {
         int ghost = 0x1F47B;
 
         if(monsterid == 1){
-            monster = getEmojiByUnicode(wood);
+            monster = getEmojiByUnicode(feather);
         }
         else if(monsterid == 2){
-            monster = getEmojiByUnicode(feather);
+            monster = getEmojiByUnicode(wood);
 
         }
         else if(monsterid == 3){
