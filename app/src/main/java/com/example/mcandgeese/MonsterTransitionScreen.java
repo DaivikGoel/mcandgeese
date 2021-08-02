@@ -17,11 +17,12 @@ public class MonsterTransitionScreen extends AppCompatActivity {
         ImageView image = (ImageView) findViewById(R.id.monsterImage);
         int finalEvent = getIntent().getIntExtra("FINAL_EVENT", 0);
         String finalText = "";
+        VideoView video;
         int imageR = 0;
         if (finalEvent != 0) {
             switch(finalEvent) {
                 case(1):
-                    finalText = "What is that sound? That ominous, dreadful sensation that I feel in my bones. " +
+                    finalText = "What is this horrible place? There is an ominous, dreadful sensation that I feel in my bones. " +
                             "It can't be anything good.";
                     imageR = getResources().getIdentifier("@drawable/final1", null, this.getPackageName());
                     break;
@@ -33,6 +34,21 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                     finalText = "It looks like we're in the V1 basements. It's in a much better state than when I lived here, just 3 years ago. " +
                             "It's hard to imagine what dangers lurk in these depths.";
                     imageR = getResources().getIdentifier("@drawable/v1_basement", null, this.getPackageName());
+                    break;
+                case(4):
+                    finalText = "Oh no, a resident of this wretched place has fallen victim." +
+                            " It looks like Levine did not go easy on him. " +
+                            "His spirit lives in us as we tread onwards.";
+                    imageR = getResources().getIdentifier("@drawable/tired_student", null, this.getPackageName());
+                    break;
+                case(5):
+                    finalText = "I hear a familiar sound. I think we are approaching the secrets we have been searching for.";
+                    imageR = getResources().getIdentifier("@drawable/ear", null, this.getPackageName());
+                    video = (VideoView) findViewById(R.id.soundCutscene);
+                    String pathtovid ="android.resource://com.example.mcandgeese/raw/laughter";
+                    Uri videPath= Uri.parse(pathtovid);
+                    video.setVideoURI(videPath);
+                    video.start();
                     break;
             }
 
@@ -108,6 +124,18 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                     return;
                 case(3):
                     intent.putExtra("FINAL_EVENT", 4);
+                    startActivity(intent);
+                    return;
+                case(4):
+                    intent.putExtra("FINAL_EVENT", 5);
+                    startActivity(intent);
+                    return;
+                case(5):
+                    intent.putExtra("FINAL_EVENT", 6);
+                    startActivity(intent);
+                    return;
+                case(6):
+                    intent.putExtra("FINAL_EVENT", 7);
                     startActivity(intent);
                     return;
             }

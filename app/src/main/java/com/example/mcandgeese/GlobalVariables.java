@@ -86,7 +86,7 @@ public class GlobalVariables extends Application {
         this.remainingBuildings.remove(Integer.valueOf(buildingID));
     }
 
-    public boolean monstersRemain() {
+    public boolean noMonstersRemain() {
         if (this.remainingMonsters.size() == 0) {
             return true;
         }

@@ -51,7 +51,7 @@ public class MapScreen extends AppCompatActivity {
     }
 
     public void goToFinalEventsScreen(View view) {
-        boolean isReady = ((GlobalVariables) this.getApplication()).monstersRemain();
+        boolean isReady = ((GlobalVariables) this.getApplication()).noMonstersRemain();
 
         // comment out for testing
         /*
