@@ -35,15 +35,15 @@
     <Button
         android:id="@+id/RUN"
         android:layout_width="117dp"
-        android:layout_height="40dp"
+        android:layout_height="47dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginEnd="44dp"
         android:onClick="goToMapScreen"
         android:text="RUN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buildingTypeWriter"
-        app:layout_constraintVertical_bias="0.564" />
+        app:layout_constraintVertical_bias="0.593" />
 
     <Button
         android:id="@+id/FIGHT"
@@ -71,6 +71,20 @@
         app:layout_constraintTop_toTopOf="@+id/buildingTypeWriter"
         app:layout_constraintVertical_bias="0.918" />
 
+    <Button
+        android:id="@+id/nearby"
+        android:layout_width="119dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="10dp"
+        android:onClick="goToBuildingScreen"
+        android:text="NEARBY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.835"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buildingTypeWriter"
+        app:layout_constraintVertical_bias="0.9" />
+
     <com.example.mcandgeese.TypeWriter
         android:id="@+id/buildingTypeWriter"
         android:layout_width="wrap_content"
@@ -90,8 +104,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="testInventory"
-        android:text="Button"
-        tools:layout_editor_absoluteX="241dp"
-        tools:layout_editor_absoluteY="727dp" />
+        android:text="Test Inventory"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.052" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

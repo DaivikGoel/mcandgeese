@@ -17,27 +17,34 @@ import java.util.HashMap;
 
 public class BuildingScreen extends AppCompatActivity {
     ImageView buildingImage;
+    public String buildingId;
+    Button nearbyButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_building_screen);
 
-        String buildingId = getIntent().getStringExtra("BUILDING_ID");
+        buildingId = getIntent().getStringExtra("BUILDING_ID");
         buildingImage = (ImageView) findViewById(R.id.secondImage);
+        nearbyButton = (Button) findViewById(R.id.nearby);
         int imageResource = getResources().getIdentifier("@drawable/campusmap", null, this.getPackageName());
         switch (buildingId) {
             case ("E5"):
                 imageResource = getResources().getIdentifier("@drawable/e5", null, this.getPackageName());
+                nearbyButton.setText("E7");
                 break;
             case ("E7"):
                 imageResource = getResources().getIdentifier("@drawable/e7", null, this.getPackageName());
+                nearbyButton.setText("Plaza");
                 break;
             case ("SLC"):
                 imageResource = getResources().getIdentifier("@drawable/slc", null, this.getPackageName());
+                nearbyButton.setText("E5");
                 break;
             case ("DP"):
-                imageResource = getResources().getIdentifier("@drawable/pac", null, this.getPackageName());
+                imageResource = getResources().getIdentifier("@drawable/dp", null, this.getPackageName());
+                nearbyButton.setText("QNC");
                 break;
             case("Plaza"):
                 imageResource = getResources().getIdentifier("@drawable/plaza", null, this.getPackageName());
@@ -45,9 +52,11 @@ public class BuildingScreen extends AppCompatActivity {
                 eat.setText("Eat/Drink");
                 Button goback = (Button) findViewById(R.id.RUN);
                 goback.setText("Return");
+                nearbyButton.setText("DP");
                 break;
             case("QNC"):
                 imageResource = getResources().getIdentifier("@drawable/quantum", null, this.getPackageName());
+                nearbyButton.setText("SLC");
                 break;
         }
         buildingImage.setImageResource(imageResource);
@@ -76,6 +85,31 @@ public class BuildingScreen extends AppCompatActivity {
         }
         edit.commit();
         super.onPause();
+    }
+
+    public void goToBuildingScreen(View view) {
+        Intent intent = new Intent(BuildingScreen.this, transition_screen.class);
+        switch (buildingId) {
+            case ("E5"):
+                intent.putExtra("BUILDING_ID", "E7");
+                break;
+            case ("E7"):
+                intent.putExtra("BUILDING_ID", "Plaza");
+                break;
+            case ("DP"):
+                intent.putExtra("BUILDING_ID", "QNC");
+                break;
+            case ("SLC"):
+                intent.putExtra("BUILDING_ID", "E5");
+                break;
+            case ("Plaza"):
+                intent.putExtra("BUILDING_ID", "DP");
+                break;
+            case ("QNC"):
+                intent.putExtra("BUILDING_ID", "SLC");
+                break;
+        }
+        startActivity(intent);
     }
 
     public void testInventory(View view){
