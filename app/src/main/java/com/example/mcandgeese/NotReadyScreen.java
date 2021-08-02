@@ -1,11 +1,17 @@
 package com.example.mcandgeese;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.IOException;
 
 public class NotReadyScreen extends AppCompatActivity {
 
@@ -22,6 +28,26 @@ public class NotReadyScreen extends AppCompatActivity {
         image.setImageResource(imageResource);
         tw.setCharacterDelay(70);
         tw.animateText(notReadyText);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onPause() {
+        // Save the user's current game state
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.sharedPreferencesKey,MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        boolean gameStarted = globalVariables.getGameStarted();
+        if (gameStarted) {
+            try {
+                String serializedGame = globalVariables.toString("");
+                edit.putString("game", serializedGame);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        edit.commit();
+        super.onPause();
     }
 
     public void goToMapScreen(View view) {

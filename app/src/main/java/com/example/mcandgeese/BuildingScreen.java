@@ -1,14 +1,18 @@
 package com.example.mcandgeese;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Button;
+import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class BuildingScreen extends AppCompatActivity {
@@ -54,9 +58,31 @@ public class BuildingScreen extends AppCompatActivity {
         tw.animateText(getStoryLine(buildingId));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onPause() {
+        // Save the user's current game state
+        SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.sharedPreferencesKey,MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        boolean gameStarted = globalVariables.getGameStarted();
+        if (gameStarted) {
+            try {
+                String serializedGame = globalVariables.toString("");
+                edit.putString("game", serializedGame);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        edit.commit();
+        super.onPause();
+    }
+
     public void testInventory(View view){
         GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
-        globalVariables.defeatMonster(2);
+        for (int i=1; i<=5; i++) {
+            globalVariables.defeatMonster(i);
+        }
     }
 
     public void goToMonsterTransitionScreen(View view) {

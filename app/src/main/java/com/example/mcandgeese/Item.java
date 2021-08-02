@@ -1,9 +1,13 @@
 package com.example.mcandgeese;
 
+import java.io.Serializable;
+
 /*
     Class for defining attributes of item object that we will be storing in inventory
  */
-public class Item {
+public class Item implements Serializable {
+    private static final long serialVersionUID = 4750425879800330764L;
+
     private String name;
 
     // should be at least one when an instance of the class is created

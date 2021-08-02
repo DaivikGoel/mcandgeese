@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.Random;
 
 public class GlobalVariables extends Application implements Serializable {
+    private static final long serialVersionUID = 4750425879800330763L;
+
     public int currentHealth;
     public int currentEnergy;
     public int currentLocationX;
@@ -156,7 +158,7 @@ public class GlobalVariables extends Application implements Serializable {
 
     /** Read the object from Base64 string. */
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void fromString(String s ) throws IOException , ClassNotFoundException {
+    public String fromString(String s) throws IOException , ClassNotFoundException {
         byte [] data = Base64.getDecoder().decode( s );
         ObjectInputStream ois = new ObjectInputStream(
                 new ByteArrayInputStream(  data ) );
@@ -165,7 +167,16 @@ public class GlobalVariables extends Application implements Serializable {
         this.buildingToMonster = o.buildingToMonster;
         this.currentLocationY = o.currentLocationY;
         this.currentLocationX = o.currentLocationX;
+        this.currentHealth = o.currentHealth;
+        this.remainingBuildings = o.remainingBuildings;
+        this.remainingMonsters = o.remainingMonsters;
+        this.buildingToMonster = o.buildingToMonster;
+        this.occupiedBuilding = o.occupiedBuilding;
+        this.gameStarted = o.gameStarted;
         this.items = o.items;
+
+        // return statement used for debugging to make sure things are working
+        return "Items:" + o.items + "Current Health" + o.currentHealth;
     }
 
     /** Write the object to a Base64 string. */
