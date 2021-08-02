@@ -684,13 +684,15 @@ public class BattleScreen extends AppCompatActivity {
             ((GlobalVariables) this.getApplication()).removeBuilding(this.buildingID);
             ((GlobalVariables) this.getApplication()).randomizeMonsterLocations();
         }
-        setContentView(R.layout.user_win_return);
+        Intent winscreen = new Intent(BattleScreen.this, Win_screen.class);
+        startActivity(winscreen);
     }
 
     public void EndGameLoose() // if user looses
     {
         resetStats();
-        setContentView(R.layout.user_loose);
+        Intent losescreen = new Intent(BattleScreen.this, user_lose_screen.class);
+        startActivity(losescreen);
     }
 
     private void drawUserHealthBar()
@@ -722,18 +724,10 @@ public class BattleScreen extends AppCompatActivity {
         ((GlobalVariables) this.getApplication()).setCurrentEnergy(100);
     }
 
-    public void goToMapScreen(View view) {
-        Intent intent = new Intent(BattleScreen.this, MapScreen.class);
-        startActivity(intent);
-    }
 
     public void goToBuildingScreen(View view) {
         Intent intent = new Intent(BattleScreen.this, BuildingScreen.class);
         startActivity(intent);
     }
 
-    public void goToMainScreen(View view) {
-        Intent intent = new Intent(BattleScreen.this, MainActivity.class);
-        startActivity(intent);
-    }
 }
