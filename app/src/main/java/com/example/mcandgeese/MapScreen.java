@@ -53,10 +53,18 @@ public class MapScreen extends AppCompatActivity {
     public void goToFinalEventsScreen(View view) {
         boolean isReady = ((GlobalVariables) this.getApplication()).monstersRemain();
 
+        // comment out for testing
+        /*
         if (!isReady) {
             Intent intent = new Intent(MapScreen.this, NotReadyScreen.class);
             startActivity(intent);
+            return;
         }
+        */
+
+        Intent intent = new Intent(MapScreen.this, MonsterTransitionScreen.class);
+        intent.putExtra("FINAL_EVENT", 1);
+        startActivity(intent);
 
     }
 

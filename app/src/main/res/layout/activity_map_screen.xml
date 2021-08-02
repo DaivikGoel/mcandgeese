@@ -28,8 +28,8 @@
         android:id="@+id/firstImage"
         android:layout_width="418dp"
         android:layout_height="491dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="154dp"
+        tools:layout_editor_absoluteX="-22dp"
+        tools:layout_editor_absoluteY="74dp"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -133,10 +133,10 @@
         android:text="Mystery"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.902"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.696" />
+        app:layout_constraintVertical_bias="0.632" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

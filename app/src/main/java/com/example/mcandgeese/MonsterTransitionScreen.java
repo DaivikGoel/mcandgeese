@@ -15,6 +15,25 @@ public class MonsterTransitionScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.monster_transition_screen);
         ImageView image = (ImageView) findViewById(R.id.monsterImage);
+        int finalEvent = getIntent().getIntExtra("FINAL_EVENT", 0);
+        String finalText = "";
+        int imageR = 0;
+        if (finalEvent != 0) {
+            switch(finalEvent) {
+                case(1):
+                    finalText = "What is that sound? That ominous, dreadful sensation that I feel in my bones. " +
+                            "It can't be anything good.";
+                    imageR = getResources().getIdentifier("@drawable/final1", null, this.getPackageName());
+                    break;
+            }
+
+            image.setImageResource(imageR);
+            final TypeWriter tw = (TypeWriter) findViewById(R.id.animatedtyping2);
+            tw.setText("");
+            tw.setCharacterDelay(35);
+            tw.animateText(finalText);
+            return;
+        }
 
         int monsterID = getIntent().getIntExtra("MONSTER_ID", -1);
         String monsterName = getIntent().getStringExtra("MONSTER_NAME");
@@ -66,6 +85,17 @@ public class MonsterTransitionScreen extends AppCompatActivity {
     }
 
     public void monsterToBattleScreen(View view) {
+        int finalEvent = getIntent().getIntExtra("FINAL_EVENT", 0);
+        if (finalEvent != 0) {
+            switch(finalEvent) {
+                case(1):
+                    Intent intent = new Intent(MonsterTransitionScreen.this, MonsterTransitionScreen.class);
+                    intent.putExtra("FINAL_EVENT", 2);
+                    startActivity(intent);
+                    return;
+            }
+        }
+
         int monsterID = getIntent().getIntExtra("MONSTER_ID", -1);
         int monsterHealth = getIntent().getIntExtra("MONSTER_HEALTH", 100);
         int monsterHitPoints = getIntent().getIntExtra("MONSTER_HIT_POINTS", 15);
