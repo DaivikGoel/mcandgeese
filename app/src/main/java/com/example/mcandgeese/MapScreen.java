@@ -24,33 +24,60 @@ public class MapScreen extends AppCompatActivity {
         Button DP = (Button) findViewById(R.id.DP);
         Button SLC = (Button) findViewById(R.id.SLC);
         Button QNC = (Button) findViewById(R.id.QNC);
+        Button Plaza = (Button) findViewById(R.id.Plaza);
+        int demon = 0x1F479;
+        int bolt = 0x26a1;
+        int apple = 0x1F34E;
+        int angel = 0x1F607;
+        String monster = "/" + getEmojiByUnicode(demon);
+        String recharge = "/" + getEmojiByUnicode(bolt);
+        String clear = "/" + getEmojiByUnicode(angel);
 
-        int unicode = 0x1F479;
-        String monster = "/" + getEmojiByUnicode(unicode);
+
+        Plaza.setText("Plaza" + recharge);
+
 
         if(buildingToMonster.get(1) != null){
 
             E5.setText("E5" + monster);
         }
+        else{
+            E5.setText("E5" + clear);
 
+        }
         if(buildingToMonster.get(2) != null){
 
             E7.setText("E7" + monster);
         }
+        else{
+            E7.setText("E7" + clear);
 
+        }
         if(buildingToMonster.get(3) != null){
 
             SLC.setText("SLC" + monster);
+        }
+        else{
+            SLC.setText("SLC" + clear);
+
         }
 
         if(buildingToMonster.get(4) != null){
 
             DP.setText("DP" + monster);
         }
+        else{
+            DP.setText("DP" + clear);
+
+        }
 
         if(buildingToMonster.get(5) != null){
 
             QNC.setText("QNC" + monster);
+        }
+        else{
+            QNC.setText("QNC" + clear);
+
         }
 
 
