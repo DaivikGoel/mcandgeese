@@ -102,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
                     .setNegativeButton(android.R.string.no, null)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+        } else {
+            globalVariables.initializeVariables();
+            globalVariables.setGameStarted(true);
+            startActivity(intent);
         }
     }
 
