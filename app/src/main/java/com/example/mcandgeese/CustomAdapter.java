@@ -35,6 +35,11 @@ public class CustomAdapter extends BaseAdapter {
     }
 
     @Override
+    public boolean isEnabled(int position) {
+        return false;
+    }
+
+    @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflter.inflate(R.layout.activity_listview, null);
         TextView name = (TextView) view.findViewById(R.id.textView);
