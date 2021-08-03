@@ -43,7 +43,7 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                     break;
                 case(4):
                     finalText = "Oh no, a resident of this wretched place has fallen victim." +
-                            " It looks like Levine did not go easy on him. " +
+                            " It looks like midterms did not go easy on him. " +
                             "His spirit lives in us as we tread onwards.";
                     imageR = getResources().getIdentifier("@drawable/tired_student", null, this.getPackageName());
                     break;
