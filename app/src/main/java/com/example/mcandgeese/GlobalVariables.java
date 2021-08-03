@@ -2,6 +2,7 @@ package com.example.mcandgeese;
 
 import android.app.Application;
 import android.os.Build;
+import android.provider.Settings;
 
 import androidx.annotation.RequiresApi;
 
@@ -20,9 +21,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class GlobalVariables extends Application implements Serializable {
+/*
+    Implements Singleton Design pattern to ensure one source of truth
+ */
+public class GlobalVariables implements Serializable {
     private static final long serialVersionUID = 4750425879800330763L;
-
+    private static GlobalVariables instance = null;
     public int currentHealth;
     public int currentEnergy;
     public int currentLocationX;
@@ -36,6 +40,18 @@ public class GlobalVariables extends Application implements Serializable {
     // game started flag is used to indicate if we should save state and give user option to
     // continue previous game - we only want to do this if they have started a game
     public boolean gameStarted;
+
+    protected GlobalVariables(){
+        // protected constructor
+        initializeVariables();
+    }
+
+    public static GlobalVariables getInstance() {
+        if (instance == null){
+            instance = new GlobalVariables();
+        }
+        return instance;
+    }
 
     // Monsters
     // Peter Levine: 1

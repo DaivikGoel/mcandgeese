@@ -29,7 +29,7 @@ public class InventoryScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        GlobalVariables globalVariables = GlobalVariables.getInstance();
         items = globalVariables.getItems() == null ? new ArrayList<>() : globalVariables.getItems();
         buildingId = getIntent().getStringExtra("BUILDING_ID");
         setContentView(R.layout.activity_inventory_screen);
@@ -60,7 +60,7 @@ public class InventoryScreen extends AppCompatActivity {
         // Save the user's current game state
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.sharedPreferencesKey,MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        GlobalVariables globalVariables = GlobalVariables.getInstance();
         boolean gameStarted = globalVariables.getGameStarted();
         if (gameStarted) {
             try {

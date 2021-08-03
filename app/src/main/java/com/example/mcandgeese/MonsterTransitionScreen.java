@@ -158,7 +158,7 @@ public class MonsterTransitionScreen extends AppCompatActivity {
         // Save the user's current game state
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.sharedPreferencesKey,MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        GlobalVariables globalVariables = GlobalVariables.getInstance();
         boolean gameStarted = globalVariables.getGameStarted();
         if (gameStarted) {
             try {

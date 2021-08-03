@@ -55,12 +55,12 @@ public class ScrollableMap extends AppCompatActivity {
         markBuildingLocations();
 
         // get current user location
-        this.userLocX = ((GlobalVariables) this.getApplication()).getCurrentLocationX();
-        this.userLocY = ((GlobalVariables) this.getApplication()).getCurrentLocationY();
+        this.userLocX = (GlobalVariables.getInstance()).getCurrentLocationX();
+        this.userLocY = (GlobalVariables.getInstance()).getCurrentLocationY();
 
         // get the user health and energy from state
-        this.userHealth = ((GlobalVariables) this.getApplication()).getCurrentHealth();
-        this.userEnergy = ((GlobalVariables) this.getApplication()).getCurrentEnergy();
+        this.userHealth = (GlobalVariables.getInstance()).getCurrentHealth();
+        this.userEnergy = (GlobalVariables.getInstance()).getCurrentEnergy();
 
         // get the screen height and width
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -80,7 +80,7 @@ public class ScrollableMap extends AppCompatActivity {
         // Save the user's current game state
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.sharedPreferencesKey,MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        GlobalVariables globalVariables = GlobalVariables.getInstance();
         boolean gameStarted = globalVariables.getGameStarted();
         if (gameStarted) {
             try {
@@ -219,7 +219,7 @@ public class ScrollableMap extends AppCompatActivity {
     }
 
     private void storeUserLocationInState() {
-        ((GlobalVariables) this.getApplication()).setCurrentLocation(userLocX, userLocY);
+        (GlobalVariables.getInstance()).setCurrentLocation(userLocX, userLocY);
     }
 
     private void enterBuildingIfPossible() {

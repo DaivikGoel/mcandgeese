@@ -77,8 +77,8 @@ public class BattleScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.userhealth = ((GlobalVariables) this.getApplication()).getCurrentHealth();
-        this.energy = ((GlobalVariables) this.getApplication()).getCurrentEnergy();
+        this.userhealth = GlobalVariables.getInstance().getCurrentHealth();
+        this.energy = GlobalVariables.getInstance().getCurrentEnergy();
         int monsterHealth = getIntent().getIntExtra("MONSTER_HEALTH", 100);
         int monsterHitPoints = getIntent().getIntExtra("MONSTER_HIT_POINTS", 15);
         this.monsterID = getIntent().getIntExtra("MONSTER_ID", -1);
@@ -107,7 +107,7 @@ public class BattleScreen extends AppCompatActivity {
         // Save the user's current game state
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.sharedPreferencesKey,MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        GlobalVariables globalVariables = GlobalVariables.getInstance();
         boolean gameStarted = globalVariables.getGameStarted();
         if (gameStarted) {
             try {
@@ -304,25 +304,25 @@ public class BattleScreen extends AppCompatActivity {
         //if student within range -student_health
         if (map[my_g+1][mx_g+1] == 1){
             userhealth = userhealth - monsterhitpoint;
-            ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+            GlobalVariables.getInstance().setCurrentHealth(userhealth);
             CheckUserHealth();
             drawBars();
         }
         else if (map[my_g-1][mx_g+1] == 1){
             userhealth = userhealth - monsterhitpoint;
-            ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+            GlobalVariables.getInstance().setCurrentHealth(userhealth);
             CheckUserHealth();
             drawBars();
         }
         else if (map[my_g+1][mx_g-1] == 1){
             userhealth = userhealth - monsterhitpoint;
-            ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+            GlobalVariables.getInstance().setCurrentHealth(userhealth);
             CheckUserHealth();
             drawBars();
         }
         else if (map[my_g-1][mx_g-1] == 1){
             userhealth = userhealth - monsterhitpoint;
-            ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+            GlobalVariables.getInstance().setCurrentHealth(userhealth);
             CheckUserHealth();
             drawBars();
         }
@@ -576,7 +576,7 @@ public class BattleScreen extends AppCompatActivity {
             ValidateLocationStudent(value);
 
             energy = energy - movementcost;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+            GlobalVariables.getInstance().setCurrentEnergy(energy);
             drawBars();
 
             UpdateGrid();
@@ -596,7 +596,7 @@ public class BattleScreen extends AppCompatActivity {
             ValidateLocationStudent(value);
 
             energy = energy - movementcost;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+            GlobalVariables.getInstance().setCurrentEnergy(energy);
             drawBars();
 
             UpdateGrid();
@@ -616,7 +616,7 @@ public class BattleScreen extends AppCompatActivity {
             ValidateLocationStudent(value);
 
             energy = energy - movementcost;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+            GlobalVariables.getInstance().setCurrentEnergy(energy);
             drawBars();
 
             UpdateGrid();
@@ -635,7 +635,7 @@ public class BattleScreen extends AppCompatActivity {
 
             ValidateLocationStudent(value);
             energy = energy - movementcost;
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+            GlobalVariables.getInstance().setCurrentEnergy(energy);
             drawBars();
 
             UpdateGrid();
@@ -684,9 +684,9 @@ public class BattleScreen extends AppCompatActivity {
     {
 
         userhealth = userhealth + healpoint;
-        ((GlobalVariables) this.getApplication()).setCurrentHealth(userhealth);
+        GlobalVariables.getInstance().setCurrentHealth(userhealth);
         energy = energy - healenergycost;
-        ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+        GlobalVariables.getInstance().setCurrentEnergy(energy);
         drawBars();
         GooseTurn();
     }
@@ -694,7 +694,7 @@ public class BattleScreen extends AppCompatActivity {
     public void RechargeUser(View view) // Runs when user presses 'ENERGIZE'
     {
         energy = energy + rechargeamount;
-        ((GlobalVariables) this.getApplication()).setCurrentEnergy(energy);
+        GlobalVariables.getInstance().setCurrentEnergy(energy);
         drawBars();
         GooseTurn();
     }
@@ -703,9 +703,9 @@ public class BattleScreen extends AppCompatActivity {
     public void EndGameWin() // if user wins
     {
         if (this.monsterID != -1 && this.buildingID != -1) {
-            ((GlobalVariables) this.getApplication()).defeatMonster(this.monsterID);
-            ((GlobalVariables) this.getApplication()).removeBuilding(this.buildingID);
-            ((GlobalVariables) this.getApplication()).randomizeMonsterLocations();
+            GlobalVariables.getInstance().defeatMonster(this.monsterID);
+            GlobalVariables.getInstance().removeBuilding(this.buildingID);
+            GlobalVariables.getInstance().randomizeMonsterLocations();
         }
         if (this.monsterID == 420) {
             Intent intent = new Intent(BattleScreen.this, GameEndScreen.class);
@@ -749,8 +749,8 @@ public class BattleScreen extends AppCompatActivity {
     }
 
     public void resetStats() {
-        ((GlobalVariables) this.getApplication()).setCurrentHealth(100);
-        ((GlobalVariables) this.getApplication()).setCurrentEnergy(100);
+        GlobalVariables.getInstance().setCurrentHealth(100);
+        GlobalVariables.getInstance().setCurrentEnergy(100);
     }
 
 

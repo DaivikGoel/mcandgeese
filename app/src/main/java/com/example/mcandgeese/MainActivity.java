@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((GlobalVariables) this.getApplication()).initializeVariables();
+        GlobalVariables.getInstance().initializeVariables();
         setContentView(R.layout.activity_main);
         continueButton = (Button) findViewById(R.id.continueGame);
         SharedPreferences sharedPreferences = getSharedPreferences(sharedPreferencesKey,MODE_PRIVATE);
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 //        // Storing data into SharedPreferences
 //        SharedPreferences sharedPreferences = getSharedPreferences(sharedPreferencesKey,MODE_PRIVATE);
 //        SharedPreferences.Editor edit = sharedPreferences.edit();
-//        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+//        GlobalVariables globalVariables = GlobalVariables.getInstance();
 //        boolean gameStarted = globalVariables.getGameStarted();
 //        if (gameStarted) {
 //            try {
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         // Save the user's current game state
         SharedPreferences sharedPreferences = getSharedPreferences(sharedPreferencesKey,MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        GlobalVariables globalVariables = GlobalVariables.getInstance();
         boolean gameStarted = globalVariables.getGameStarted();
         if (gameStarted) {
             try {
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("BUILDING_ID", "begin");
         SharedPreferences sharedPreferences = getSharedPreferences(sharedPreferencesKey,MODE_PRIVATE);
         String serializedGame = sharedPreferences.getString("game","");
-        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        GlobalVariables globalVariables = GlobalVariables.getInstance();
         if (serializedGame != "") {
             AlertDialog new_game = new AlertDialog.Builder(this)
                     .setTitle("New Game")
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
     public void goToMapScreenContinue(View view) throws IOException, ClassNotFoundException {
         Intent intent = new Intent(MainActivity.this, transition_screen.class);
         intent.putExtra("BUILDING_ID", "begin");
-        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        GlobalVariables globalVariables = GlobalVariables.getInstance();
         globalVariables.setGameStarted(true);
         SharedPreferences sharedPreferences = getSharedPreferences(sharedPreferencesKey,MODE_PRIVATE);
         String serializedGame = sharedPreferences.getString("game","");

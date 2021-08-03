@@ -37,7 +37,7 @@ public class MapScreen extends AppCompatActivity {
         // Save the user's current game state
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.sharedPreferencesKey,MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        GlobalVariables globalVariables = GlobalVariables.getInstance();
         boolean gameStarted = globalVariables.getGameStarted();
         if (gameStarted) {
             try {
@@ -56,13 +56,13 @@ public class MapScreen extends AppCompatActivity {
     {
         super.onResume();
         updateMonsterEmoji();
-        if(((GlobalVariables) this.getApplication()).noMonstersRemain()){
+        if((GlobalVariables.getInstance()).noMonstersRemain()){
             Button finalEvent = (Button) findViewById(R.id.finalEvent);
             finalEvent.setVisibility(View.VISIBLE);
     }
     }
     public void goToBuildingScreen(View view) {
-        HashMap<Integer, Integer> test = ((GlobalVariables) this.getApplication()).getBuildingToMonster();
+        HashMap<Integer, Integer> test = (GlobalVariables.getInstance()).getBuildingToMonster();
         System.out.println(test);
 
         Intent intent = new Intent(MapScreen.this, transition_screen.class);
@@ -96,7 +96,7 @@ public class MapScreen extends AppCompatActivity {
 
     public void updateMonsterEmoji(){
 
-        HashMap<Integer, Integer> buildingToMonster = ((GlobalVariables) this.getApplication()).getBuildingToMonster();
+        HashMap<Integer, Integer> buildingToMonster = (GlobalVariables.getInstance()).getBuildingToMonster();
 
         Button E5 = (Button) findViewById(R.id.E5);
         Button E7 = (Button) findViewById(R.id.E7);
@@ -208,7 +208,7 @@ public class MapScreen extends AppCompatActivity {
 
 
     public void goToFinalEventsScreen(View view) {
-        boolean isReady = ((GlobalVariables) this.getApplication()).noMonstersRemain();
+        boolean isReady = (GlobalVariables.getInstance()).noMonstersRemain();
 
         // comment out for testing
         /*

@@ -73,7 +73,7 @@ public class BuildingScreen extends AppCompatActivity {
         // Save the user's current game state
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.sharedPreferencesKey,MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        GlobalVariables globalVariables = GlobalVariables.getInstance();
         boolean gameStarted = globalVariables.getGameStarted();
         if (gameStarted) {
             try {
@@ -113,7 +113,7 @@ public class BuildingScreen extends AppCompatActivity {
     }
 
     public void testInventory(View view){
-        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        GlobalVariables globalVariables = GlobalVariables.getInstance();
         for (int i=1; i<=5; i++) {
             globalVariables.defeatMonster(i);
         }
@@ -129,7 +129,7 @@ public class BuildingScreen extends AppCompatActivity {
         }
 
         Intent intent = new Intent(BuildingScreen.this, MonsterTransitionScreen.class);
-        HashMap<Integer, Integer> buildingToMonster = ((GlobalVariables) this.getApplication()).getBuildingToMonster();
+        HashMap<Integer, Integer> buildingToMonster = (GlobalVariables.getInstance()).getBuildingToMonster();
 
         int buildingID = Monster.getBuildingFromString(buildingId);
         int monsterID;

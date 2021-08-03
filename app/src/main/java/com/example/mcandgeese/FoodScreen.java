@@ -48,7 +48,7 @@ public class FoodScreen extends AppCompatActivity {
         foodText = (TextView) findViewById(R.id.foodText);
         currentEnergy = (TextView) findViewById(R.id.energyFood);
         currentWatcard = (TextView) findViewById(R.id.watcardFood);
-        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        GlobalVariables globalVariables = GlobalVariables.getInstance();
         items = globalVariables.getItems() == null ? new ArrayList<>() : globalVariables.getItems();
         balance = 0;
         for (Item item : items){
@@ -109,7 +109,7 @@ public class FoodScreen extends AppCompatActivity {
         // Save the user's current game state
         SharedPreferences sharedPreferences = getSharedPreferences(MainActivity.sharedPreferencesKey,MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+        GlobalVariables globalVariables = GlobalVariables.getInstance();
         boolean gameStarted = globalVariables.getGameStarted();
         if (gameStarted) {
             try {
@@ -142,7 +142,7 @@ public class FoodScreen extends AppCompatActivity {
 
             energy = Math.min(energy+balance, 100);
             currentEnergy.setText("Current Energy: " + energy);
-            GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
+            GlobalVariables globalVariables = GlobalVariables.getInstance();
             globalVariables.setItems(items);
             globalVariables.setCurrentEnergy(energy);
         } else {
