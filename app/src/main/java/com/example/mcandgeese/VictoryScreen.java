@@ -1,11 +1,14 @@
 package com.example.mcandgeese;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import static com.example.mcandgeese.MainActivity.sharedPreferencesKey;
 
 public class VictoryScreen extends AppCompatActivity {
     @Override
@@ -22,6 +25,8 @@ public class VictoryScreen extends AppCompatActivity {
         image.setImageResource(imageResource);
         tw.setCharacterDelay(45);
         tw.animateText(text);
+        SharedPreferences sharedPreferences = getSharedPreferences(sharedPreferencesKey,MODE_PRIVATE);
+        sharedPreferences.edit().remove("game").commit();
     }
 
     public void goToBuildingScreen(View view) {

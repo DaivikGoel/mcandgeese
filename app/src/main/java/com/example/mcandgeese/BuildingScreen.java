@@ -158,6 +158,7 @@ public class BuildingScreen extends AppCompatActivity {
 
     public void goToInventoryScreen(View view) {
         Intent intent = new Intent(BuildingScreen.this, InventoryScreen.class);
+        intent.putExtra("BUILDING_ID", buildingId);
         startActivity(intent);
     }
 

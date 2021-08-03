@@ -27,13 +27,14 @@ public class InventoryScreen extends AppCompatActivity {
     // height in px to be scrolled each time
     final int heightToScroll = 50;
     List<Item> items;
+    public String buildingId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         GlobalVariables globalVariables = (GlobalVariables) this.getApplication();
         items = globalVariables.getItems() == null ? new ArrayList<>() : globalVariables.getItems();
-
+        buildingId = getIntent().getStringExtra("BUILDING_ID");
         setContentView(R.layout.activity_inventory_screen);
         simpleList = (ListView) findViewById(R.id.simpleListView);
         simpleList.setNestedScrollingEnabled(true);

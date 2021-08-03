@@ -55,6 +55,17 @@ public class Item implements Serializable {
     }
 
     // predefined values for set bosses item drops
+    public static Item getWatCard(){
+        String name = "WatCard Balance";
+        int quantity = 25;
+        int imageId = R.drawable.watcard;
+        String description = "A WatCard belonging to a University of Waterloo alumni - " +
+                "Goose A. There is still watcard meal plan balance in here, perhaps you" +
+                "can use it by visiting the plaza and exchanging points for energy. Other" +
+                "monsters may drop more balance which will be added to this card";
+        return new Item(name, quantity, imageId, description);
+    }
+
     public static Item getGooseFeather(){
         String name = "Goose Feather";
         int quantity = 1;

@@ -87,7 +87,7 @@ public class GlobalVariables extends Application implements Serializable {
         boolean itemExists = false;
         for (Item existingItem : items){
             if (existingItem.getName() == item.getName()){
-                existingItem.setQuantity(existingItem.getQuantity()+1);
+                existingItem.setQuantity(existingItem.getQuantity()+item.getQuantity());
                 itemExists = true;
             }
         }
@@ -128,6 +128,14 @@ public class GlobalVariables extends Application implements Serializable {
     public void defeatMonster(int monsterID) {
         this.remainingMonsters.remove(Integer.valueOf(monsterID));
         addItem(Monster.getItemFromID(monsterID));
+        int[] watcardPoints = new int[]{0,0,25,50,100,0,75,25,0};
+        Random randomizer = new Random();
+        int points = watcardPoints[randomizer.nextInt(watcardPoints.length)];
+        if (points > 0){
+            Item watcard = Item.getWatCard();
+            watcard.setQuantity(points);
+            addItem(watcard);
+        }
     }
 
     public void removeBuilding(int buildingID) {
@@ -168,6 +176,7 @@ public class GlobalVariables extends Application implements Serializable {
         this.currentLocationY = o.currentLocationY;
         this.currentLocationX = o.currentLocationX;
         this.currentHealth = o.currentHealth;
+        this.currentEnergy = o.currentEnergy;
         this.remainingBuildings = o.remainingBuildings;
         this.remainingMonsters = o.remainingMonsters;
         this.buildingToMonster = o.buildingToMonster;
