@@ -138,4 +138,101 @@ public class Item implements Serializable {
                 "since it is known to give good luck!";
         return new Item(name, quantity, imageId, description);
     }
+
+    // Food items - three food items (5, 10, 25) for each restaurant
+    public static Item getPaninoMapo(){
+        String name = "Mapo Tofu";
+        int quantity = 5;
+        int imageId = R.drawable.panino_mapo;
+        String description = "Mapo Tofu";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getPaninoDumpling(){
+        String name = "Dumpling";
+        int quantity = 10;
+        int imageId = R.drawable.panino_dumpling;
+        String description = "Dumpling";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getPaninoChicken(){
+        String name = "Spicy Chicken";
+        int quantity = 25;
+        int imageId = R.drawable.panino_chicken;
+        String description = "Spicy Chicken";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getCampusSingle(){
+        String name = "Single Slice";
+        int quantity = 5;
+        int imageId = R.drawable.campus_singleslice;
+        String description = "Single Slice";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getCampusBigKahuna(){
+        String name = "Big Kahuna";
+        int quantity = 10;
+        int imageId = R.drawable.campus_bigkahuna;
+        String description = "Big Kahuna";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getCampusBigKahunaSauce(){
+        String name = "Kahuna Extra Sauce";
+        int quantity = 25;
+        int imageId = R.drawable.campus_sauce;
+        String description = "Kahuna Extra Sauce";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getLazeezSingle(){
+        String name = "Chicken & Beef Single Line";
+        int quantity = 5;
+        int imageId = R.drawable.lazeez_one;
+        String description = "Chicken & Beef Single Line";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getLazeezTriple(){
+        String name = "Chicken & Beef Triple Line";
+        int quantity = 10;
+        int imageId = R.drawable.lazeez_three;
+        String description = "Chicken & Beef Triple Line";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getLazeezExtra(){
+        String name = "Chicken & Beef Extra Spicy";
+        int quantity = 25;
+        int imageId = R.drawable.lazeez_extra;
+        String description = "Chicken & Beef Extra Spicy";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getSweetMango(){
+        String name = "Mango Bubble Tea";
+        int quantity = 5;
+        int imageId = R.drawable.sweet_mango;
+        String description = "Mango Bubble Tea";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getSweetCaramelt(){
+        String name = "Caramelt my <3";
+        int quantity = 10;
+        int imageId = R.drawable.sweet_caramelt;
+        String description = "Caramelt my <3";
+        return new Item(name, quantity, imageId, description);
+    }
+
+    public static Item getSweetGrilled(){
+        String name = "Grilled Cheese";
+        int quantity = 25;
+        int imageId = R.drawable.sweet_grilled;
+        String description = "Grilled Cheese";
+        return new Item(name, quantity, imageId, description);
+    }
 }

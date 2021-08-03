@@ -122,8 +122,6 @@ public class BuildingScreen extends AppCompatActivity {
     public void goToMonsterTransitionScreen(View view) {
         String buildingId = getIntent().getStringExtra("BUILDING_ID");
         if (buildingId.equals("Plaza")) {
-            ((GlobalVariables) this.getApplication()).setCurrentHealth(100);
-            ((GlobalVariables) this.getApplication()).setCurrentEnergy(100);
             Intent intent = new Intent(BuildingScreen.this, transition_screen.class);
             intent.putExtra("BUILDING_ID", "Food");
             startActivity(intent);

@@ -22,6 +22,7 @@ import java.util.Arrays;
 public class transition_screen extends AppCompatActivity {
     VideoView transitionVideo;
     private Uri videPath;
+    String pathtovid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class transition_screen extends AppCompatActivity {
         transitionVideo = (VideoView) findViewById(R.id.transitionvideo);
 
         String videoId = getIntent().getStringExtra("BUILDING_ID");
-        String pathtovid = "";
+        pathtovid = "";
         String transitionmessage = "";
         switch (videoId) {
             case ("E5"):
@@ -129,6 +130,10 @@ public class transition_screen extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case ("Food"):
+                Intent foodIntent = new Intent(transition_screen.this, FoodScreen.class);
+                foodIntent.putExtra("BUILDING_ID", pathtovid);
+                startActivity(foodIntent);
+                break;
             case ("Plaza"):
                 intent.putExtra("BUILDING_ID", "Plaza");
                 startActivity(intent);
