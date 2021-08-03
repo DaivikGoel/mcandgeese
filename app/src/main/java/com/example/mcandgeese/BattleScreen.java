@@ -88,6 +88,7 @@ public class BattleScreen extends AppCompatActivity {
         this.
         setContentView(R.layout.battle_setup);
         onWindowFocusChanged(true);
+        monsterimage();
         setupmap();
         startlocations();
         BoulderSetUp();
@@ -424,6 +425,36 @@ public class BattleScreen extends AppCompatActivity {
         AG_LD.setX(x_g-85);
         AG_LD.setY(y_g+85);
         AG_LD.invalidate();
+
+
+    }
+
+    public void monsterimage(){
+        ImageView image = (ImageView)findViewById(R.id.Goose);
+        switch(this.monsterID){
+            case(1):
+                image.setImageResource(getResources().getIdentifier("@drawable/goose", null, this.getPackageName()));
+                break;
+            case(2):
+                image.setImageResource(getResources().getIdentifier("@drawable/log_square", null, this.getPackageName()));
+                break;
+            case(3):
+                image.setImageResource(getResources().getIdentifier("@drawable/amoeba_square", null, this.getPackageName()));
+                break;
+            case(4):
+                image.setImageResource(getResources().getIdentifier("@drawable/king_warrior_square", null, this.getPackageName()));
+                break;
+
+            case(5):
+                image.setImageResource(getResources().getIdentifier("@drawable/pink_square", null, this.getPackageName()));
+                break;
+            case(420):
+                image.setImageResource(getResources().getIdentifier("@drawable/final_boss", null, this.getPackageName()));
+                break;
+            default:
+                image.setImageResource(getResources().getIdentifier("@drawable/pink_square", null, this.getPackageName()));
+                break;
+        }
 
 
     }
