@@ -73,9 +73,9 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                     imageR = getResources().getIdentifier("@drawable/shadow", null, this.getPackageName());
                     break;
                 case(9):
-                    finalText = "Is... Is that... Feridun? Of the Hamdullahpurs? This cannot be.";
-                    imageR = getResources().getIdentifier("@drawable/final_boss", null, this.getPackageName());
-                    String feridunPath ="android.resource://com.example.mcandgeese/raw/feridun";
+                    finalText = "Is... Is that... The lord of the geese? Ferigoose Of the Goosedullahpurs? This cannot be.";
+                    imageR = getResources().getIdentifier("@drawable/goose_god", null, this.getPackageName());
+                    String feridunPath ="android.resource://com.example.mcandgeese/raw/ferigoose";
                     Uri videoPath= Uri.parse(feridunPath);
                     video.setVideoURI(videoPath);
                     video.start();
@@ -132,10 +132,10 @@ public class MonsterTransitionScreen extends AppCompatActivity {
                 imageResource = getResources().getIdentifier("@drawable/pink", null, this.getPackageName());
                 break;
             case(420):
-                monsterText = "As President of the coveted University of Waterloo, Feridun has gathered enormous power." +
-                        " It seems that he has already sided with the geese. There is nothing left to say. We must do what" +
-                        " we can to stop him. Before it's too late.";
-                imageResource = getResources().getIdentifier("@drawable/boss_fight", null, this.getPackageName());
+                monsterText = "As the behind the scenes ruler of the coveted University of Waterloo, Ferigoose has gathered enormous power." +
+                        " None among goose or man have ever matched up to Him. There is nothing left to say. We must do what" +
+                        " we can to stop Him. Before it's too late.";
+                imageResource = getResources().getIdentifier("@drawable/final_battle", null, this.getPackageName());
                 break;
             default:
                 monsterText = "We have already defeated an enemy here" +
