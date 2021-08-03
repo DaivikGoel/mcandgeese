@@ -162,6 +162,11 @@ public class BuildingScreen extends AppCompatActivity {
 
     public String getStoryLine(String buildingId) {
         // use hashmap to store building activities
+
+        if (buildingId.equals("Plaza")){
+
+            return "Welcome to the Plaza. Here you can choose to eat and drink from many of Waterloo's greatest restaurants. Be warned though as some of their dishes may be scarier than the geese!";
+        }
         HashMap<String, String> buildingActivity = new HashMap<>();
         buildingActivity.put("E5", "take linkedin pictures");
         buildingActivity.put("E7", "play with the light up pucks");

@@ -44,7 +44,6 @@ public class BattleScreen extends AppCompatActivity {
     int y_g = 400;
 
     int[][] map = new int[10][28];
-    String forprint1,forprint2,forprint3,forprint4,forprint5,forprint6,forprint7,forprint8,forprint9,forprint10;
     int mx_s = 8; //coordinate value
     int my_s = 4;
 
@@ -89,6 +88,7 @@ public class BattleScreen extends AppCompatActivity {
         this.
         setContentView(R.layout.battle_setup);
         onWindowFocusChanged(true);
+        monsterimage();
         setupmap();
         startlocations();
         BoulderSetUp();
@@ -206,7 +206,7 @@ public class BattleScreen extends AppCompatActivity {
 
 
 
-    public void setupmap()
+    public void setupmap()//sets up the playing field
     {
         for(int i = 1; i <3; i++)//set out of bounds
         {
@@ -233,7 +233,7 @@ public class BattleScreen extends AppCompatActivity {
         }
     }
 
-    public void startlocations()
+    public void startlocations()//sets the starting locations for the enemy and student
     {
         map[my_s][mx_s] = 1; //student location
 
@@ -253,18 +253,12 @@ public class BattleScreen extends AppCompatActivity {
 
     public void BoulderSetUp()
     {
-      //  int blx;
-       // int bly;
-
         for (int i=0;i<5;i++)
         {
         randomx = new Random().nextInt(26) + 1;
         randomy = new Random().nextInt(7) + 1;
 
         if (map[randomy][randomx]==0) {
-     //       blx = ((randomx - 1) * 85);// + 10;
-      //      bly = ((randomy - 1) * 85);// - 60;
-
             boulderlocation[i][0]= randomx;
             boulderlocation[i][1]= randomy;
         }
@@ -434,9 +428,38 @@ public class BattleScreen extends AppCompatActivity {
 
 
     }
+
+    public void monsterimage(){
+        ImageView image = (ImageView)findViewById(R.id.Goose);
+        switch(this.monsterID){
+            case(1):
+                image.setImageResource(getResources().getIdentifier("@drawable/goose", null, this.getPackageName()));
+                break;
+            case(2):
+                image.setImageResource(getResources().getIdentifier("@drawable/log_square", null, this.getPackageName()));
+                break;
+            case(3):
+                image.setImageResource(getResources().getIdentifier("@drawable/amoeba_square", null, this.getPackageName()));
+                break;
+            case(4):
+                image.setImageResource(getResources().getIdentifier("@drawable/king_warrior_square", null, this.getPackageName()));
+                break;
+
+            case(5):
+                image.setImageResource(getResources().getIdentifier("@drawable/pink_square", null, this.getPackageName()));
+                break;
+            case(420):
+                image.setImageResource(getResources().getIdentifier("@drawable/final_boss", null, this.getPackageName()));
+                break;
+            default:
+                image.setImageResource(getResources().getIdentifier("@drawable/pink_square", null, this.getPackageName()));
+                break;
+        }
+
+
+    }
     public void DisplayBoulder()
     {
-       // int y1 = abs((boulderlocation[0][1]-1)-28) ;
         final ImageView B1 = (ImageView)findViewById(R.id.Boulder1);
         B1.setX((boulderlocation[0][0]-1)*85);
         B1.setY(595-((boulderlocation[0][1]-1)*85));
