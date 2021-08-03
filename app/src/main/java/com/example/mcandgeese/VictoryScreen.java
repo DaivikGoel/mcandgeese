@@ -33,4 +33,9 @@ public class VictoryScreen extends AppCompatActivity {
         Intent intent = new Intent(VictoryScreen.this, MapScreen.class);
         startActivity(intent);
     }
+
+    public void goToInventoryScreen(View view) {
+        Intent intent = new Intent(VictoryScreen.this, InventoryScreen.class);
+        startActivity(intent);
+    }
 }
