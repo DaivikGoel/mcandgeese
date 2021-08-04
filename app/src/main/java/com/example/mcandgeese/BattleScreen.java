@@ -26,7 +26,6 @@ public class BattleScreen extends AppCompatActivity {
     int energy; //Remaining User Energy (need to be set from previous state/battle)
     int monsterhealth; // Starting Monster Health
     int monsterhitpoint; // Amount of Damage to user (per turn)
- //   int attackenergycost = 25; // Cost of energy per attack to monster
     int healenergycost = 5; //Cost of energy per heal to user
     int hitpoint = 99999; // Amount of damage per attack to monster
     int healpoint = 15; // Amount user heals per heal
@@ -258,7 +257,8 @@ public class BattleScreen extends AppCompatActivity {
         randomx = new Random().nextInt(26) + 1;
         randomy = new Random().nextInt(7) + 1;
 
-        if (map[randomy][randomx]==0) {
+        if ((map[randomy][randomx]==0)||(randomy != 4))
+        {
             boulderlocation[i][0]= randomx;
             boulderlocation[i][1]= randomy;
         }
@@ -268,7 +268,6 @@ public class BattleScreen extends AppCompatActivity {
             }
         }
         DisplayBoulder();
-
     }
 
     public void UpdateGrid(){
@@ -300,7 +299,6 @@ public class BattleScreen extends AppCompatActivity {
 
     public void GooseTurn(){
         int direction = 0;
-
         //if student within range -student_health
         if (map[my_g+1][mx_g+1] == 1){
             userhealth = userhealth - monsterhitpoint;
@@ -331,36 +329,34 @@ public class BattleScreen extends AppCompatActivity {
             direction = 2;
             my_g = my_g -1;
             y_g = y_g +85;
-            //else gy+1
         }
         else if ((mx_g == mx_s)&&((my_s+1 == my_g)||(my_s-1 == my_g)))
         {
             direction =3;
             mx_g = mx_g -1;
             x_g = x_g -85;
-            //else gx+1
         }
         else if (mx_s > mx_g){
             direction = 4;
-                mx_g = mx_g +1;
-                x_g = x_g +85;
+            mx_g = mx_g +1;
+            x_g = x_g +85;
         }
         else if (mx_s < mx_g){
-                direction =3;
-                mx_g = mx_g -1;
-                x_g = x_g -85;
+            direction =3;
+            mx_g = mx_g -1;
+            x_g = x_g -85;
 
         }
         else if (my_s > my_g){
-             direction =1;
-                my_g = my_g +1;
-                y_g = y_g -85;
+            direction =1;
+            my_g = my_g +1;
+            y_g = y_g -85;
 
         }
         else if (my_s < my_g){
             direction = 2;
-                my_g = my_g -1;
-                y_g = y_g +85;
+            my_g = my_g -1;
+            y_g = y_g +85;
         }
 
         ValidateLocation(direction);
@@ -376,7 +372,6 @@ public class BattleScreen extends AppCompatActivity {
         StudentV.setX(x_s);
         StudentV.setY(y_s);
         StudentV.invalidate();
-
 
         final ImageView AS_R = (ImageView)findViewById(R.id.SAttackZoneR);
         AS_R.setX(x_s+85);
