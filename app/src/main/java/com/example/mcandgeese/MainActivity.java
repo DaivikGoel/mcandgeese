@@ -87,10 +87,15 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog new_game = new AlertDialog.Builder(this)
                     .setTitle("New Game")
                     .setMessage("Are you sure you want to start a new game? This will replace your " +
-                            "previously saved game")
+                            "previously saved game. \n In addition, starting a new game means you " +
+                            "are aware that this game was intended to be enjoyed by University of Waterloo" +
+                            " students. The events and places described are created with jokes" +
+                            " for fun and may not be an accurate representation of the university" +
+                            " experience. Please click Agree to indicate that you are aware that this" +
+                            " game is not a completely accurate representation of UW")
 
                     // Continue with new game operation
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             globalVariables.initializeVariables();
                             globalVariables.setGameStarted(true);
@@ -99,10 +104,31 @@ public class MainActivity extends AppCompatActivity {
                     })
 
                     // A null listener allows the button to dismiss the dialog and take no further action.
-                    .setNegativeButton(android.R.string.no, null)
+                    .setNegativeButton("Decline", null)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         } else {
+            AlertDialog new_game = new AlertDialog.Builder(this)
+                    .setTitle("Start")
+                    .setMessage("Note: This game was intended to be enjoyed by University of Waterloo" +
+                            " students. The events and places described are created with jokes " +
+                            "for fun and may not be an accurate representation of the university " +
+                            "experience. Please click Agree to indicate that you are aware that this" +
+                            "game is not a completely accurate representation of UW")
+
+                    // Continue with new game operation
+                    .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            globalVariables.initializeVariables();
+                            globalVariables.setGameStarted(true);
+                            startActivity(intent);
+                        }
+                    })
+
+                    // A null listener allows the button to dismiss the dialog and take no further action.
+                    .setNegativeButton("Decline", null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
             globalVariables.initializeVariables();
             globalVariables.setGameStarted(true);
             startActivity(intent);
