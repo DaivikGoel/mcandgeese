@@ -100,6 +100,24 @@ public class ScrollableMap extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume()
+    {
+        super.onResume();
+        updateMonsterEmoji();
+        if((GlobalVariables.getInstance()).noMonstersRemain()) {
+            // MC
+            grid[14][3] = "MC";
+            grid[15][3] = "MC";
+
+            int demon = 0x1F479;
+            TextView finalEvent = (TextView) findViewById(R.id.finalBoss);
+            finalEvent.setVisibility(View.VISIBLE);
+            finalEvent.setText(getEmojiByUnicode(demon));
+            finalEvent.setTextColor(0xff000000);
+        }
+    }
+
+    @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
@@ -234,8 +252,13 @@ public class ScrollableMap extends AppCompatActivity {
         Button enter = (Button) findViewById(R.id.enterButton);
         if (grid[gridX][gridY] != "") {
 
-            // change button text based on building
-            enter.setText("Enter " + grid[gridX][gridY]);
+            if (grid[gridX][gridY] == "MC") {
+                // Final Boss
+                enter.setText("Final Boss");
+            } else {
+                // change button text based on building
+                enter.setText("Enter " + grid[gridX][gridY]);
+            }
 
             // make button visible if youa are on top of a building
             enter.setVisibility(View.VISIBLE);
@@ -244,8 +267,6 @@ public class ScrollableMap extends AppCompatActivity {
             // make button invisible
             enter.setVisibility(View.GONE);
         }
-
-        System.out.println("\n");
     }
 
     public void goUp(View view) {
@@ -322,9 +343,15 @@ public class ScrollableMap extends AppCompatActivity {
         int gridY = userLocY / 85;
 
         if (grid[gridX][gridY] != "") {
-            Intent intent = new Intent(ScrollableMap.this, transition_screen.class);
-            intent.putExtra("BUILDING_ID", grid[gridX][gridY]);
-            startActivity(intent);
+            if (grid[gridX][gridY] == "MC") {
+                Intent intent = new Intent(ScrollableMap.this, MonsterTransitionScreen.class);
+                intent.putExtra("FINAL_EVENT", 1);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(ScrollableMap.this, transition_screen.class);
+                intent.putExtra("BUILDING_ID", grid[gridX][gridY]);
+                startActivity(intent);
+            }
         }
     }
 
