@@ -322,4 +322,9 @@ public class ScrollableMap extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    public void goToMapScreen(View view) {
+        Intent intent = new Intent(ScrollableMap.this, MapScreen.class);
+        startActivity(intent);
+    }
 }

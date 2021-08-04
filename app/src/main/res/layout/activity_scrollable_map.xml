@@ -4,8 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScrollableMap"
-    android:background="@drawable/campusmap_freeroam">
+    android:background="@drawable/campusmap_freeroam"
+    tools:context=".ScrollableMap">
+
+    <Button
+        android:id="@+id/enterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#150703"
+        android:onClick="enterBuilding"
+        android:text="Enter Building"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.942" />
+
+    <Button
+        android:id="@+id/backMapButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#150703"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="goToMapScreen"
+        app:layout_constraintVertical_bias="0.046" />
+
+    <ImageView
+        android:id="@+id/arrowLeft"
+        android:layout_width="54dp"
+        android:layout_height="53dp"
+        android:onClick="goLeft"
+        android:rotation="-90"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/arrowRight"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8"
+        app:srcCompat="@drawable/arrowu" />
+
+    <ImageView
+        android:id="@+id/arrowRight"
+        android:layout_width="54dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="624dp"
+        android:onClick="goRight"
+        android:rotation="+90"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8"
+        app:srcCompat="@drawable/arrowu" />
+
+    <ImageView
+        android:id="@+id/arrowDown"
+        android:layout_width="54dp"
+        android:layout_height="53dp"
+        android:onClick="goDown"
+        android:rotation="180"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/arrowUp"
+        app:layout_constraintVertical_bias="0.946"
+        app:srcCompat="@drawable/arrowu" />
 
     <ImageView
         android:id="@+id/FreeRoamStudent"
@@ -21,74 +91,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/student_hat" />
-
-    <ImageView
-        android:id="@+id/arrowUp"
-        android:layout_width="54dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="212dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="goUp"
-        app:srcCompat="@drawable/arrowu" />
-
-    <ImageView
-        android:id="@+id/arrowLeft"
-        android:layout_width="54dp"
-        android:layout_height="53dp"
-        android:rotation="-90"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/arrowRight"
-        app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8"
-        android:onClick="goLeft"
-        app:srcCompat="@drawable/arrowu" />
-
-    <ImageView
-        android:id="@+id/arrowRight"
-        android:layout_width="54dp"
-        android:layout_height="53dp"
-        android:layout_marginEnd="624dp"
-        android:rotation="+90"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8"
-        android:onClick="goRight"
-        app:srcCompat="@drawable/arrowu" />
-
-    <ImageView
-        android:id="@+id/arrowDown"
-        android:layout_width="54dp"
-        android:layout_height="53dp"
-        android:rotation="180"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/arrowUp"
-        app:layout_constraintVertical_bias="0.933"
-        android:onClick="goDown"
-        app:srcCompat="@drawable/arrowu" />
-
-    <Button
-        android:id="@+id/enterButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#150703"
-        android:text="Enter Building"
-        android:onClick="enterBuilding"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.76"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.942" />
 
     <ImageView
         android:id="@+id/userHealthBarFreeRoam"
@@ -109,5 +111,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/arrowUp"
+        android:layout_width="54dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="212dp"
+        android:onClick="goUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrowu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
