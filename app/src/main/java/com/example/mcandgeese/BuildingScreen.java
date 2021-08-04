@@ -172,16 +172,60 @@ public class BuildingScreen extends AppCompatActivity {
         buildingActivity.put("E7", "play with the light up pucks");
         buildingActivity.put("SLC", "find our lost items at turnkey");
         buildingActivity.put("DP", "enjoy the christmas tree in the winter");
-        buildingActivity.put("Plaza", "spend all our money on bubble tea");
         buildingActivity.put("QNC","study next to the big windows");
 
         StringBuilder sb = new StringBuilder();
 
-        // TODO check if building is cleared and switch intro
-        sb.append("Looks like the geese have invaded " + buildingId + "! ");
-        sb.append("Please clear this building so that we can " + buildingActivity.get(buildingId) + " again! \n");
+        // Monsters
+        // Peter Levine: 1
+        // Goose: 2
+        // Arriba: 3
+        // King: 4
+        // Pink: 5
+
+        // Buildings
+        // e5: 1
+        // e7: 2
+        // slc: 3
+        // dp: 4
+        // quantum: 5
+        HashMap<Integer, Integer> buildingToMonster = GlobalVariables.getInstance().getBuildingToMonster();
+        int buildingID = Monster.getBuildingFromString(buildingId);
+        int monsterID;
+
+        if (buildingToMonster.get(buildingID) != null) {
+            monsterID = buildingToMonster.get(buildingID);
+        } else {
+            monsterID = -1;
+        }
+
+        Monster generatedMonster = getMonsterFromID(monsterID);
+        if (monsterID != -1){
+            sb.append("Looks like " + generatedMonster.getMonsterName() + " has invaded " + buildingId + "! ");
+            sb.append("Please clear this building so that we can " + buildingActivity.get(buildingId) + " again! \n");
+        } else {
+            sb.append("Thank you for clearing the building! ");
+            sb.append("We are free to " + buildingActivity.get(buildingId) + " again! \n");
+        }
 
         sb.append("Please choose an action!");
         return sb.toString();
+    }
+
+    public static Monster getMonsterFromID(int monsterID) {
+        switch(monsterID){
+            case(1):
+                return Monster.getGoose();
+            case(2):
+                return Monster.getLevine();
+            case(3):
+                return Monster.getAmoeba();
+            case(4):
+                return Monster.getKing();
+            case(5):
+                return Monster.getPink();
+            default:
+                return Monster.getGhost();
+        }
     }
 }
