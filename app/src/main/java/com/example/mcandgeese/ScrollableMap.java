@@ -7,17 +7,22 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import com.example.mcandgeese.gamePanel.InfoBar;
+
+import org.w3c.dom.Text;
 
 public class ScrollableMap extends AppCompatActivity {
 
@@ -70,8 +75,8 @@ public class ScrollableMap extends AppCompatActivity {
 
         setUpUserHealthBar();
         setUpUserEnergyBar();
-        
-        System.out.println(this.screenWidth);
+
+        updateMonsterEmoji();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -326,5 +331,120 @@ public class ScrollableMap extends AppCompatActivity {
     public void goToMapScreen(View view) {
         Intent intent = new Intent(ScrollableMap.this, MapScreen.class);
         startActivity(intent);
+    }
+
+    public void updateMonsterEmoji(){
+
+        HashMap<Integer, Integer> buildingToMonster = (GlobalVariables.getInstance()).getBuildingToMonster();
+
+        TextView E5 = (TextView) findViewById(R.id.e5Monster);
+        TextView E7 = (TextView) findViewById(R.id.e7Monster);
+        TextView DP = (TextView) findViewById(R.id.dpMonster);
+        TextView SLC = (TextView) findViewById(R.id.slcMonster);
+        TextView QNC = (TextView) findViewById(R.id.qncMonster);
+        TextView Plaza = (TextView) findViewById(R.id.plazaCharge);
+
+        int demon = 0x1F479;
+        int bolt = 0x26a1;
+        int apple = 0x1F34E;
+        int angel = 0x1F607;
+        int map = 0x1F5FA;
+
+        String recharge = getEmojiByUnicode(bolt);
+        String clear = getEmojiByUnicode(angel);
+
+        Plaza.setText(recharge);
+        Plaza.setTextColor(0xff000000);
+
+        if(buildingToMonster.get(1) != null){
+            // E5.setText("E5" + getMonsterType(buildingToMonster.get(1)));
+            E5.setVisibility(View.VISIBLE);
+            E5.setText(getMonsterType(buildingToMonster.get(1)));
+            E5.setTextColor(0xff000000);
+        }
+        else {
+            E5.setVisibility(View.GONE);
+        }
+
+        if(buildingToMonster.get(2) != null){
+            // E7.setText("E7" + getMonsterType(buildingToMonster.get(2)));
+            E7.setVisibility(View.VISIBLE);
+            E7.setText(getMonsterType(buildingToMonster.get(2)));
+            E7.setTextColor(0xff000000);
+        }
+        else {
+            E7.setVisibility(View.GONE);
+        }
+
+        if(buildingToMonster.get(3) != null){
+            SLC.setVisibility(View.VISIBLE);
+            SLC.setText(getMonsterType(buildingToMonster.get(3)));
+            SLC.setTextColor(0xff000000);
+        }
+        else {
+            SLC.setVisibility(View.GONE);
+        }
+
+        if(buildingToMonster.get(4) != null){
+            // DP.setText("DP" + getMonsterType(buildingToMonster.get(4)));
+            DP.setVisibility(View.VISIBLE);
+            DP.setText(getMonsterType(buildingToMonster.get(4)));
+            DP.setTextColor(0xff000000);
+        }
+        else{
+            DP.setVisibility(View.GONE);
+
+        }
+
+        if(buildingToMonster.get(5) != null){
+            QNC.setVisibility(View.VISIBLE);
+            QNC.setText(getMonsterType(buildingToMonster.get(5)));
+            QNC.setTextColor(0xff000000);
+        }
+        else{
+            QNC.setVisibility(View.GONE);
+        }
+    }
+
+    public String getMonsterType(int monsterid){
+        String monster;
+        int demon = 0x1F479;
+        int bolt = 0x26a1;
+        int apple = 0x1F34E;
+        int angel = 0x1F607;
+        int wood = 0x1FAB5;
+        int feather = 0x1FAB6;
+        int microbe = 0x1F9A0;
+        int crown = 0x1F451;
+        int tie = 0x1F454;
+        int ghost = 0x1F47B;
+
+        if(monsterid == 1){
+            monster = getEmojiByUnicode(feather);
+        }
+        else if(monsterid == 2){
+            monster = getEmojiByUnicode(wood);
+        }
+        else if(monsterid == 3){
+            monster = getEmojiByUnicode(microbe);
+        }
+        else if(monsterid == 4){
+            monster = getEmojiByUnicode(crown);
+        }
+        else if(monsterid == 5){
+            monster = getEmojiByUnicode(tie);
+        }
+        else if(monsterid == 6){
+            monster = getEmojiByUnicode(ghost);
+        }
+        else{
+            monster = getEmojiByUnicode(apple);
+        }
+
+        return monster;
+    }
+
+    public String getEmojiByUnicode(int unicode){
+        return new String(Character.toChars(unicode));
     }
 }
