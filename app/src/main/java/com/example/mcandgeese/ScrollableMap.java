@@ -358,52 +358,57 @@ public class ScrollableMap extends AppCompatActivity {
 
         if(buildingToMonster.get(1) != null){
             // E5.setText("E5" + getMonsterType(buildingToMonster.get(1)));
-            E5.setVisibility(View.VISIBLE);
+            // E5.setVisibility(View.VISIBLE);
             E5.setText(getMonsterType(buildingToMonster.get(1)));
-            E5.setTextColor(0xff000000);
         }
         else {
-            E5.setVisibility(View.GONE);
+            E5.setText(clear);
         }
+
+        E5.setTextColor(0xff000000);
 
         if(buildingToMonster.get(2) != null){
             // E7.setText("E7" + getMonsterType(buildingToMonster.get(2)));
-            E7.setVisibility(View.VISIBLE);
+            // E7.setVisibility(View.VISIBLE);
             E7.setText(getMonsterType(buildingToMonster.get(2)));
-            E7.setTextColor(0xff000000);
         }
         else {
-            E7.setVisibility(View.GONE);
+            E7.setText(clear);
         }
 
+        E7.setTextColor(0xff000000);
+
         if(buildingToMonster.get(3) != null){
-            SLC.setVisibility(View.VISIBLE);
+            // SLC.setVisibility(View.VISIBLE);
             SLC.setText(getMonsterType(buildingToMonster.get(3)));
-            SLC.setTextColor(0xff000000);
         }
         else {
-            SLC.setVisibility(View.GONE);
+            SLC.setText(clear);
         }
+
+        SLC.setTextColor(0xff000000);
 
         if(buildingToMonster.get(4) != null){
             // DP.setText("DP" + getMonsterType(buildingToMonster.get(4)));
-            DP.setVisibility(View.VISIBLE);
+            // DP.setVisibility(View.VISIBLE);
             DP.setText(getMonsterType(buildingToMonster.get(4)));
-            DP.setTextColor(0xff000000);
         }
         else{
-            DP.setVisibility(View.GONE);
+            DP.setText(clear);
 
         }
+
+        DP.setTextColor(0xff000000);
 
         if(buildingToMonster.get(5) != null){
-            QNC.setVisibility(View.VISIBLE);
+            // QNC.setVisibility(View.VISIBLE);
             QNC.setText(getMonsterType(buildingToMonster.get(5)));
-            QNC.setTextColor(0xff000000);
         }
         else{
-            QNC.setVisibility(View.GONE);
+            QNC.setText(clear);
         }
+
+        QNC.setTextColor(0xff000000);
     }
 
     public String getMonsterType(int monsterid){
