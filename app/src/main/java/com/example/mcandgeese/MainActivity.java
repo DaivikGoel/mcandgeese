@@ -88,11 +88,12 @@ public class MainActivity extends AppCompatActivity {
                     .setTitle("New Game")
                     .setMessage("Are you sure you want to start a new game? This will replace your " +
                             "previously saved game. \n In addition, starting a new game means you " +
-                            "are aware that this game was intended to be enjoyed by University of Waterloo" +
-                            " students. The events and places described are created with jokes" +
-                            " for fun and may not be an accurate representation of the university" +
-                            " experience. Please click Agree to indicate that you are aware that this" +
-                            " game is not a completely accurate representation of UW")
+                            "are aware that This game was intended to be enjoyed by University of Waterloo" +
+                            " students and prospective students over the age of 16. The events and " +
+                            "places described were created with humour for fun and not be an accurate " +
+                            "representation of the university experience. Please click Agree to indicate" +
+                            "that you are aware of these disclaimers, and that this game is not a " +
+                            "completely accurate representation of UW")
 
                     // Continue with new game operation
                     .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
@@ -111,10 +112,11 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog new_game = new AlertDialog.Builder(this)
                     .setTitle("Start")
                     .setMessage("Note: This game was intended to be enjoyed by University of Waterloo" +
-                            " students. The events and places described are created with jokes " +
-                            "for fun and may not be an accurate representation of the university " +
-                            "experience. Please click Agree to indicate that you are aware that this" +
-                            "game is not a completely accurate representation of UW")
+                            " students and prospective students over the age of 16. The events and " +
+                            "places described were created with humour for fun and not be an accurate " +
+                            "representation of the university experience. Please click Agree to indicate" +
+                            "that you are aware of these disclaimers, and that this game is not a " +
+                            "completely accurate representation of UW")
 
                     // Continue with new game operation
                     .setPositiveButton("Agree", new DialogInterface.OnClickListener() {

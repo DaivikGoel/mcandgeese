@@ -33,8 +33,6 @@ public class BattleScreen extends AppCompatActivity {
     int movementcost = 3;
     int buildingID;
     int monsterID;
-    //need to load in counter that is globally held
-
 
     int x_s = 605; //graphical value
     int y_s = 400;
