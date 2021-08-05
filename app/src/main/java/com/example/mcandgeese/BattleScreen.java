@@ -48,6 +48,7 @@ public class BattleScreen extends AppCompatActivity {
     int my_g = 4;
 
     int value =0;
+    int numrange=1;
 
     int[][] boulderlocation = new int[5][2];
     int randomx;
@@ -363,30 +364,47 @@ public class BattleScreen extends AppCompatActivity {
 
     public void DisplayStudent()
     {
-        final ImageView StudentV = (ImageView)findViewById(R.id.Student);
-        StudentV.setX(x_s);
-        StudentV.setY(y_s);
-        StudentV.invalidate();
 
-        final ImageView AS_R = (ImageView)findViewById(R.id.SAttackZoneR);
-        AS_R.setX(x_s+85);
-        AS_R.setY(y_s);
-        AS_R.invalidate();
+        int dispx=0;
+        int dispy =0;
+        for(int l = 0; l <28; l++)//set out of bounds
+        {
+          //  map[0][l] = 5;
+            //map[9][l] = 5;
+            for(int k =0; k<10; k++) {
+                //   map[k][0] = 5;
+                // map[k][27] = 5;
+                dispx= (l * 85)-75;
+                dispy= 740-(k* 85);
+                if (map[k][l] == 1)
+                {
+                    final ImageView StudentV = (ImageView) findViewById(R.id.Student);
+                    StudentV.setX(dispx);
+                    StudentV.setY(dispy);
+                    StudentV.invalidate();
 
-        final ImageView AS_L = (ImageView)findViewById(R.id.SAttackZoneL);
-        AS_L.setX(x_s-85);
-        AS_L.setY(y_s);
-        AS_L.invalidate();
+                    final ImageView AS_R = (ImageView)findViewById(R.id.SAttackZoneR);
+                    AS_R.setX(dispx+85);
+                    AS_R.setY(dispy);
+                    AS_R.invalidate();
 
-        final ImageView AS_U = (ImageView)findViewById(R.id.SAttackZoneU);
-        AS_U.setX(x_s);
-        AS_U.setY(y_s-85);
-        AS_U.invalidate();
+                    final ImageView AS_L = (ImageView)findViewById(R.id.SAttackZoneL);
+                    AS_L.setX(dispx-85);
+                    AS_L.setY(dispy);
+                    AS_L.invalidate();
 
-        final ImageView AS_D = (ImageView)findViewById(R.id.SAttackZoneD);
-        AS_D.setX(x_s);
-        AS_D.setY(y_s+85);
-        AS_D.invalidate();
+                    final ImageView AS_U = (ImageView)findViewById(R.id.SAttackZoneU);
+                    AS_U.setX(dispx);
+                    AS_U.setY(dispy-85);
+                    AS_U.invalidate();
+
+                    final ImageView AS_D = (ImageView)findViewById(R.id.SAttackZoneD);
+                    AS_D.setX(dispx);
+                    AS_D.setY(dispy+85);
+                    AS_D.invalidate();
+                }
+            }
+        }
 
     }
     public void DisplayGoose()
