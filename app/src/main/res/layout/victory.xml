@@ -36,11 +36,12 @@
         android:onClick="goToInventoryScreen"
         android:text="INVENTORY"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/returnMap2"
-        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintHorizontal_bias="0.43"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notReady3"
-        app:layout_constraintVertical_bias="0.406" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
 
     <com.example.mcandgeese.TypeWriter
         android:id="@+id/animatedtyping5"
