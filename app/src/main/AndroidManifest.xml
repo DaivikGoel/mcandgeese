@@ -55,6 +55,11 @@
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
             />
+        <activity
+            android:name=".user_lose_screen"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|keyboardHidden"
+            />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

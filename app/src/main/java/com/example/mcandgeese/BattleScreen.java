@@ -27,7 +27,7 @@ public class BattleScreen extends AppCompatActivity {
     int monsterhealth; // Starting Monster Health
     int monsterhitpoint; // Amount of Damage to user (per turn)
     int healenergycost = 5; //Cost of energy per heal to user
-    int hitpoint = 99999; // Amount of damage per attack to monster
+    int hitpoint = 999999; // Amount of damage per attack to monster
     int healpoint = 15; // Amount user heals per heal
     int rechargeamount = 10; // Amount user energy increases per recharge
     int movementcost = 3;
@@ -48,7 +48,6 @@ public class BattleScreen extends AppCompatActivity {
     int my_g = 4;
 
     int value =0;
-    int numrange=1;
 
     int[][] boulderlocation = new int[5][2];
     int randomx;
@@ -365,19 +364,17 @@ public class BattleScreen extends AppCompatActivity {
     public void DisplayStudent()
     {
 
-        int dispx=0;
-        int dispy =0;
+        int dispx;
+        int dispy ;
         for(int l = 0; l <28; l++)//set out of bounds
         {
-          //  map[0][l] = 5;
-            //map[9][l] = 5;
-            for(int k =0; k<10; k++) {
-                //   map[k][0] = 5;
-                // map[k][27] = 5;
-                dispx= (l * 85)-75;
-                dispy= 740-(k* 85);
+            for(int k =0; k<10; k++)
+            {
+
                 if (map[k][l] == 1)
                 {
+                    dispx= (l * 85)-75;
+                    dispy= 740-(k* 85);
                     final ImageView StudentV = (ImageView) findViewById(R.id.Student);
                     StudentV.setX(dispx);
                     StudentV.setY(dispy);
@@ -408,7 +405,7 @@ public class BattleScreen extends AppCompatActivity {
 
     }
     public void DisplayGoose()
-    {
+    {/*
         final ImageView GooseV = (ImageView)findViewById(R.id.Goose);
         GooseV.setX(x_g);
         GooseV.setY(y_g);
@@ -433,6 +430,50 @@ public class BattleScreen extends AppCompatActivity {
         AG_LD.setX(x_g-85);
         AG_LD.setY(y_g+85);
         AG_LD.invalidate();
+
+        */
+
+        int dispx;
+        int dispy ;
+        for(int l = 0; l <28; l++)//set out of bounds
+        {
+            for(int k =0; k<10; k++) {
+
+                if (map[k][l] == 3)
+                {
+                    dispx= (mx_g * 85)-75;
+                    dispy= 740-(my_g* 85);
+                    final ImageView GooseV = (ImageView)findViewById(R.id.Goose);
+                    GooseV.setX(dispx);
+                    GooseV.setY(dispy);
+                    GooseV.invalidate();
+
+                    final ImageView AG_LU = (ImageView)findViewById(R.id.GAttackZoneLU);
+                    AG_LU.setX(dispx-85);
+                    AG_LU.setY(dispy-85);
+                    AG_LU.invalidate();
+
+                    final ImageView AG_RU = (ImageView)findViewById(R.id.GAttackZoneRU);
+                    AG_RU.setX(dispx+85);
+                    AG_RU.setY(dispy-85);
+                    AG_RU.invalidate();
+
+                    final ImageView AG_RD = (ImageView)findViewById(R.id.GAttackZoneRD);
+                    AG_RD.setX(dispx+85);
+                    AG_RD.setY(dispy+85);
+                    AG_RD.invalidate();
+
+                    final ImageView AG_LD = (ImageView)findViewById(R.id.GAttackZoneLD);
+                    AG_LD.setX(dispx-85);
+                    AG_LD.setY(dispy+85);
+                    AG_LD.invalidate();
+
+                }
+            }
+
+
+        }
+
 
 
     }
