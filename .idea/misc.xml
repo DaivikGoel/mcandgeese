@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_building_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/monster_transition_screen.xml" value="0.1873873873873874" />
         <entry key="app/src/main/res/layout/not_ready_screen.xml" value="0.1873873873873874" />
+        <entry key="app/src/main/res/layout/victory.xml" value="0.335" />
       </map>
     </option>
   </component>

@@ -125,10 +125,7 @@ public class BattleScreen extends AppCompatActivity {
             hideSystemUI();
         }
 
-        final ImageView StudentV = (ImageView)findViewById(R.id.Student);
-        StudentV.setX(x_s);
-        StudentV.setY(y_s);
-        StudentV.invalidate();
+
     }
 
     private void hideSystemUI() {
@@ -255,7 +252,7 @@ public class BattleScreen extends AppCompatActivity {
         randomx = new Random().nextInt(26) + 1;
         randomy = new Random().nextInt(7) + 1;
 
-        if ((map[randomy][randomx]==0)||(randomy != 4))
+        if ((map[randomy][randomx]==0)&&(randomy != 4))
         {
             boulderlocation[i][0]= randomx;
             boulderlocation[i][1]= randomy;

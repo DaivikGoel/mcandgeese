@@ -40,7 +40,7 @@
         app:layout_constraintHorizontal_bias="0.36"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notReady3"
-        app:layout_constraintVertical_bias="0.148" />
+        app:layout_constraintVertical_bias="0.406" />
 
     <com.example.mcandgeese.TypeWriter
         android:id="@+id/animatedtyping5"
