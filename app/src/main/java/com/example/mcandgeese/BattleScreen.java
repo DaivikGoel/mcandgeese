@@ -405,34 +405,7 @@ public class BattleScreen extends AppCompatActivity {
 
     }
     public void DisplayGoose()
-    {/*
-        final ImageView GooseV = (ImageView)findViewById(R.id.Goose);
-        GooseV.setX(x_g);
-        GooseV.setY(y_g);
-        GooseV.invalidate();
-
-        final ImageView AG_LU = (ImageView)findViewById(R.id.GAttackZoneLU);
-        AG_LU.setX(x_g-85);
-        AG_LU.setY(y_g-85);
-        AG_LU.invalidate();
-
-        final ImageView AG_RU = (ImageView)findViewById(R.id.GAttackZoneRU);
-        AG_RU.setX(x_g+85);
-        AG_RU.setY(y_g-85);
-        AG_RU.invalidate();
-
-        final ImageView AG_RD = (ImageView)findViewById(R.id.GAttackZoneRD);
-        AG_RD.setX(x_g+85);
-        AG_RD.setY(y_g+85);
-        AG_RD.invalidate();
-
-        final ImageView AG_LD = (ImageView)findViewById(R.id.GAttackZoneLD);
-        AG_LD.setX(x_g-85);
-        AG_LD.setY(y_g+85);
-        AG_LD.invalidate();
-
-        */
-
+    {
         int dispx;
         int dispy ;
         for(int l = 0; l <28; l++)//set out of bounds
@@ -470,12 +443,7 @@ public class BattleScreen extends AppCompatActivity {
 
                 }
             }
-
-
         }
-
-
-
     }
 
     public void monsterimage(){
