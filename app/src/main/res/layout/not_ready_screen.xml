@@ -26,7 +26,7 @@
         tools:layout_editor_absoluteY="175dp"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-    <com.example.mcandgeese.TypeWriter
+    <ece.example.mcandgeese.TypeWriter
         android:id="@+id/animatedtyping3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

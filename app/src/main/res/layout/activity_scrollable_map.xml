@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:alpha="1"
     android:background="@drawable/base_map"
-    tools:context=".ScrollableMap">
+    tools:context="ece.example.mcandgeese.ScrollableMap">
 
     <Button
         android:id="@+id/enterButton"
